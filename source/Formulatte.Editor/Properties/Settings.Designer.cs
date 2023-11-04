@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Editor.Properties {
+namespace Formulatte.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

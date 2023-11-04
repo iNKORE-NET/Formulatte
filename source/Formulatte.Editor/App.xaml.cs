@@ -7,7 +7,7 @@ using System.Windows;
 using System.Reflection;
 using System.IO;
 
-namespace Editor
+namespace Formulatte
 {
     /// <summary>
     /// Interaction logic for App.xaml
