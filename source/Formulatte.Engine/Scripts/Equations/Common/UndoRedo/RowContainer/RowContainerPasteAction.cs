@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.RowContainer
 {
     public class RowContainerPasteAction : EquationAction
     {
@@ -17,7 +17,7 @@ namespace Formulatte
         public EquationBase ActiveEquation { get; set; }
         public int ActiveEquationSelectionIndex { get; set; }
         public int ActiveEquationSelectedItems { get; set; }
-        
+
         public TextEquation ActiveTextInChildRow { get; set; }
         public int CaretIndexOfActiveText { get; set; }
         public int SelectionStartIndexOfTextEquation { get; set; }

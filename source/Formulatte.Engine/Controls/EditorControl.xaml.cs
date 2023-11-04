@@ -19,7 +19,7 @@ using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations;
 
-namespace Formulatte
+namespace Formulatte.Engine.Controls
 {
     /// <summary>
     /// Interaction logic for EditorControl.xaml
@@ -196,7 +196,7 @@ namespace Formulatte
 
         private void EditorControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            StatusBarHelper.ShowCoordinates("");
+            //StatusBarHelper.ShowCoordinates("");
         }
 
         Point lastMouseLocation = new Point();
@@ -204,7 +204,7 @@ namespace Formulatte
         private void EditorControl_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePosition = e.GetPosition(this);
-            StatusBarHelper.ShowCoordinates((int)mousePosition.X + ", " + (int)mousePosition.Y);
+            //StatusBarHelper.ShowCoordinates((int)mousePosition.X + ", " + (int)mousePosition.Y);
             if (isDragging)
             {
                 if (Math.Abs(lastMouseLocation.X - mousePosition.X) > 2 /*SystemParameters.MinimumHorizontalDragDistance*/ ||

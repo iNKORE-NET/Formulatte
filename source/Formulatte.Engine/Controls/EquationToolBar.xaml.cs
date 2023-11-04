@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Controls
 {
     /// <summary>
     /// Interaction logic for MathToolbar.xaml
@@ -118,46 +118,46 @@ namespace Formulatte
 
         Uri CreateImageUri(string subFolder, string imageFileName)
         {
-            return new Uri("pack://application:,,,/images/commands/" + subFolder + "/" + imageFileName);
+            return new Uri("/Formulatte.Engine;component/Resources/Images/Commands/" + subFolder + "/" + imageFileName, UriKind.Relative);
         }
 
         void CreateBracketsPanel()
         {
-            Uri[] imageUris = { CreateImageUri("brackets", "SingleBar.png"),
-                                CreateImageUri("brackets", "DoubleBar.png"),
-                                CreateImageUri("brackets", "Floor.png"),
-                                CreateImageUri("brackets", "Ceiling.png"),
-                                CreateImageUri("brackets", "CurlyBracket.png"),
-                                CreateImageUri("brackets", "RightRightSquareBracket.png"),
-                                CreateImageUri("brackets", "Parentheses.png"),
-                                CreateImageUri("brackets", "SquareBracket.png"),
-                                CreateImageUri("brackets", "AngleBar.png"),
-                                CreateImageUri("brackets", "BarAngle.png"),
-                                CreateImageUri("brackets", "SquareBar.png"),
-                                CreateImageUri("brackets", "ParenthesisSquare.png"),
-                                CreateImageUri("brackets", "SquareParenthesis.png"),
-                                CreateImageUri("brackets", "LeftLeftSquareBracket.png"),
-                                CreateImageUri("brackets", "PointingAngles.png"),
-                                CreateImageUri("brackets", "RightLeftSquareBracket.png"),
-                                CreateImageUri("brackets", "LeftCurlyBracket.png"),
-                                CreateImageUri("brackets", "RightCurlyBracket.png"),
-                                CreateImageUri("brackets", "LeftDoubleBar.png"),
-                                CreateImageUri("brackets", "RightDoubleBar.png"),
-                                CreateImageUri("brackets", "LeftParenthesis.png"),
-                                CreateImageUri("brackets", "RightParenthesis.png"),
-                                CreateImageUri("brackets", "LeftSquareBar.png"),
-                                CreateImageUri("brackets", "RightSquareBar.png"),
-                                CreateImageUri("brackets", "LeftSquareBracket.png"),
-                                CreateImageUri("brackets", "RightSquareBracket.png"),
-                                CreateImageUri("brackets", "LeftAngle.png"),
-                                CreateImageUri("brackets", "RightAngle.png"),
-                                CreateImageUri("brackets", "LeftBar.png"),
-                                CreateImageUri("brackets", "RightBar.png"),
-                                CreateImageUri("brackets", "TopCurlyBracket.png"),
-                                CreateImageUri("brackets", "BottomCurlyBracket.png"),
-                                CreateImageUri("brackets", "TopSquareBracket.png"),
-                                CreateImageUri("brackets", "BottomSquareBracket.png"),
-                                CreateImageUri("brackets", "DoubleArrowBarBracket.png"),                                
+            Uri[] imageUris = { CreateImageUri("Brackets", "SingleBar.png"),
+                                CreateImageUri("Brackets", "DoubleBar.png"),
+                                CreateImageUri("Brackets", "Floor.png"),
+                                CreateImageUri("Brackets", "Ceiling.png"),
+                                CreateImageUri("Brackets", "CurlyBracket.png"),
+                                CreateImageUri("Brackets", "RightRightSquareBracket.png"),
+                                CreateImageUri("Brackets", "Parentheses.png"),
+                                CreateImageUri("Brackets", "SquareBracket.png"),
+                                CreateImageUri("Brackets", "AngleBar.png"),
+                                CreateImageUri("Brackets", "BarAngle.png"),
+                                CreateImageUri("Brackets", "SquareBar.png"),
+                                CreateImageUri("Brackets", "ParenthesisSquare.png"),
+                                CreateImageUri("Brackets", "SquareParenthesis.png"),
+                                CreateImageUri("Brackets", "LeftLeftSquareBracket.png"),
+                                CreateImageUri("Brackets", "PointingAngles.png"),
+                                CreateImageUri("Brackets", "RightLeftSquareBracket.png"),
+                                CreateImageUri("Brackets", "LeftCurlyBracket.png"),
+                                CreateImageUri("Brackets", "RightCurlyBracket.png"),
+                                CreateImageUri("Brackets", "LeftDoubleBar.png"),
+                                CreateImageUri("Brackets", "RightDoubleBar.png"),
+                                CreateImageUri("Brackets", "LeftParenthesis.png"),
+                                CreateImageUri("Brackets", "RightParenthesis.png"),
+                                CreateImageUri("Brackets", "LeftSquareBar.png"),
+                                CreateImageUri("Brackets", "RightSquareBar.png"),
+                                CreateImageUri("Brackets", "LeftSquareBracket.png"),
+                                CreateImageUri("Brackets", "RightSquareBracket.png"),
+                                CreateImageUri("Brackets", "LeftAngle.png"),
+                                CreateImageUri("Brackets", "RightAngle.png"),
+                                CreateImageUri("Brackets", "LeftBar.png"),
+                                CreateImageUri("Brackets", "RightBar.png"),
+                                CreateImageUri("Brackets", "TopCurlyBracket.png"),
+                                CreateImageUri("Brackets", "BottomCurlyBracket.png"),
+                                CreateImageUri("Brackets", "TopSquareBracket.png"),
+                                CreateImageUri("Brackets", "BottomSquareBracket.png"),
+                                CreateImageUri("Brackets", "DoubleArrowBarBracket.png"),                                
                                };
 
             CommandType[] commands = { CommandType.LeftRightBracket, CommandType.LeftRightBracket, CommandType.LeftRightBracket, 
@@ -222,35 +222,35 @@ namespace Formulatte
         void CreateSumsProductsPanel()
         {
             Uri[] imageUris = {   
-                                  CreateImageUri("sumsProducts", "sum.png"),
-                                  CreateImageUri("sumsProducts", "sumSub.png"),
-                                  CreateImageUri("sumsProducts", "sumSubSuper.png"),
-                                  CreateImageUri("sumsProducts", "sumBottom.png"),
-                                  CreateImageUri("sumsProducts", "sumBottomTop.png"),                                  
+                                  CreateImageUri("SumsProducts", "sum.png"),
+                                  CreateImageUri("SumsProducts", "sumSub.png"),
+                                  CreateImageUri("SumsProducts", "sumSubSuper.png"),
+                                  CreateImageUri("SumsProducts", "sumBottom.png"),
+                                  CreateImageUri("SumsProducts", "sumBottomTop.png"),                                  
 
-                                  CreateImageUri("sumsProducts", "product.png"),
-                                  CreateImageUri("sumsProducts", "productSub.png"),
-                                  CreateImageUri("sumsProducts", "productSubSuper.png"),
-                                  CreateImageUri("sumsProducts", "productBottom.png"),
-                                  CreateImageUri("sumsProducts", "productBottomTop.png"),
+                                  CreateImageUri("SumsProducts", "product.png"),
+                                  CreateImageUri("SumsProducts", "productSub.png"),
+                                  CreateImageUri("SumsProducts", "productSubSuper.png"),
+                                  CreateImageUri("SumsProducts", "productBottom.png"),
+                                  CreateImageUri("SumsProducts", "productBottomTop.png"),
 
-                                  CreateImageUri("sumsProducts", "coProduct.png"),
-                                  CreateImageUri("sumsProducts", "coProductSub.png"),
-                                  CreateImageUri("sumsProducts", "coProductSubSuper.png"),
-                                  CreateImageUri("sumsProducts", "coProductBottom.png"),
-                                  CreateImageUri("sumsProducts", "coProductBottomTop.png"),
+                                  CreateImageUri("SumsProducts", "coProduct.png"),
+                                  CreateImageUri("SumsProducts", "coProductSub.png"),
+                                  CreateImageUri("SumsProducts", "coProductSubSuper.png"),
+                                  CreateImageUri("SumsProducts", "coProductBottom.png"),
+                                  CreateImageUri("SumsProducts", "coProductBottomTop.png"),
                                   
-                                  CreateImageUri("sumsProducts", "intersection.png"),
-                                  CreateImageUri("sumsProducts", "intersectionSub.png"),
-                                  CreateImageUri("sumsProducts", "intersectionSubSuper.png"),
-                                  CreateImageUri("sumsProducts", "intersectionBottom.png"),
-                                  CreateImageUri("sumsProducts", "intersectionBottomTop.png"),
+                                  CreateImageUri("SumsProducts", "intersection.png"),
+                                  CreateImageUri("SumsProducts", "intersectionSub.png"),
+                                  CreateImageUri("SumsProducts", "intersectionSubSuper.png"),
+                                  CreateImageUri("SumsProducts", "intersectionBottom.png"),
+                                  CreateImageUri("SumsProducts", "intersectionBottomTop.png"),
                                   
-                                  CreateImageUri("sumsProducts", "union.png"),
-                                  CreateImageUri("sumsProducts", "unionSub.png"),
-                                  CreateImageUri("sumsProducts", "unionSubSuper.png"),
-                                  CreateImageUri("sumsProducts", "unionBottom.png"),
-                                  CreateImageUri("sumsProducts", "unionBottomTop.png"),
+                                  CreateImageUri("SumsProducts", "union.png"),
+                                  CreateImageUri("SumsProducts", "unionSub.png"),
+                                  CreateImageUri("SumsProducts", "unionSubSuper.png"),
+                                  CreateImageUri("SumsProducts", "unionBottom.png"),
+                                  CreateImageUri("SumsProducts", "unionBottomTop.png"),
                               };
             CommandType[] commands = Enumerable.Repeat(CommandType.SignComposite, imageUris.Length).ToArray();
             object[] paramz = { 
@@ -291,53 +291,53 @@ namespace Formulatte
         void CreateIntegralsPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("integrals/Single", "Simple.png"),
-                                  CreateImageUri("integrals/Single", "Sub.png"),
-                                  CreateImageUri("integrals/Single", "SubSuper.png"),
-                                  CreateImageUri("integrals/Single", "Bottom.png"),
-                                  CreateImageUri("integrals/Single", "BottomTop.png"),                                  
+                                  CreateImageUri("Integrals/Single", "Simple.png"),
+                                  CreateImageUri("Integrals/Single", "Sub.png"),
+                                  CreateImageUri("Integrals/Single", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Single", "Bottom.png"),
+                                  CreateImageUri("Integrals/Single", "BottomTop.png"),                                  
 
-                                  CreateImageUri("integrals/Double", "Simple.png"),
-                                  CreateImageUri("integrals/Double", "Sub.png"),
-                                  CreateImageUri("integrals/Double", "SubSuper.png"),
-                                  CreateImageUri("integrals/Double", "Bottom.png"),
-                                  CreateImageUri("integrals/Double", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Double", "Simple.png"),
+                                  CreateImageUri("Integrals/Double", "Sub.png"),
+                                  CreateImageUri("Integrals/Double", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Double", "Bottom.png"),
+                                  CreateImageUri("Integrals/Double", "BottomTop.png"),
 
-                                  CreateImageUri("integrals/Triple", "Simple.png"),
-                                  CreateImageUri("integrals/Triple", "Sub.png"),
-                                  CreateImageUri("integrals/Triple", "SubSuper.png"),
-                                  CreateImageUri("integrals/Triple", "Bottom.png"),
-                                  CreateImageUri("integrals/Triple", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Triple", "Simple.png"),
+                                  CreateImageUri("Integrals/Triple", "Sub.png"),
+                                  CreateImageUri("Integrals/Triple", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Triple", "Bottom.png"),
+                                  CreateImageUri("Integrals/Triple", "BottomTop.png"),
                                   
-                                  CreateImageUri("integrals/Contour", "Simple.png"),
-                                  CreateImageUri("integrals/Contour", "Sub.png"),
-                                  CreateImageUri("integrals/Contour", "SubSuper.png"),
-                                  CreateImageUri("integrals/Contour", "Bottom.png"),
-                                  CreateImageUri("integrals/Contour", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Contour", "Simple.png"),
+                                  CreateImageUri("Integrals/Contour", "Sub.png"),
+                                  CreateImageUri("Integrals/Contour", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Contour", "Bottom.png"),
+                                  CreateImageUri("Integrals/Contour", "BottomTop.png"),
 
-                                  CreateImageUri("integrals/Surface", "Simple.png"),
-                                  CreateImageUri("integrals/Surface", "Sub.png"),
-                                  CreateImageUri("integrals/Surface", "SubSuper.png"),
-                                  CreateImageUri("integrals/Surface", "Bottom.png"),
-                                  CreateImageUri("integrals/Surface", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Surface", "Simple.png"),
+                                  CreateImageUri("Integrals/Surface", "Sub.png"),
+                                  CreateImageUri("Integrals/Surface", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Surface", "Bottom.png"),
+                                  CreateImageUri("Integrals/Surface", "BottomTop.png"),
 
-                                  CreateImageUri("integrals/Volume", "Simple.png"),
-                                  CreateImageUri("integrals/Volume", "Sub.png"),
-                                  CreateImageUri("integrals/Volume", "SubSuper.png"),
-                                  CreateImageUri("integrals/Volume", "Bottom.png"),
-                                  CreateImageUri("integrals/Volume", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Volume", "Simple.png"),
+                                  CreateImageUri("Integrals/Volume", "Sub.png"),
+                                  CreateImageUri("Integrals/Volume", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Volume", "Bottom.png"),
+                                  CreateImageUri("Integrals/Volume", "BottomTop.png"),
 
-                                  CreateImageUri("integrals/Clock", "Simple.png"),
-                                  CreateImageUri("integrals/Clock", "Sub.png"),
-                                  CreateImageUri("integrals/Clock", "SubSuper.png"),
-                                  CreateImageUri("integrals/Clock", "Bottom.png"),
-                                  CreateImageUri("integrals/Clock", "BottomTop.png"),
+                                  CreateImageUri("Integrals/Clock", "Simple.png"),
+                                  CreateImageUri("Integrals/Clock", "Sub.png"),
+                                  CreateImageUri("Integrals/Clock", "SubSuper.png"),
+                                  CreateImageUri("Integrals/Clock", "Bottom.png"),
+                                  CreateImageUri("Integrals/Clock", "BottomTop.png"),
 
-                                  CreateImageUri("integrals/AntiClock", "Simple.png"),
-                                  CreateImageUri("integrals/AntiClock", "Sub.png"),
-                                  CreateImageUri("integrals/AntiClock", "SubSuper.png"),
-                                  CreateImageUri("integrals/AntiClock", "Bottom.png"),
-                                  CreateImageUri("integrals/AntiClock", "BottomTop.png"),
+                                  CreateImageUri("Integrals/AntiClock", "Simple.png"),
+                                  CreateImageUri("Integrals/AntiClock", "Sub.png"),
+                                  CreateImageUri("Integrals/AntiClock", "SubSuper.png"),
+                                  CreateImageUri("Integrals/AntiClock", "Bottom.png"),
+                                  CreateImageUri("Integrals/AntiClock", "BottomTop.png"),
                                };
 
             CommandType[] commands = Enumerable.Repeat(CommandType.SignComposite, imageUris.Length).ToArray();
@@ -400,12 +400,12 @@ namespace Formulatte
         void CreateSubAndSuperPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("subSuper", "Sub.png"),   
-                                  CreateImageUri("subSuper", "Super.png"),   
-                                  CreateImageUri("subSuper", "SubSuper.png"),   
-                                  CreateImageUri("subSuper", "SubLeft.png"),   
-                                  CreateImageUri("subSuper", "SuperLeft.png"),   
-                                  CreateImageUri("subSuper", "SubSuperLeft.png"),   
+                                  CreateImageUri("SubSuper", "Sub.png"),   
+                                  CreateImageUri("SubSuper", "Super.png"),   
+                                  CreateImageUri("SubSuper", "SubSuper.png"),   
+                                  CreateImageUri("SubSuper", "SubLeft.png"),   
+                                  CreateImageUri("SubSuper", "SuperLeft.png"),   
+                                  CreateImageUri("SubSuper", "SubSuperLeft.png"),   
                                };
             CommandType[] commands = { CommandType.Sub, CommandType.Super, CommandType.SubAndSuper,
                                        CommandType.Sub, CommandType.Super, CommandType.SubAndSuper};
@@ -419,15 +419,15 @@ namespace Formulatte
         void CreateCompositePanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("composite", "CompositeBottom.png"),  
-                                  CreateImageUri("composite", "CompositeTop.png"),  
-                                  CreateImageUri("composite", "CompositeBottomTop.png"),                            
-                                  CreateImageUri("composite", "BigBottom.png"),  
-                                  CreateImageUri("composite", "BigTop.png"),  
-                                  CreateImageUri("composite", "BigBottomTop.png"),                            
-                                  CreateImageUri("composite", "BigSub.png"),  
-                                  CreateImageUri("composite", "BigSuper.png"),  
-                                  CreateImageUri("composite", "BigSubSuper.png"),                        
+                                  CreateImageUri("Composite", "CompositeBottom.png"),  
+                                  CreateImageUri("Composite", "CompositeTop.png"),  
+                                  CreateImageUri("Composite", "CompositeBottomTop.png"),                            
+                                  CreateImageUri("Composite", "BigBottom.png"),  
+                                  CreateImageUri("Composite", "BigTop.png"),  
+                                  CreateImageUri("Composite", "BigBottomTop.png"),                            
+                                  CreateImageUri("Composite", "BigSub.png"),  
+                                  CreateImageUri("Composite", "BigSuper.png"),  
+                                  CreateImageUri("Composite", "BigSubSuper.png"),                        
                                };
             CommandType[] commands = { 
                                          CommandType.Composite, CommandType.Composite, CommandType.Composite,
@@ -447,34 +447,34 @@ namespace Formulatte
         void CreateDecoratedEquationPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("decorated/equation", "hat.png"),  
-                                  CreateImageUri("decorated/equation", "tilde.png"),  
-                                  CreateImageUri("decorated/equation", "parenthesis.png"),                            
-                                  CreateImageUri("decorated/equation", "tortoise.png"),  
-                                  CreateImageUri("decorated/equation", "topBar.png"),  
-                                  CreateImageUri("decorated/equation", "topDoubleBar.png"),                            
-                                  CreateImageUri("decorated/equation", "topRightArrow.png"),  
-                                  CreateImageUri("decorated/equation", "topLeftArrow.png"),  
-                                  CreateImageUri("decorated/equation", "topRightHalfArrow.png"),                            
-                                  CreateImageUri("decorated/equation", "topLeftHalfArrow.png"),  
-                                  CreateImageUri("decorated/equation", "topDoubleArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "hat.png"),  
+                                  CreateImageUri("Decorated/Equation", "tilde.png"),  
+                                  CreateImageUri("Decorated/Equation", "parenthesis.png"),                            
+                                  CreateImageUri("Decorated/Equation", "tortoise.png"),  
+                                  CreateImageUri("Decorated/Equation", "topBar.png"),  
+                                  CreateImageUri("Decorated/Equation", "topDoubleBar.png"),                            
+                                  CreateImageUri("Decorated/Equation", "topRightArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "topLeftArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "topRightHalfArrow.png"),                            
+                                  CreateImageUri("Decorated/Equation", "topLeftHalfArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "topDoubleArrow.png"),  
                                     
-                                  CreateImageUri("decorated/equation", "topDoubleArrow.png"),  //to be left empty
+                                  CreateImageUri("Decorated/Equation", "topDoubleArrow.png"),  //to be left empty
 
-                                  CreateImageUri("decorated/equation", "bottomBar.png"),                            
-                                  CreateImageUri("decorated/equation", "bottomDoubleBar.png"),  
-                                  CreateImageUri("decorated/equation", "bottomRightArrow.png"),  
-                                  CreateImageUri("decorated/equation", "bottomLeftArrow.png"),  
-                                  CreateImageUri("decorated/equation", "bottomRightHalfArrow.png"),  
-                                  CreateImageUri("decorated/equation", "bottomLeftHalfArrow.png"),  
-                                  CreateImageUri("decorated/equation", "bottomDoubleArrow.png"),                 
+                                  CreateImageUri("Decorated/Equation", "bottomBar.png"),                            
+                                  CreateImageUri("Decorated/Equation", "bottomDoubleBar.png"),  
+                                  CreateImageUri("Decorated/Equation", "bottomRightArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "bottomLeftArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "bottomRightHalfArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "bottomLeftHalfArrow.png"),  
+                                  CreateImageUri("Decorated/Equation", "bottomDoubleArrow.png"),                 
            
-                                  CreateImageUri("decorated/equation", "bottomDoubleArrow.png"),  //to be left empty
+                                  CreateImageUri("Decorated/Equation", "bottomDoubleArrow.png"),  //to be left empty
                                   
-                                  CreateImageUri("decorated/equation", "cross.png"),  
-                                  CreateImageUri("decorated/equation", "leftCross.png"),  
-                                  CreateImageUri("decorated/equation", "rightCross.png"),                            
-                                  CreateImageUri("decorated/equation", "strikeThrough.png"),  
+                                  CreateImageUri("Decorated/Equation", "cross.png"),  
+                                  CreateImageUri("Decorated/Equation", "leftCross.png"),  
+                                  CreateImageUri("Decorated/Equation", "rightCross.png"),                            
+                                  CreateImageUri("Decorated/Equation", "strikeThrough.png"),  
                                };
             CommandType[] commands = Enumerable.Repeat(CommandType.Decorated, imageUris.Length).ToArray();
             commands[11] = CommandType.None; //empty cell
@@ -512,65 +512,65 @@ namespace Formulatte
         void CreateDecoratedCharacterPanel()
         {
             Uri[] imageUris = {   
-                                  CreateImageUri("decorated/character", "None.png"),
-                                  CreateImageUri("decorated/character", "StrikeThrough.png"),
-                                  CreateImageUri("decorated/character", "DoubleStrikeThrough.png"),                                  
-                                  CreateImageUri("decorated/character", "LeftCross.png"), 
-                                  CreateImageUri("decorated/character", "RightCross.png"),         
-                                  CreateImageUri("decorated/character", "Cross.png"),
-                                  CreateImageUri("decorated/character", "VstrikeThrough.png"),
-                                  CreateImageUri("decorated/character", "VDoubleStrikeThrough.png"), 
-                                  CreateImageUri("decorated/character", "LeftUprightCross.png"), 
-                                  CreateImageUri("decorated/character", "RightUprightCross.png"), 
+                                  CreateImageUri("Decorated/Character", "None.png"),
+                                  CreateImageUri("Decorated/Character", "StrikeThrough.png"),
+                                  CreateImageUri("Decorated/Character", "DoubleStrikeThrough.png"),                                  
+                                  CreateImageUri("Decorated/Character", "LeftCross.png"), 
+                                  CreateImageUri("Decorated/Character", "RightCross.png"),         
+                                  CreateImageUri("Decorated/Character", "Cross.png"),
+                                  CreateImageUri("Decorated/Character", "VstrikeThrough.png"),
+                                  CreateImageUri("Decorated/Character", "VDoubleStrikeThrough.png"), 
+                                  CreateImageUri("Decorated/Character", "LeftUprightCross.png"), 
+                                  CreateImageUri("Decorated/Character", "RightUprightCross.png"), 
                                   
-                                  CreateImageUri("decorated/character", "Prime.png"), 
-                                  CreateImageUri("decorated/character", "DoublePrime.png"),                                   
-                                  CreateImageUri("decorated/character", "TriplePrime.png"),
-                                  CreateImageUri("decorated/character", "ReversePrime.png"),
-                                  CreateImageUri("decorated/character", "ReverseDoublePrime.png"),
+                                  CreateImageUri("Decorated/Character", "Prime.png"), 
+                                  CreateImageUri("Decorated/Character", "DoublePrime.png"),                                   
+                                  CreateImageUri("Decorated/Character", "TriplePrime.png"),
+                                  CreateImageUri("Decorated/Character", "ReversePrime.png"),
+                                  CreateImageUri("Decorated/Character", "ReverseDoublePrime.png"),
 
-                                  CreateImageUri("decorated/character", "AcuteAccent.png"), 
-                                  CreateImageUri("decorated/character", "GraveAccent.png"),                                   
-                                  CreateImageUri("decorated/character", "TopRing.png"),
-                                  CreateImageUri("decorated/character", "TopRightRing.png"),
-                                  CreateImageUri("decorated/character", "ReverseDoublePrime.png"), //Empty
+                                  CreateImageUri("Decorated/Character", "AcuteAccent.png"), 
+                                  CreateImageUri("Decorated/Character", "GraveAccent.png"),                                   
+                                  CreateImageUri("Decorated/Character", "TopRing.png"),
+                                  CreateImageUri("Decorated/Character", "TopRightRing.png"),
+                                  CreateImageUri("Decorated/Character", "ReverseDoublePrime.png"), //Empty
 
-                                  CreateImageUri("decorated/character", "TopBar.png"), 
-                                  CreateImageUri("decorated/character", "TopTilde.png"),                                   
-                                  CreateImageUri("decorated/character", "TopBreve.png"),
-                                  CreateImageUri("decorated/character", "TopInvertedBreve.png"),
-                                  CreateImageUri("decorated/character", "TopCircumflex.png"),
+                                  CreateImageUri("Decorated/Character", "TopBar.png"), 
+                                  CreateImageUri("Decorated/Character", "TopTilde.png"),                                   
+                                  CreateImageUri("Decorated/Character", "TopBreve.png"),
+                                  CreateImageUri("Decorated/Character", "TopInvertedBreve.png"),
+                                  CreateImageUri("Decorated/Character", "TopCircumflex.png"),
 
-                                  CreateImageUri("decorated/character", "BottomBar.png"), 
-                                  CreateImageUri("decorated/character", "BottomTilde.png"),                                   
-                                  CreateImageUri("decorated/character", "BottomBreve.png"),
-                                  CreateImageUri("decorated/character", "BottomInvertedBreve.png"),
-                                  CreateImageUri("decorated/character", "TopCaron.png"),
+                                  CreateImageUri("Decorated/Character", "BottomBar.png"), 
+                                  CreateImageUri("Decorated/Character", "BottomTilde.png"),                                   
+                                  CreateImageUri("Decorated/Character", "BottomBreve.png"),
+                                  CreateImageUri("Decorated/Character", "BottomInvertedBreve.png"),
+                                  CreateImageUri("Decorated/Character", "TopCaron.png"),
 
-                                  CreateImageUri("decorated/character", "TopRightArrow.png"), 
-                                  CreateImageUri("decorated/character", "TopLeftArrow.png"),                                   
-                                  CreateImageUri("decorated/character", "TopDoubleArrow.png"),
-                                  CreateImageUri("decorated/character", "TopRightHarpoon.png"),
-                                  CreateImageUri("decorated/character", "TopLeftHarpoon.png"),
+                                  CreateImageUri("Decorated/Character", "TopRightArrow.png"), 
+                                  CreateImageUri("Decorated/Character", "TopLeftArrow.png"),                                   
+                                  CreateImageUri("Decorated/Character", "TopDoubleArrow.png"),
+                                  CreateImageUri("Decorated/Character", "TopRightHarpoon.png"),
+                                  CreateImageUri("Decorated/Character", "TopLeftHarpoon.png"),
 
 
-                                  CreateImageUri("decorated/character", "BottomRightArrow.png"), 
-                                  CreateImageUri("decorated/character", "BottomLeftArrow.png"),                                   
-                                  CreateImageUri("decorated/character", "BottomDoubleArrow.png"),
-                                  CreateImageUri("decorated/character", "BottomRightHarpoon.png"),
-                                  CreateImageUri("decorated/character", "BottomLeftHarpoon.png"),
+                                  CreateImageUri("Decorated/Character", "BottomRightArrow.png"), 
+                                  CreateImageUri("Decorated/Character", "BottomLeftArrow.png"),                                   
+                                  CreateImageUri("Decorated/Character", "BottomDoubleArrow.png"),
+                                  CreateImageUri("Decorated/Character", "BottomRightHarpoon.png"),
+                                  CreateImageUri("Decorated/Character", "BottomLeftHarpoon.png"),
 
-                                  CreateImageUri("decorated/character", "TopDot.png"), 
-                                  CreateImageUri("decorated/character", "TopDDot.png"),                                   
-                                  CreateImageUri("decorated/character", "TopTDot.png"),
-                                  CreateImageUri("decorated/character", "TopFourDot.png"),
-                                  CreateImageUri("decorated/character", "TopFourDot.png"), //Empty
+                                  CreateImageUri("Decorated/Character", "TopDot.png"), 
+                                  CreateImageUri("Decorated/Character", "TopDDot.png"),                                   
+                                  CreateImageUri("Decorated/Character", "TopTDot.png"),
+                                  CreateImageUri("Decorated/Character", "TopFourDot.png"),
+                                  CreateImageUri("Decorated/Character", "TopFourDot.png"), //Empty
                                   
-                                  CreateImageUri("decorated/character", "BottomDot.png"), 
-                                  CreateImageUri("decorated/character", "BottomDDot.png"),                                   
-                                  CreateImageUri("decorated/character", "BottomTDot.png"),
-                                  CreateImageUri("decorated/character", "BottomFourDot.png"),
-                                  CreateImageUri("decorated/character", "BottomFourDot.png"), //Empty
+                                  CreateImageUri("Decorated/Character", "BottomDot.png"), 
+                                  CreateImageUri("Decorated/Character", "BottomDDot.png"),                                   
+                                  CreateImageUri("Decorated/Character", "BottomTDot.png"),
+                                  CreateImageUri("Decorated/Character", "BottomFourDot.png"),
+                                  CreateImageUri("Decorated/Character", "BottomFourDot.png"), //Empty
                                                                   
                                };
             CommandType[] commands = Enumerable.Repeat(CommandType.DecoratedCharacter, imageUris.Length).ToArray();
@@ -643,41 +643,41 @@ namespace Formulatte
         void CreateArrowEquationPanel()
         {
             Uri[] imageUris = {                                                                                                 
-                                  CreateImageUri("decorated/arrow", "LeftTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "LeftBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "LeftBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "LeftTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "LeftBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "LeftBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "RightTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "RightTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "DoubleTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "DoubleBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "DoubleBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "DoubleTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "DoubleBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "DoubleBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "RightLeftTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightLeftBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightLeftBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "RightLeftTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightLeftBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightLeftBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftBottomTop.png"),
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftBottomTop.png"),
 
-                                  CreateImageUri("decorated/arrow", "RightLeftHarpTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightLeftHarpBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightLeftHarpBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "RightLeftHarpTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightLeftHarpBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightLeftHarpBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftHarpTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftHarpBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "RightSmallLeftHarpBottomTop.png"),    
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftHarpTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftHarpBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "RightSmallLeftHarpBottomTop.png"),    
 
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftHarpTop.png"),                            
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftHarpBottom.png"),                            
-                                  CreateImageUri("decorated/arrow", "SmallRightLeftHarpBottomTop.png"),
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftHarpTop.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftHarpBottom.png"),                            
+                                  CreateImageUri("Decorated/Arrow", "SmallRightLeftHarpBottomTop.png"),
                                };
             CommandType[] commands = Enumerable.Repeat(CommandType.Arrow, imageUris.Length).ToArray();
 
@@ -732,25 +732,25 @@ namespace Formulatte
         void CreateDivAndRootsPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("divAndRoots", "SqRoot.png"),  
-                                  CreateImageUri("divAndRoots", "nRoot.png"),  
-                                  CreateImageUri("divAndRoots", "DivMath.png"),  
-                                  CreateImageUri("divAndRoots", "DivMathWithTop.png"),  
+                                  CreateImageUri("DivAndRoots", "SqRoot.png"),  
+                                  CreateImageUri("DivAndRoots", "nRoot.png"),  
+                                  CreateImageUri("DivAndRoots", "DivMath.png"),  
+                                  CreateImageUri("DivAndRoots", "DivMathWithTop.png"),  
 
-                                  CreateImageUri("divAndRoots", "Div.png"),  
-                                  CreateImageUri("divAndRoots", "DivDoubleBar.png"),  
-                                  CreateImageUri("divAndRoots", "DivTripleBar.png"),
-                                  CreateImageUri("divAndRoots", "SmallDiv.png"),
+                                  CreateImageUri("DivAndRoots", "Div.png"),  
+                                  CreateImageUri("DivAndRoots", "DivDoubleBar.png"),  
+                                  CreateImageUri("DivAndRoots", "DivTripleBar.png"),
+                                  CreateImageUri("DivAndRoots", "SmallDiv.png"),
 
-                                  CreateImageUri("divAndRoots", "DivSlant.png"),  
-                                  CreateImageUri("divAndRoots", "SmallDivSlant.png"),
-                                  CreateImageUri("divAndRoots", "DivHoriz.png"),
-                                  CreateImageUri("divAndRoots", "SmallDivHoriz.png"),
+                                  CreateImageUri("DivAndRoots", "DivSlant.png"),  
+                                  CreateImageUri("DivAndRoots", "SmallDivSlant.png"),
+                                  CreateImageUri("DivAndRoots", "DivHoriz.png"),
+                                  CreateImageUri("DivAndRoots", "SmallDivHoriz.png"),
 
-                                  CreateImageUri("divAndRoots", "DivMathInverted.png"),  
-                                  CreateImageUri("divAndRoots", "DivMathInvertedWithBottom.png"),
-                                  CreateImageUri("divAndRoots", "DivTriangleFixed.png"),
-                                  CreateImageUri("divAndRoots", "DivTriangleExpanding.png"),
+                                  CreateImageUri("DivAndRoots", "DivMathInverted.png"),  
+                                  CreateImageUri("DivAndRoots", "DivMathInvertedWithBottom.png"),
+                                  CreateImageUri("DivAndRoots", "DivTriangleFixed.png"),
+                                  CreateImageUri("DivAndRoots", "DivTriangleExpanding.png"),
                                };
             CommandType[] commands = { 
                                          CommandType.SquareRoot, CommandType.nRoot, 
@@ -775,11 +775,11 @@ namespace Formulatte
         void CreateBoxEquationPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("box", "leftTop.png"),  
-                                  CreateImageUri("box", "leftBottom.png"),  
-                                  CreateImageUri("box", "rightTop.png"),  
-                                  CreateImageUri("box", "rightBottom.png"),  
-                                  CreateImageUri("box", "all.png"),
+                                  CreateImageUri("Box", "leftTop.png"),  
+                                  CreateImageUri("Box", "leftBottom.png"),  
+                                  CreateImageUri("Box", "rightTop.png"),  
+                                  CreateImageUri("Box", "rightBottom.png"),  
+                                  CreateImageUri("Box", "all.png"),
                                };
             CommandType[] commands = Enumerable.Repeat<CommandType>(CommandType.Box, imageUris.Length).ToArray();
             object[] paramz = { BoxType.LeftTop, BoxType.LeftBottom, BoxType.RightTop, BoxType.RightBottom, BoxType.All };
@@ -789,17 +789,17 @@ namespace Formulatte
         void CreateMatrixPanel()
         {
             Uri[] imageUris = { 
-                                  CreateImageUri("matrix", "2cellRow.png"),  
-                                  CreateImageUri("matrix", "2cellColumn.png"),  
-                                  CreateImageUri("matrix", "2Square.png"),
+                                  CreateImageUri("Matrix", "2cellRow.png"),  
+                                  CreateImageUri("Matrix", "2cellColumn.png"),  
+                                  CreateImageUri("Matrix", "2Square.png"),
 
-                                  CreateImageUri("matrix", "3cellRow.png"),  
-                                  CreateImageUri("matrix", "3cellColumn.png"),  
-                                  CreateImageUri("matrix", "3Square.png"),
+                                  CreateImageUri("Matrix", "3cellRow.png"),  
+                                  CreateImageUri("Matrix", "3cellColumn.png"),  
+                                  CreateImageUri("Matrix", "3Square.png"),
                                   
-                                  CreateImageUri("matrix", "row.png"),
-                                  CreateImageUri("matrix", "column.png"),
-                                  CreateImageUri("matrix", "custom.png"),
+                                  CreateImageUri("Matrix", "row.png"),
+                                  CreateImageUri("Matrix", "column.png"),
+                                  CreateImageUri("Matrix", "custom.png"),
                                };
             CommandType[] commands = Enumerable.Repeat<CommandType>(CommandType.Matrix, imageUris.Length).ToArray();
             commands[6] = CommandType.CustomMatrix;

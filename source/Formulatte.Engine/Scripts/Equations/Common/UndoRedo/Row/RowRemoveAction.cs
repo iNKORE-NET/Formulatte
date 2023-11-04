@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row
 {
     public class RowRemoveAction : EquationAction
     {
@@ -40,6 +40,6 @@ namespace Formulatte
             : base(executor)
         {
         }
-    }   
+    }
 }
 

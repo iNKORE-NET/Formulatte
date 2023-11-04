@@ -30,8 +30,8 @@ namespace Formulatte.Engine.Common
     {
         static string exePath = Assembly.GetEntryAssembly().Location;
         static string appVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
-        static AppSettingsSection appSection = null;
-        static Configuration config = null;
+        //static AppSettingsSection appSection = null;
+        //static Configuration config = null;
 
         static ConfigManager()
         {
@@ -47,9 +47,9 @@ namespace Formulatte.Engine.Common
                     CopyConfigFile();
                     existed = false;
                 }
-                ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
-                config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-                appSection = config.AppSettings;//(AppSettingsSection)config.GetSection("appSettings");
+                //ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
+                //config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                //appSection = config.AppSettings;//(AppSettingsSection)config.GetSection("appSettings");
                 if (!existed)
                 {
                     SetConfigurationValue(KeyName.version, Assembly.GetEntryAssembly().GetName().Version.ToString());
@@ -63,7 +63,7 @@ namespace Formulatte.Engine.Common
         {
             try
             {
-                return appSection.Settings[key.ToString()].Value;
+                return "";// appSection.Settings[key.ToString()].Value;
             }
             catch
             {
@@ -97,20 +97,20 @@ namespace Formulatte.Engine.Common
                 if (!File.Exists(PublicConfigFilePath))
                 {
                     CopyConfigFile();
-                    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
-                    config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-                    appSection = config.AppSettings;
+                    //ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
+                    //config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                    //appSection = config.AppSettings;
                     SetConfigurationValue(KeyName.version, Assembly.GetEntryAssembly().GetName().Version.ToString());
                 }
-                if (appSection.Settings.AllKeys.Contains(key.ToString()))
-                {
-                    appSection.Settings[key.ToString()].Value = value;
-                }
-                else
-                {
-                    appSection.Settings.Add(key.ToString(), value);
-                }
-                config.Save();
+                //if (appSection.Settings.AllKeys.Contains(key.ToString()))
+                //{
+                //    appSection.Settings[key.ToString()].Value = value;
+                //}
+                //else
+                //{
+                //    appSection.Settings.Add(key.ToString(), value);
+                //}
+                //config.Save();
                 return true;
             }
             catch { }
@@ -124,23 +124,23 @@ namespace Formulatte.Engine.Common
                 if (!File.Exists(PublicConfigFilePath))
                 {
                     CopyConfigFile();
-                    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
-                    config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-                    appSection = config.AppSettings;
+                    //ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap() { ExeConfigFilename = PublicConfigFilePath };
+                    //config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+                    //appSection = config.AppSettings;
                     SetConfigurationValue(KeyName.version, Assembly.GetEntryAssembly().GetName().Version.ToString());
                 }
-                foreach (var item in configItems)
-                {
-                    if (appSection.Settings.AllKeys.Contains(item.Key.ToString()))
-                    {
-                        appSection.Settings[item.Key.ToString()].Value = item.Value;
-                    }
-                    else
-                    {
-                        appSection.Settings.Add(item.Key.ToString(), item.Value);
-                    }
-                }
-                config.Save();
+                //foreach (var item in configItems)
+                //{
+                //    if (appSection.Settings.AllKeys.Contains(item.Key.ToString()))
+                //    {
+                //        appSection.Settings[item.Key.ToString()].Value = item.Value;
+                //    }
+                //    else
+                //    {
+                //        appSection.Settings.Add(item.Key.ToString(), item.Value);
+                //    }
+                //}
+                //config.Save();
                 return true;
             }
             catch { }

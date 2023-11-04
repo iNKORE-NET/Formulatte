@@ -123,7 +123,7 @@ namespace Formulatte.Engine.Scripts.Equations.SubSuper
             set
             {
                 base.Left = value;
-                if (Position == Editor.Position.Right)
+                if (Position == Position.Right)
                 {
                     subEquation.Left = Left + Padding;
                     superEquation.Left = Left + Padding;

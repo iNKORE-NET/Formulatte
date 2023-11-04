@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row
 {
     public class EquationRowPasteAction : EquationAction
     {
@@ -29,10 +29,10 @@ namespace Formulatte
         public CharacterDecorationInfo[] FirstNewDecorations { get; set; }
 
         public string LastNewText { get; set; }
-        public int[] LastNewFormats { get; set; }                
-        public EditorMode[] LastNewModes { get; set; }        
+        public int[] LastNewFormats { get; set; }
+        public EditorMode[] LastNewModes { get; set; }
         public CharacterDecorationInfo[] LastNewDecorations { get; set; }
-        
+
         public List<EquationBase> Equations { get; set; }
 
         public EquationRowPasteAction(ISupportsUndo executor)

@@ -10,6 +10,8 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations.Common;
+using EngineCommom = Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo.RowContainer;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -643,7 +645,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 ActiveChild.HandleMouseDrag(mousePoint);
                 SelectedItems = childEquations.IndexOf(ActiveChild) - SelectionStartIndex;
             }
-            StatusBarHelper.PrintStatusMessage("ActiveStart " + ActiveChild.SelectionStartIndex + ", ActiveItems" + ActiveChild.SelectedItems);
+            //StatusBarHelper.PrintStatusMessage("ActiveStart " + ActiveChild.SelectionStartIndex + ", ActiveItems" + ActiveChild.SelectedItems);
         }
 
         public override double Left
@@ -652,21 +654,21 @@ namespace Formulatte.Engine.Scripts.Equations
             set
             {
                 base.Left = value;
-                if (HAlignment == Editor.HAlignment.Left)
+                if (HAlignment == EngineCommom.HAlignment.Left)
                 {
                     foreach (EquationBase eb in childEquations)
                     {
                         eb.Left = value;
                     }
                 }
-                else if (HAlignment == Editor.HAlignment.Right)
+                else if (HAlignment == EngineCommom.HAlignment.Right)
                 {
                     foreach (EquationBase eb in childEquations)
                     {
                         eb.Right = Right;
                     }
                 }
-                else if (HAlignment == Editor.HAlignment.Center)
+                else if (HAlignment == EngineCommom.HAlignment.Center)
                 {
                     foreach (EquationBase eb in childEquations)
                     {

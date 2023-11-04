@@ -16,6 +16,12 @@ using Formulatte.Engine.Scripts.Equations.Composite;
 using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common;
 using Formulatte.Engine.Scripts.Equations.Division;
+using Formulatte.Engine.Scripts.Equations.Bracket;
+using Formulatte.Engine.Scripts.Equations.Root;
+using Formulatte.Engine.Scripts.Equations.HorizontalBracket;
+using Formulatte.Engine.Scripts.Equations.Decorated;
+using Formulatte.Engine.Scripts.Equations.Misc;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -604,7 +610,7 @@ namespace Formulatte.Engine.Scripts.Equations
                         newEquation = SignCompositeFactory.CreateEquation(this, (Position)((object[])data)[0], (SignCompositeSymbol)((object[])data)[1], UseItalicIntergalOnNew);
                         break;
                     case CommandType.Decorated:
-                        newEquation = new Decorated(this, (DecorationType)((object[])data)[0], (Position)((object[])data)[1]);
+                        newEquation = new Decorated.Decorated(this, (DecorationType)((object[])data)[0], (Position)((object[])data)[1]);
                         break;
                     case CommandType.Arrow:
                         newEquation = new Arrow(this, (ArrowType)((object[])data)[0], (Position)((object[])data)[1]);

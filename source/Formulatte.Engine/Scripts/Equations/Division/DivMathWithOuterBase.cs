@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Formulatte.Engine.Common;
 
 namespace Formulatte.Engine.Scripts.Equations.Division
 {
@@ -14,8 +15,8 @@ namespace Formulatte.Engine.Scripts.Equations.Division
             : base(parent)
         {
             outerEquation = new RowContainer(this);
-            outerEquation.HAlignment = Editor.HAlignment.Right;
-            //insideEquation.HAlignment = Editor.HAlignment.Right;
+            outerEquation.HAlignment = HAlignment.Right;
+            //insideEquation.HAlignment = HAlignment.Right;
             childEquations.Add(outerEquation);
         }
 

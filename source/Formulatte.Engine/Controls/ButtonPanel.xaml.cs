@@ -77,7 +77,7 @@ namespace Formulatte.Engine.Controls
         protected override void OnClick()
         {
             base.OnClick();
-            ((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+            //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
         }
     }
 }

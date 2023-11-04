@@ -1,4 +1,4 @@
-﻿<Window x:Class="Formulatte.UnicodeSelectorWindow"
+﻿<Window x:Class="Formulatte.Engine.Dialogs.UnicodeSelectorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Insert Symbol" Height="432" Width="750"

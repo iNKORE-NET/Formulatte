@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Dialogs
 {
     /// <summary>
     /// Interaction logic for CustomZoomWindow.xaml
@@ -19,10 +19,10 @@ namespace Formulatte
     public partial class CustomZoomWindow : Window
     {
         int maxPercentage = 9999;
-        MainWindow mainWindow = null;
-        public CustomZoomWindow(MainWindow mainWindow)
+        //MainWindow mainWindow = null;
+        public CustomZoomWindow()
         {
-            this.mainWindow = mainWindow;
+            //this.mainWindow = mainWindow;
             InitializeComponent();
             numberBox.Focus();
         }
@@ -53,7 +53,7 @@ namespace Formulatte
                     MessageBox.Show("Zoom percentage must be between 1 and " + maxPercentage + ".");
                     return;
                 }
-                mainWindow.SetFontSizePercentage(number);
+                //mainWindow.SetFontSizePercentage(number);
                 this.Close();
             }
             catch 

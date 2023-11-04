@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Text
 {
     public class TextRemoveAction : EquationAction
     {
@@ -20,7 +20,7 @@ namespace Formulatte
         public int ParentSelectionStartIndex { get; set; }
 
         public TextRemoveAction(ISupportsUndo executor, int index, string text, int selectionStartIndex,
-                                int selectionCout, int parentSelectionStartIndex, int[] formats, EditorMode[] modes, 
+                                int selectionCout, int parentSelectionStartIndex, int[] formats, EditorMode[] modes,
                                 CharacterDecorationInfo[] decorations)
             : base(executor)
         {
@@ -33,6 +33,6 @@ namespace Formulatte
             SelectionCount = selectionCout;
             ParentSelectionStartIndex = parentSelectionStartIndex;
         }
-    }    
+    }
 }
 

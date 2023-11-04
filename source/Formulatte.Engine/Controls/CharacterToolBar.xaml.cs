@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Controls
 {
     /// <summary>
     /// Interaction logic for MathToolbar.xaml

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Controls
 {
     /// <summary>
     /// Interaction logic for HistoryToolBar.xaml
@@ -30,16 +30,16 @@ namespace Formulatte
             this.DataContext = this;
             InitializeComponent();
             recentListBox.ItemsSource = recentList;
-            var data = ConfigManager.GetConfigurationValue(KeyName.symbols);
-            if (data.Length > 0)
-            {
-                string[] list = data.Split(',');
-                foreach (var s in list)
-                {
-                    recentList.Add(s);
-                    usedCount.Add(s, 0);
-                }
-            }
+            //var data = ConfigManager.GetConfigurationValue(KeyName.symbols);
+            //if (data.Length > 0)
+            //{
+            //    string[] list = data.Split(',');
+            //    foreach (var s in list)
+            //    {
+            //        recentList.Add(s);
+            //        usedCount.Add(s, 0);
+            //    }
+            //}
             recentListBox.FontFamily = FontFactory.GetFontFamily(FontType.STIXGeneral);
         }
 
@@ -74,8 +74,8 @@ namespace Formulatte
         private void symbolClick(object sender, MouseButtonEventArgs e)
         {
             string item = ((TextBlock)sender).DataContext as string;
-            CommandDetails commandDetails = new CommandDetails { UnicodeString = item, CommandType = Editor.CommandType.Text };
-            ((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+            CommandDetails commandDetails = new CommandDetails { UnicodeString = item, CommandType = CommandType.Text };
+            //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
         }
 
         public void Save()

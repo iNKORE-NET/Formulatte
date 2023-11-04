@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row
 {
     public class RowAction : EquationAction
     {
@@ -23,6 +23,14 @@ namespace Formulatte
             CaretIndex = caretIndex;
             EquationAfter = equationAfter;
             Added = added;
+        }
+
+        public RowAction(ISupportsUndo executor, EquationBase equation, TextEquation equationAfter, int index, int caretIndex) : base(executor)
+        {
+            Index = index;
+            Equation = equation;
+            CaretIndex = caretIndex;
+            EquationAfter = equationAfter;
         }
     }
 }

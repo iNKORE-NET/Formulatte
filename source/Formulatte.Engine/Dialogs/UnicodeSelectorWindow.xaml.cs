@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Dialogs
 {
     /// <summary>
     /// Interaction logic for UnicodeSelectorWindow.xaml
@@ -154,8 +154,8 @@ namespace Formulatte
             }
             if (item != null)
             {
-                CommandDetails commandDetails = new CommandDetails { UnicodeString = item.UnicodeText, CommandType = Editor.CommandType.Text };
-                ((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+                //CommandDetails commandDetails = new CommandDetails { UnicodeString = item.UnicodeText, CommandType = Editor.CommandType.Text };
+                //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
                 if (!useRecentList)
                 {
                     if (recentList.Contains(item))

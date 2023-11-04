@@ -17,6 +17,7 @@ namespace Formulatte
 */
 using System.Collections.Generic;
 using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Controls;
 
 namespace Formulatte.Engine.Common
 {

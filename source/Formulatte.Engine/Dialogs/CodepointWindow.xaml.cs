@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Dialogs
 {
     /// <summary>
     /// Interaction logic for CustomZoomWindow.xaml
@@ -63,8 +63,8 @@ namespace Formulatte
             {
                 try
                 {
-                    CommandDetails commandDetails = new CommandDetails { UnicodeString = Convert.ToChar(number).ToString(), CommandType = Editor.CommandType.Text };
-                    ((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+                    CommandDetails commandDetails = new CommandDetails { UnicodeString = Convert.ToChar(number).ToString(), CommandType = CommandType.Text };
+                    //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
                 }
                 catch
                 {

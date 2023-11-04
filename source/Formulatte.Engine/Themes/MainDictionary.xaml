@@ -3,9 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
-    mc:Ignorable="d"
-	xmlns:local="clr-namespace:Editor">
+    mc:Ignorable="d">
 
     <Style x:Key="ButtonFocusVisual">
         <Setter Property="Control.Template">
@@ -117,9 +115,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Microsoft_Windows_Themes:ListBoxChrome x:Name="Bd" BorderBrush="Black" BorderThickness="1" SnapsToDevicePixels="true">
-                        <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                    </Microsoft_Windows_Themes:ListBoxChrome>
+                    <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Formulatte.CustomZoomWindow"
+﻿<Window x:Class="Formulatte.Engine.Dialogs.CustomZoomWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Zoom Level" Height="104" Width="378"

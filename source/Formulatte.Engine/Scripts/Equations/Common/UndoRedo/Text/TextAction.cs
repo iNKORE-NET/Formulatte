@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Text
 {
     public class TextAction : EquationAction
     {
@@ -19,7 +19,16 @@ namespace Formulatte
 
         public TextAction(ISupportsUndo executor)
             : base(executor)
-        {            
+        {
+        }
+
+        public TextAction(ISupportsUndo executor, int index, string text, int[] formats, EditorMode[] modes, CharacterDecorationInfo[] decorations) : base(executor)
+        {
+            Index = index;
+            Text = text;
+            Formats = formats;
+            Modes = modes;
+            Decorations = decorations;
         }
     }
 }

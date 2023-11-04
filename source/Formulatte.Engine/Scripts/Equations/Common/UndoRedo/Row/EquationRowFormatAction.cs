@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row
 {
     public class EquationRowFormatAction : EquationAction
     {
@@ -13,7 +13,7 @@ namespace Formulatte
         public int FirstChildSelectionStartIndex { get; set; }
         public int FirstChildSelectedItems { get; set; }
         public int LastChildSelectionStartIndex { get; set; }
-        public int LastChildSelectedItems { get; set; }        
+        public int LastChildSelectedItems { get; set; }
         public string Operation { get; set; }
         public string Argument { get; set; }
         public bool Applied { get; set; }

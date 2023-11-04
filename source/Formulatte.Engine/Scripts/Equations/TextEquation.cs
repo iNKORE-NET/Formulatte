@@ -26,6 +26,7 @@ using Formulatte.Engine.Scripts.Equations.Text;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations.Common;
 using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Text;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -437,7 +438,7 @@ namespace Formulatte.Engine.Scripts.Equations
                     for (int i = 0; i < text.Length; i++)
                     {
                         formats[i] = formatId;
-                        modes[i] = Editor.EditorMode.Math;
+                        modes[i] = EditorMode.Math;
                     }
                 }
                 ConsumeFormattedText(text, formats, modes, decorations, true);
@@ -521,7 +522,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 for (int i = 0; i < textData.Length; i++)
                 {
                     formats.Add(formatId);
-                    modes.Add(Editor.EditorMode.Math);
+                    modes.Add(EditorMode.Math);
                 }
             }
             FormatText();
@@ -591,16 +592,16 @@ namespace Formulatte.Engine.Scripts.Equations
             FontStyle style = InputItalic ? FontStyles.Italic : FontStyles.Normal;
             textData.Insert(caretIndex, text);
             string name = FunctionNames.CheckForFunctionName(textData.ToString(0, caretIndex + text.Length));
-            if (name != null && EditorMode == Editor.EditorMode.Math && caretIndex - (name.Length - text.Length) >= 0)
+            if (name != null && EditorMode == EditorMode.Math && caretIndex - (name.Length - text.Length) >= 0)
             {
                 for (int i = caretIndex - (name.Length - text.Length); i < caretIndex; i++)
                 {
                     formats[i] = textManager.GetFormatIdForNewStyle(formats[i], FontStyles.Normal);
-                    modes[i] = Editor.EditorMode.Math;
+                    modes[i] = EditorMode.Math;
                 }
                 style = FontStyles.Normal;
             }
-            else if (text.Length == 1 && EditorMode == Editor.EditorMode.Math)
+            else if (text.Length == 1 && EditorMode == EditorMode.Math)
             {
                 if (text[0] >= 65 && text[0] <= 90 || text[0] >= 97 && text[0] <= 122 || char.IsWhiteSpace(text[0]))
                 {

@@ -17,6 +17,11 @@ using System.IO;
 using System.Reflection;
 using System.ComponentModel;
 using System.Windows.Controls.Primitives;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations;
+using Formulatte.Engine.Dialogs;
+using Formulatte.Engine.Controls;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 
 namespace Formulatte
 {
@@ -53,11 +58,11 @@ namespace Formulatte
             //                    "Please help us by sending your suggestions, feature requests or bug reports using our facebook page or our website (see help)." + Environment.NewLine + Environment.NewLine +
             //                    successMessage, "Important message");
             //}
-            UndoManager.CanUndo += (a, b) => { undoButton.IsEnabled = b.ActionPossible; };
-            UndoManager.CanRedo += (a, b) => { redoButton.IsEnabled = b.ActionPossible; };
+            UndoManager.CanUndo += (a, b) => { AppBarButton_MainBar_Undo.IsEnabled = b.ActionPossible; };
+            UndoManager.CanRedo += (a, b) => { AppBarButton_MainBar_Redo.IsEnabled = b.ActionPossible; };
             EquationBase.SelectionAvailable += new EventHandler<EventArgs>(editor_SelectionAvailable);
             EquationBase.SelectionUnavailable += new EventHandler<EventArgs>(editor_SelectionUnavailable);
-            underbarToggle.IsChecked = true;
+            AppBarToggleButton_MainBar_Underbar.IsChecked = true;
             TextEquation.InputPropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(TextEquation_InputPropertyChanged);
             editor.ZoomChanged += new EventHandler(editor_ZoomChanged);
         }
@@ -73,8 +78,8 @@ namespace Formulatte
                 }
             }
             catch { }
-            var mode = ConfigManager.GetConfigurationValue(KeyName.default_mode);
-            var fontName = ConfigManager.GetConfigurationValue(KeyName.default_font);
+            var mode = "Text";//ConfigManager.GetConfigurationValue(KeyName.default_mode);
+            var fontName = "STIX";//ConfigManager.GetConfigurationValue(KeyName.default_font);
 
             var modes = editorModeCombo.Items;
             foreach (ComboBoxItem item in modes)
@@ -102,8 +107,8 @@ namespace Formulatte
             copyMenuItem.IsEnabled = false;
             cutMenuItem.IsEnabled = false;
             deleteMenuItem.IsEnabled = false;
-            cutButton.IsEnabled = false;
-            copyButton.IsEnabled = false;
+            AppBarButton_MainBar_Cut.IsEnabled = false;
+            AppBarButton_MainBar_Copy.IsEnabled = false;
         }
 
         void editor_SelectionAvailable(object sender, EventArgs e)
@@ -111,8 +116,8 @@ namespace Formulatte
             copyMenuItem.IsEnabled = true;
             cutMenuItem.IsEnabled = true;
             deleteMenuItem.IsEnabled = true;
-            cutButton.IsEnabled = true;
-            copyButton.IsEnabled = true;
+            AppBarButton_MainBar_Cut.IsEnabled = true;
+            AppBarButton_MainBar_Copy.IsEnabled = true;
         }
 
         //private Image ConvertImageToGrayScaleImage()
@@ -122,7 +127,7 @@ namespace Formulatte
         //    bmpImage.BeginInit();
         //    bmpImage.UriSource = new Uri("pack://application:,,,/images/gui/redo.png");
         //    bmpImage.EndInit();
-        //    if (!undoButton.IsEnabled)
+        //    if (!AppBarButton_MainBar_Undo.IsEnabled)
         //    {
         //        FormatConvertedBitmap grayBitmap = new FormatConvertedBitmap();
         //        grayBitmap.BeginInit();
@@ -136,38 +141,6 @@ namespace Formulatte
 
         void CheckForUpdate()
         {
-            if (ConfigManager.GetConfigurationValue(KeyName.checkUpdates) == "false")
-            {
-                return;
-            }
-            try
-            {
-                string newVersion = version;
-                using (WebClient client = new WebClient())
-                {
-                    newVersion = client.DownloadString("http://www.mathiversity.com/matheditor/version");
-                }
-                string[] newParts = newVersion.Split('.');
-                string[] currentParts = version.Split('.');
-                for (int i = 0; i < newParts.Count(); i++)
-                {
-                    if (int.Parse(newParts[i]) > int.Parse(currentParts[i]))
-                    {
-                        if (MessageBox.Show("A new version of Math Editor with enhanced features is available.\r\nWould you like to download the new version?",
-                                            "New version available",
-                                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        {
-                            Process.Start("http://www.mathiversity.com/Downloads");
-                        }
-                        break;
-                    }
-                    else if (int.Parse(newParts[i]) < int.Parse(currentParts[i]))
-                    {
-                        break;
-                    }
-                }
-            }
-            catch { } // hopeless..
         }
 
         public void HandleToolBarCommand(CommandDetails commandDetails)
@@ -440,17 +413,17 @@ namespace Formulatte
 
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
-            ToolBar toolBar = sender as ToolBar;
-            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
-            if (overflowGrid != null)
-            {
-                overflowGrid.Visibility = Visibility.Collapsed;
-            }
+            //ToolBar toolBar = sender as ToolBar;
+            //var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            //if (overflowGrid != null)
+            //{
+            //    overflowGrid.Visibility = Visibility.Collapsed;
+            //}
         }
 
         private void UnderbarToggleCheckChanged(object sender, RoutedEventArgs e)
         {
-            editor.ShowOverbar(underbarToggle.IsChecked == true);
+            editor.ShowOverbar(AppBarToggleButton_MainBar_Underbar.IsChecked == true);
         }
 
         private void contentsMenuItem_Click(object sender, RoutedEventArgs e)
@@ -460,9 +433,9 @@ namespace Formulatte
 
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Window aboutWindow = new AboutWindow();
-            aboutWindow.Owner = this;
-            aboutWindow.ShowDialog();
+            //Window aboutWindow = new AboutWindow();
+            //aboutWindow.Owner = this;
+            //aboutWindow.ShowDialog();
         }
 
         private void videoMenuItem_Click(object sender, RoutedEventArgs e)
@@ -556,7 +529,7 @@ namespace Formulatte
 
         private void CustomZoomMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Window zoomWindow = new CustomZoomWindow(this);
+            Window zoomWindow = new CustomZoomWindow();
             zoomWindow.Owner = this;
             zoomWindow.Show();
         }
