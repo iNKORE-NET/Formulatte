@@ -4,21 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Text
 {
     public class DecoratedCharacter : EquationBase
     {
         List<CharacterDecorationInfo> decorations = new List<CharacterDecorationInfo>();
         FormattedText charFt;
         public TextEquation Previous { get; set; }
-        public TextEquation Next     { get; set; }
+        public TextEquation Next { get; set; }
 
         public DecoratedCharacter(EquationContainer parent, TextEquation previous, CharacterDecorationType cdt, Position position, string sign)
             : base(parent)
         {
-            this.Previous = previous;
-            this.charFt = textManager.GetFormattedText(previous.Text[previous.CaretIndex - 1].ToString(), previous.GetFormats()[previous.CaretIndex - 1]);            
+            Previous = previous;
+            charFt = textManager.GetFormattedText(previous.Text[previous.CaretIndex - 1].ToString(), previous.GetFormats()[previous.CaretIndex - 1]);
             previous.ConsumeKey(System.Windows.Input.Key.Back);
             Height = FontSize;
             decorations.Add(new CharacterDecorationInfo() { DecorationType = cdt, Position = position, UnicodeString = sign });

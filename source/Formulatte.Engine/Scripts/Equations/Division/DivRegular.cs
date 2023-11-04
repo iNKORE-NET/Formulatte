@@ -5,11 +5,12 @@ using System.Text;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Media;
+using Formulatte.Engine.Scripts.Equations;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivRegular : DivBase
-    {        
+    {
         double ExtraWidth { get { return FontSize * .2; } }
         double ExtraHeight { get { return FontSize * .2; } }
 
@@ -19,23 +20,23 @@ namespace Formulatte
             : base(parent, false)
         {
         }
-        
+
         public DivRegular(EquationContainer parent, bool isSmall)
             : base(parent, isSmall)
-        {            
+        {
         }
 
         public override void DrawEquation(DrawingContext dc)
         {
-            base.DrawEquation(dc);                        
+            base.DrawEquation(dc);
             if (barCount == 1)
             {
                 dc.DrawLine(StandardPen, new Point(Left + ExtraWidth * .5, MidY), new Point(Right - ExtraWidth * .5, MidY));
             }
             else if (barCount == 2)
             {
-                dc.DrawLine(StandardPen, new Point(Left + ExtraWidth * .5, MidY - ExtraHeight / 2), new Point(Right - ExtraWidth * .5, MidY - ExtraHeight/2));
-                dc.DrawLine(StandardPen, new Point(Left + ExtraWidth * .5, MidY + ExtraHeight / 2), new Point(Right - ExtraWidth * .5, MidY + ExtraHeight/2));
+                dc.DrawLine(StandardPen, new Point(Left + ExtraWidth * .5, MidY - ExtraHeight / 2), new Point(Right - ExtraWidth * .5, MidY - ExtraHeight / 2));
+                dc.DrawLine(StandardPen, new Point(Left + ExtraWidth * .5, MidY + ExtraHeight / 2), new Point(Right - ExtraWidth * .5, MidY + ExtraHeight / 2));
             }
             if (barCount == 3)
             {
@@ -52,8 +53,8 @@ namespace Formulatte
             set
             {
                 base.Left = value;
-                topEquation.MidX = this.MidX;
-                bottomEquation.MidX = this.MidX;
+                topEquation.MidX = MidX;
+                bottomEquation.MidX = MidX;
             }
         }
 
@@ -76,7 +77,7 @@ namespace Formulatte
         protected override void CalculateHeight()
         {
             double height = topEquation.Height + bottomEquation.Height + ExtraHeight * 1.6;
-            height += (barCount - 1) * ExtraHeight;             
+            height += (barCount - 1) * ExtraHeight;
             Height = height;
         }
 

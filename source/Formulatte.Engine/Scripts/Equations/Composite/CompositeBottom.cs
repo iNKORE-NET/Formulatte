@@ -6,22 +6,22 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public class CompositeBottom : CompositeBase
-    {        
+    {
         RowContainer bottomRowContainer;
 
         public CompositeBottom(EquationContainer parent)
             : base(parent)
         {
-            this.SubLevel++;
+            SubLevel++;
             bottomRowContainer = new RowContainer(this);
             bottomRowContainer.FontFactor = SubFontFactor;
-            bottomRowContainer.ApplySymbolGap = false;            
+            bottomRowContainer.ApplySymbolGap = false;
             childEquations.AddRange(new EquationBase[] { mainRowContainer, bottomRowContainer });
         }
-                
+
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
@@ -94,7 +94,7 @@ namespace Formulatte
                 return true;
             }
             return false;
-        }        
+        }
 
         public override bool ConsumeKey(Key key)
         {

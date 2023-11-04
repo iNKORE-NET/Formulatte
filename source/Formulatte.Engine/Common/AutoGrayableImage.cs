@@ -5,10 +5,23 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media.Imaging;
+
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
 using System.Windows.Media;
 
 namespace Formulatte
-{    
+在此之后:
+using System.Windows.Media;
+using Formulatte.Engine.Common;
+using Formulatte;
+
+namespace Formulatte
+*/
+using System.Windows.Media;
+
+namespace Formulatte.Engine.Common
+{
     public class AutoGreyableImage : Image
     {
         static AutoGreyableImage()

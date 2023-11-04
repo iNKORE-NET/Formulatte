@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0-windows;net452</TargetFrameworks>
@@ -293,6 +293,11 @@
     <None Remove="Resources\Fonts\STIXSizeTwoSym-Regular.otf" />
     <None Remove="Resources\Fonts\STIXVariants-Bold.otf" />
     <None Remove="Resources\Fonts\STIXVariants-Regular.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.21" />
   </ItemGroup>
 
   <ItemGroup>

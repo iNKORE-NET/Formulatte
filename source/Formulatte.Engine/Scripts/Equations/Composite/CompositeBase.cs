@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public abstract class CompositeBase : EquationContainer
     {
@@ -19,7 +19,7 @@ namespace Formulatte
             : base(parent)
         {
             ActiveChild = mainRowContainer = new RowContainer(this);
-            DetermineBottomGap();           
+            DetermineBottomGap();
         }
 
         private void DetermineBottomGap()

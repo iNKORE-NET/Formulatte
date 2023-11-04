@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Bracket
 {
     public class RightBracket : Bracket
     {

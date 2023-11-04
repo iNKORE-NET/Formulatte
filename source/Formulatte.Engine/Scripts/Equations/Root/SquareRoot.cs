@@ -6,13 +6,13 @@ using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Root
 {
     public class SquareRoot : EquationContainer
     {
         protected RowContainer insideEquation = null;
         protected RadicalSign radicalSign;
-        protected double ExtraHeight 
+        protected double ExtraHeight
         {
             get { return FontSize * .15; }
         }
@@ -24,7 +24,7 @@ namespace Formulatte
 
         public SquareRoot(EquationContainer parent)
             : base(parent)
-        {            
+        {
             radicalSign = new RadicalSign(this);
             ActiveChild = insideEquation = new RowContainer(this);
             childEquations.Add(insideEquation);
@@ -34,13 +34,13 @@ namespace Formulatte
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
-            thisElement.Add(insideEquation.Serialize());            
+            thisElement.Add(insideEquation.Serialize());
             return thisElement;
         }
 
         public override void DeSerialize(XElement xElement)
         {
-            insideEquation.DeSerialize(xElement.Elements().First());            
+            insideEquation.DeSerialize(xElement.Elements().First());
             CalculateSize();
         }
 

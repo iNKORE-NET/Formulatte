@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
-namespace Formulatte
+namespace Formulatte.Engine.Common
 {
     public class MouseWheelGesture : MouseGesture
     {

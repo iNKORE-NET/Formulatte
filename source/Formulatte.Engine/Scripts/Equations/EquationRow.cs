@@ -8,8 +8,16 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using Formulatte.Engine.Scripts.Equations.SubSuper;
+using Formulatte.Engine.Scripts.Equations.Text;
+using Formulatte.Engine.Scripts.Equations.SignComposite;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Scripts.Equations.Composite;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Scripts.Equations.Division;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations
 {
     public class EquationRow : EquationContainer, ISupportsUndo
     {
@@ -44,7 +52,7 @@ namespace Formulatte
         public TextEquation GetLastSelectionText()
         {
             int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
-            int otherOffset = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex);
+            int otherOffset = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
             return (TextEquation)childEquations[otherOffset];
         }
 
@@ -104,7 +112,7 @@ namespace Formulatte
         public List<EquationBase> DeleteHead()
         {
             List<EquationBase> removedList = new List<EquationBase>();
-            int startIndex = (SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems);
+            int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
             if (SelectedItems != 0)
             {
                 int endIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
@@ -124,33 +132,33 @@ namespace Formulatte
             if (SelectedItems != 0)
             {
                 int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
-                int otherIndex = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex);
+                int otherIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
                 TextEquation firstEquation = (TextEquation)childEquations[startIndex];
                 TextEquation lastEquation = (TextEquation)childEquations[otherIndex];
                 List<EquationBase> equations = new List<EquationBase>();
                 RowRemoveAction action = new RowRemoveAction(this)
-                                         {
-                                             ActiveEquation = ActiveChild,
-                                             HeadTextEquation = firstEquation,
-                                             TailTextEquation = lastEquation,
-                                             SelectionStartIndex = SelectionStartIndex,
-                                             SelectedItems = SelectedItems,
-                                             FirstTextCaretIndex = firstEquation.CaretIndex,
-                                             LastTextCaretIndex = lastEquation.CaretIndex,
-                                             FirstTextSelectionIndex = firstEquation.SelectionStartIndex,
-                                             LastTextSelectionIndex = lastEquation.SelectionStartIndex,
-                                             FirstTextSelectedItems = firstEquation.SelectedItems,
-                                             LastTextSelectedItems = lastEquation.SelectedItems,
-                                             FirstText = firstEquation.Text,
-                                             LastText = lastEquation.Text,
-                                             FirstFormats = firstEquation.GetFormats(),
-                                             LastFormats = lastEquation.GetFormats(),
-                                             FirstModes = firstEquation.GetModes(),
-                                             LastModes = lastEquation.GetModes(),
-                                             FirstDecorations = firstEquation.GetDecorations(),
-                                             LastDecorations = lastEquation.GetDecorations(),
-                                             Equations = equations
-                                         };
+                {
+                    ActiveEquation = ActiveChild,
+                    HeadTextEquation = firstEquation,
+                    TailTextEquation = lastEquation,
+                    SelectionStartIndex = SelectionStartIndex,
+                    SelectedItems = SelectedItems,
+                    FirstTextCaretIndex = firstEquation.CaretIndex,
+                    LastTextCaretIndex = lastEquation.CaretIndex,
+                    FirstTextSelectionIndex = firstEquation.SelectionStartIndex,
+                    LastTextSelectionIndex = lastEquation.SelectionStartIndex,
+                    FirstTextSelectedItems = firstEquation.SelectedItems,
+                    LastTextSelectedItems = lastEquation.SelectedItems,
+                    FirstText = firstEquation.Text,
+                    LastText = lastEquation.Text,
+                    FirstFormats = firstEquation.GetFormats(),
+                    LastFormats = lastEquation.GetFormats(),
+                    FirstModes = firstEquation.GetModes(),
+                    LastModes = lastEquation.GetModes(),
+                    FirstDecorations = firstEquation.GetDecorations(),
+                    LastDecorations = lastEquation.GetDecorations(),
+                    Equations = equations
+                };
                 firstEquation.RemoveSelection(false);
                 lastEquation.RemoveSelection(false);
                 firstEquation.Merge(lastEquation);
@@ -337,7 +345,7 @@ namespace Formulatte
                         FirstNewFormats = ((TextEquation)newChildren.First()).GetFormats(),
                         LastNewFormats = ((TextEquation)newChildren.Last()).GetFormats(),
                         FirstNewModes = ((TextEquation)newChildren.First()).GetModes(),
-                        LastNewModes = ((TextEquation)newChildren.Last()).GetModes(),                                                
+                        LastNewModes = ((TextEquation)newChildren.Last()).GetModes(),
                         FirstNewDecorations = ((TextEquation)newChildren.First()).GetDecorations(),
                         LastNewDecorations = ((TextEquation)newChildren.Last()).GetDecorations(),
                         Equations = newChildren
@@ -410,7 +418,7 @@ namespace Formulatte
                     width += eb.Width;
                 }
                 Rect rect = GetSelectionBounds();
-                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)(Math.Ceiling(width + 2)), (int)(Math.Ceiling(maxUpperHalf + maxBottomHalf + 2)), 96, 96, PixelFormats.Default);
+                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)Math.Ceiling(width + 2), (int)Math.Ceiling(maxUpperHalf + maxBottomHalf + 2), 96, 96, PixelFormats.Default);
                 DrawingVisual dv = new DrawingVisual();
                 IsSelecting = false;
                 using (DrawingContext dc = dv.RenderOpen())
@@ -518,7 +526,7 @@ namespace Formulatte
                     }
                     if (paramType.IsEnum)
                     {
-                        paramz.Add((Enum.Parse(paramType, xe.Value)));
+                        paramz.Add(Enum.Parse(paramType, xe.Value));
                     }
                     else if (paramType == typeof(bool))
                     {
@@ -593,13 +601,13 @@ namespace Formulatte
                         newEquation = new DoubleArrowBarBracket(this);
                         break;
                     case CommandType.SignComposite:
-                        newEquation = SignCompositeFactory.CreateEquation(this, (Position)(((object[])data)[0]), (SignCompositeSymbol)(((object[])data)[1]), UseItalicIntergalOnNew);
+                        newEquation = SignCompositeFactory.CreateEquation(this, (Position)((object[])data)[0], (SignCompositeSymbol)((object[])data)[1], UseItalicIntergalOnNew);
                         break;
                     case CommandType.Decorated:
-                        newEquation = new Decorated(this, (DecorationType)(((object[])data)[0]), (Position)(((object[])data)[1]));
+                        newEquation = new Decorated(this, (DecorationType)((object[])data)[0], (Position)((object[])data)[1]);
                         break;
                     case CommandType.Arrow:
-                        newEquation = new Arrow(this, (ArrowType)(((object[])data)[0]), (Position)(((object[])data)[1]));
+                        newEquation = new Arrow(this, (ArrowType)((object[])data)[0], (Position)((object[])data)[1]);
                         break;
                     case CommandType.Box:
                         newEquation = new Box(this, (BoxType)data);
@@ -627,10 +635,10 @@ namespace Formulatte
                     EquationBase newText = ActiveChild.Split(this);
                     int caretIndex = ((TextEquation)ActiveChild).TextLength;
                     AddChild(newEquation);
-                    AddChild(newText);                    
+                    AddChild(newText);
                     newEquation.CalculateSize();
                     ActiveChild = newEquation;
-                    CalculateSize();                    
+                    CalculateSize();
                     UndoManager.AddUndoAction(new RowAction(this, ActiveChild, (TextEquation)newText, childEquations.IndexOf(ActiveChild), caretIndex));
                 }
             }
@@ -842,8 +850,9 @@ namespace Formulatte
                 {
                     if (childEquations[childEquations.IndexOf(ActiveChild) + 1] == deleteable)
                     {
-                        UndoManager.AddUndoAction(new RowAction(this, deleteable, (TextEquation)childEquations[childEquations.IndexOf(deleteable) + 1], 
-                                                                childEquations.IndexOf(deleteable), TextLength) { UndoFlag = false});
+                        UndoManager.AddUndoAction(new RowAction(this, deleteable, (TextEquation)childEquations[childEquations.IndexOf(deleteable) + 1],
+                                                                childEquations.IndexOf(deleteable), TextLength)
+                        { UndoFlag = false });
                         childEquations.Remove(deleteable);
                         deleteable = null;
                         ((TextEquation)ActiveChild).Merge((TextEquation)childEquations[childEquations.IndexOf(ActiveChild) + 1]);
@@ -1071,7 +1080,7 @@ namespace Formulatte
                 }
                 foreach (EquationBase eb in childEquations)
                 {
-                    eb.Top = (Top + maxUpperHalf) - eb.RefY;
+                    eb.Top = Top + maxUpperHalf - eb.RefY;
                 }
             }
         }
@@ -1080,7 +1089,7 @@ namespace Formulatte
         {
             foreach (EquationBase eb in childEquations)
             {
-                eb.Top = (Top + maxUpperHalf) - eb.RefY;
+                eb.Top = Top + maxUpperHalf - eb.RefY;
             }
         }
 
@@ -1129,8 +1138,8 @@ namespace Formulatte
 
         public void ResetRowEquation(int activeChildIndex, int selectionStartIndex, int selectedItems, List<EquationBase> items, bool appendAtEnd)
         {
-            this.SelectionStartIndex = selectionStartIndex;
-            this.SelectedItems = selectedItems;
+            SelectionStartIndex = selectionStartIndex;
+            SelectedItems = selectedItems;
             int index = 0;
             if (appendAtEnd)
             {
@@ -1140,31 +1149,31 @@ namespace Formulatte
             {
                 childEquations.Insert(i + index, items[i]);
             }
-            this.ActiveChild = childEquations[activeChildIndex];
+            ActiveChild = childEquations[activeChildIndex];
         }
 
         public void ResetRowEquation(int activeChildIndex, int selectionStartIndex, int selectedItems)
         {
-            this.SelectionStartIndex = selectionStartIndex;
-            this.SelectedItems = selectedItems;
-            this.ActiveChild = childEquations[activeChildIndex];
+            SelectionStartIndex = selectionStartIndex;
+            SelectedItems = selectedItems;
+            ActiveChild = childEquations[activeChildIndex];
         }
 
         public void ResetRowEquation(EquationBase activeChild, int selectionStartIndex, int selectedItems)
         {
-            this.SelectionStartIndex = selectionStartIndex;
-            this.SelectedItems = selectedItems;
-            this.ActiveChild = activeChild;
+            SelectionStartIndex = selectionStartIndex;
+            SelectedItems = selectedItems;
+            ActiveChild = activeChild;
         }
 
         private void ProcessRowRemoveAction(EquationAction action)
         {
             RowRemoveAction rowAction = action as RowRemoveAction;
             rowAction.HeadTextEquation.ResetTextEquation(rowAction.FirstTextCaretIndex, rowAction.FirstTextSelectionIndex,
-                                                         rowAction.FirstTextSelectedItems, rowAction.FirstText, rowAction.FirstFormats, 
+                                                         rowAction.FirstTextSelectedItems, rowAction.FirstText, rowAction.FirstFormats,
                                                          rowAction.FirstModes, rowAction.FirstDecorations);
             rowAction.TailTextEquation.ResetTextEquation(rowAction.LastTextCaretIndex, rowAction.LastTextSelectionIndex,
-                                                         rowAction.LastTextSelectedItems, rowAction.LastText, 
+                                                         rowAction.LastTextSelectedItems, rowAction.LastText,
                                                          rowAction.LastFormats, rowAction.LastModes, rowAction.LastDecorations);
             if (rowAction.UndoFlag)
             {
@@ -1176,7 +1185,7 @@ namespace Formulatte
                 }
                 SelectedItems = rowAction.SelectedItems;
                 SelectionStartIndex = rowAction.SelectionStartIndex;
-                IsSelecting = true;                               
+                IsSelecting = true;
             }
             else
             {
@@ -1189,8 +1198,8 @@ namespace Formulatte
                     childEquations.RemoveAt(i);
                 }
                 ActiveChild = rowAction.HeadTextEquation;
-                this.SelectedItems = 0;
-                IsSelecting = false; 
+                SelectedItems = 0;
+                IsSelecting = false;
             }
         }
 
@@ -1244,8 +1253,8 @@ namespace Formulatte
                 childEquations.Insert(rowAction.Index, rowAction.Equation);
                 childEquations.Insert(rowAction.Index + 1, rowAction.EquationAfter);
                 ActiveChild = rowAction.Equation;
-                rowAction.Equation.FontSize = this.FontSize;
-                rowAction.EquationAfter.FontSize = this.FontSize;
+                rowAction.Equation.FontSize = FontSize;
+                rowAction.EquationAfter.FontSize = FontSize;
             }
         }
 
@@ -1255,8 +1264,8 @@ namespace Formulatte
             if (ecfa != null)
             {
                 IsSelecting = true;
-                this.SelectedItems = ecfa.SelectedItems;
-                this.SelectionStartIndex = ecfa.SelectionStartIndex;
+                SelectedItems = ecfa.SelectedItems;
+                SelectionStartIndex = ecfa.SelectionStartIndex;
                 int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
                 int endIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
                 childEquations[startIndex].SelectionStartIndex = ecfa.FirstChildSelectionStartIndex;

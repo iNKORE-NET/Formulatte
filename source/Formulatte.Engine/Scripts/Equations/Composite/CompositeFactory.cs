@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public static class CompositeFactory
     {
@@ -11,7 +12,7 @@ namespace Formulatte
         {
             EquationBase equation = null;
             switch (position)
-            {                
+            {
                 case Position.Bottom:
                     equation = new CompositeBottom(equationParent);
                     break;
@@ -20,7 +21,7 @@ namespace Formulatte
                     break;
                 case Position.BottomAndTop:
                     equation = new CompositeBottomTop(equationParent);
-                    break;                
+                    break;
             }
             return equation;
         }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Scripts.Equations.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations
 {
     public abstract class EquationBase
     {
@@ -19,14 +22,14 @@ namespace Formulatte
                 return ParentEquation.GetIndex(this);
             }
         }
-        
+
         protected static TextManager textManager = new TextManager();
         static Thickness ZeroMargin = new Thickness();
         public virtual Thickness Margin
         {
-            get { return ZeroMargin; } 
+            get { return ZeroMargin; }
         }
-        
+
         static protected double lineFactor = 0.06;
         public virtual bool ApplySymbolGap { get; set; }
 
@@ -91,7 +94,7 @@ namespace Formulatte
 
         public EquationBase(EquationContainer parent)
         {
-            this.ParentEquation = parent;
+            ParentEquation = parent;
             if (parent != null)
             {
                 SubLevel = parent.SubLevel;
@@ -136,7 +139,7 @@ namespace Formulatte
         }
         public virtual void SelectAll() { }
         public virtual string GetSelectedText() { return string.Empty; }
-      
+
         public virtual void DrawEquation(DrawingContext dc)
         {
             if (ShowNesting)
@@ -172,7 +175,7 @@ namespace Formulatte
         public virtual double RefY
         {
             get { return height / 2; }
-        }        
+        }
 
         public double RefYReverse
         {

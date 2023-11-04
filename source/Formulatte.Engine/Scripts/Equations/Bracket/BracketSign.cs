@@ -5,8 +5,10 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Input;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Bracket
 {
     public class BracketSign : EquationBase
     {
@@ -29,9 +31,9 @@ namespace Formulatte
         public BracketSign(EquationContainer parent, BracketSignType entityType)
             : base(parent)
         {
-            this.SignType = entityType;
+            SignType = entityType;
             IsStatic = true;
-            if (new[] {BracketSignType.LeftRound, BracketSignType.LeftCurly, BracketSignType.LeftAngle, 
+            if (new[] {BracketSignType.LeftRound, BracketSignType.LeftCurly, BracketSignType.LeftAngle,
                         BracketSignType.LeftCeiling, BracketSignType.LeftFloor, BracketSignType.LeftSquare,
                         BracketSignType.LeftSquareBar}.Contains(entityType))
             {
@@ -200,7 +202,7 @@ namespace Formulatte
                     width = LineThickness * 2 + FontSize * 0.15;
                     break;
             }
-            Width = width + LeftPadding + RightPadding;            
+            Width = width + LeftPadding + RightPadding;
         }
 
         public override void DrawEquation(DrawingContext dc)
@@ -263,9 +265,9 @@ namespace Formulatte
 
         void PaintVerticalBar(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
-                                                            new Point(SignRight, Bottom),                                                            
+                                                            new Point(SignRight, Bottom),
                                                             new Point(SignLeft, Bottom),
                                                          };
             dc.FillPolylineGeometry(new Point(SignLeft, Top), points);
@@ -273,7 +275,7 @@ namespace Formulatte
 
         void PaintLeftCeiling(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Top + ThinLineThickness),
                                                             new Point(SignLeft + ThinLineThickness, Top + ThinLineThickness),
@@ -285,7 +287,7 @@ namespace Formulatte
 
         void PaintRightCeiling(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Bottom),
                                                             new Point(SignRight - ThinLineThickness, Bottom),
@@ -297,7 +299,7 @@ namespace Formulatte
 
         void PaintLeftFloor(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignLeft + ThinLineThickness, Top),
                                                             new Point(SignLeft + ThinLineThickness, Bottom - ThinLineThickness),
                                                             new Point(SignRight, Bottom - ThinLineThickness),
@@ -309,7 +311,7 @@ namespace Formulatte
 
         void PaintRightFloor(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Bottom),
                                                             new Point(SignLeft, Bottom),
                                                             new Point(SignLeft, Bottom - ThinLineThickness),
@@ -321,7 +323,7 @@ namespace Formulatte
 
         void PaintLeftSquareBar(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Top + ThinLineThickness),
                                                             new Point(SignLeft + ThinLineThickness, Top + ThinLineThickness),
@@ -336,7 +338,7 @@ namespace Formulatte
 
         void PaintRightSquareBar(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Bottom),
                                                             new Point(SignLeft, Bottom),
@@ -351,7 +353,7 @@ namespace Formulatte
 
         void PaintLeftSquare(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Top + ThinLineThickness),
                                                             new Point(SignLeft + LineThickness, Top + ThinLineThickness),
@@ -365,7 +367,7 @@ namespace Formulatte
 
         void PaintRightSquare(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(SignRight, Top),
                                                             new Point(SignRight, Bottom),
                                                             new Point(SignLeft, Bottom),

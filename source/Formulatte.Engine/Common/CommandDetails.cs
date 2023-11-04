@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
-namespace Formulatte
+namespace Formulatte.Engine.Common
 {
     public class CommandDetails
     {

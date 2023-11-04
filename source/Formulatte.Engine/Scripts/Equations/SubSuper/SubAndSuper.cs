@@ -6,11 +6,12 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SubSuper
 {
     public class SubAndSuper : SubSuperBase
-    {   
+    {
         RowContainer superEquation;
         RowContainer subEquation;
 
@@ -78,7 +79,7 @@ namespace Formulatte
             {
                 base.Top = value;
                 superEquation.Top = value;
-                subEquation.Bottom = this.Bottom;
+                subEquation.Bottom = Bottom;
             }
         }
 
@@ -124,13 +125,13 @@ namespace Formulatte
                 base.Left = value;
                 if (Position == Editor.Position.Right)
                 {
-                    subEquation.Left = this.Left + Padding;
-                    superEquation.Left = this.Left + Padding;
+                    subEquation.Left = Left + Padding;
+                    superEquation.Left = Left + Padding;
                 }
                 else
                 {
-                    subEquation.Right = this.Right - Padding;
-                    superEquation.Right = this.Right - Padding;
+                    subEquation.Right = Right - Padding;
+                    superEquation.Right = Right - Padding;
                 }
             }
         }

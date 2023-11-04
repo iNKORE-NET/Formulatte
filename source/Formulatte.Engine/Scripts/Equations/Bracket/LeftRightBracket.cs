@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Bracket
 {
     public class LeftRightBracket : Bracket
     {
@@ -17,7 +18,7 @@ namespace Formulatte
             bracketSign = new BracketSign(this, leftBracketType);
             bracketSign2 = new BracketSign(this, rightBracketType);
             childEquations.AddRange(new EquationBase[] { insideEq, bracketSign, bracketSign2 });
-        }     
+        }
 
         public override XElement Serialize()
         {

@@ -6,10 +6,10 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public class CompositeSub : CompositeBase
-    {        
+    {
         RowContainer bottomRowContainer;
 
         public CompositeSub(EquationContainer parent)
@@ -21,7 +21,7 @@ namespace Formulatte
             bottomRowContainer.ApplySymbolGap = false;
             childEquations.AddRange(new EquationBase[] { mainRowContainer, bottomRowContainer });
         }
-                
+
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
@@ -42,7 +42,7 @@ namespace Formulatte
             get { return base.Left; }
             set
             {
-                base.Left = value;                
+                base.Left = value;
                 mainRowContainer.Left = Left;
                 bottomRowContainer.Left = mainRowContainer.Right;
             }

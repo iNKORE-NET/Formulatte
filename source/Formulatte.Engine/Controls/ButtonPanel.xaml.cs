@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Formulatte
+namespace Formulatte.Engine.Controls
 {
     /// <summary>
     /// Interaction logic for ButtonPanel.xaml
@@ -52,14 +53,14 @@ namespace Formulatte
                 mainGrid.Children.Add(b);
                 if (commandDetails[i].CommandType == CommandType.None) //This is an ugly kludge!
                 {
-                    b.Visibility = System.Windows.Visibility.Hidden;
+                    b.Visibility = Visibility.Hidden;
                 }
             }
         }
 
         void panelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Visibility = System.Windows.Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
             ButtonClick(this, EventArgs.Empty);
         }
     }

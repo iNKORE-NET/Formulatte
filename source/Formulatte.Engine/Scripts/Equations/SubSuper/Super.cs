@@ -3,12 +3,13 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Linq;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SubSuper
 {
     public class Super : SubSuperBase
     {
-        RowContainer rowContainer;       
+        RowContainer rowContainer;
 
         public Super(EquationRow parent, Position position)
             : base(parent, position)
@@ -22,7 +23,7 @@ namespace Formulatte
             else if (SubLevel == 2)
             {
                 rowContainer.FontFactor = SubSubFontFactor;
-            }            
+            }
         }
 
         public override XElement Serialize()
@@ -43,7 +44,7 @@ namespace Formulatte
 
         protected override void CalculateHeight()
         {
-           Height = rowContainer.Height + Buddy.RefY - SuperOverlap;
+            Height = rowContainer.Height + Buddy.RefY - SuperOverlap;
         }
 
         public override double Top
@@ -67,7 +68,7 @@ namespace Formulatte
             set
             {
                 base.Left = value;
-                rowContainer.Left = this.Left + Padding;                
+                rowContainer.Left = Left + Padding;
             }
         }
 

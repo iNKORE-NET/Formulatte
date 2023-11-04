@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SubSuper
 {
     public abstract class SubSuperBase : EquationContainer
     {
-        public Position Position { get; set; }                
-        protected double Padding 
-        { 
-            get 
+        public Position Position { get; set; }
+        protected double Padding
+        {
+            get
             {
                 if (buddy != null && buddy.GetType() == typeof(TextEquation))
                 {
@@ -21,41 +22,41 @@ namespace Formulatte
                 {
                     return FontSize * .05;
                 }
-            } 
+            }
         }
         protected double SuperOverlap { get { return FontSize * 0.35; } }
-        protected double SubOverlap 
-        { 
-            get 
+        protected double SubOverlap
+        {
+            get
             {
                 TextEquation te = buddy as TextEquation;
                 double oha = 0;
                 if (te != null)
                 {
-                    oha = te.GetCornerDescent(this.Position);
+                    oha = te.GetCornerDescent(Position);
                 }
-                return FontSize * .1 - oha; 
-            } 
+                return FontSize * .1 - oha;
+            }
         }
-        
+
         EquationBase buddy = null;
         protected EquationBase Buddy
         {
             get { return buddy ?? ParentEquation.ActiveChild; }
             set { buddy = value; }
         }
-        
+
         public SubSuperBase(EquationRow parent, Position position)
             : base(parent)
         {
             ApplySymbolGap = false;
             SubLevel++;
-            Position = position;            
+            Position = position;
         }
 
         public void SetBuddy(EquationBase buddy)
         {
-            this.Buddy = buddy;
+            Buddy = buddy;
             CalculateHeight();
         }
     }

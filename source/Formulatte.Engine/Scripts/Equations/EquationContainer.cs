@@ -7,7 +7,19 @@ using System.Windows;
 using System.Windows.Media;
 using System.Xml.Linq;
 
-namespace Formulatte
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
+using Formulatte.Engine.Scripts.Equations.Text;
+在此之后:
+using Formulatte.Engine.Scripts.Equations.Text;
+using Formulatte.Engine.Scripts.Equations;
+using Formulatte;
+*/
+using Formulatte.Engine.Scripts.Equations.Text;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common;
+
+namespace Formulatte.Engine.Scripts.Equations
 {
     public abstract class EquationContainer : EquationBase
     {
@@ -178,7 +190,7 @@ namespace Formulatte
             }
             else
             {
-                return new Point(this.Left, this.Bottom);
+                return new Point(Left, Bottom);
             }
         }
 

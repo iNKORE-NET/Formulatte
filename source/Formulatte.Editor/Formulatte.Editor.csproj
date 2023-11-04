@@ -67,6 +67,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
+    <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.21" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Formulatte.Engine\Formulatte.Engine.csproj" />
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
-{   
+namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
+{
     public static class UndoManager
     {
         public static bool DisableAddingActions { get; set; }
@@ -24,7 +24,7 @@ namespace Formulatte
                 CanRedo(null, new UndoEventArgs(false));
             }
         }
-        
+
         public static void Undo()
         {
             if (undoStack.Count > 0)
@@ -41,7 +41,7 @@ namespace Formulatte
                 {
                     CanUndo(null, new UndoEventArgs(false));
                 }
-                CanRedo(null, new UndoEventArgs(true));                    
+                CanRedo(null, new UndoEventArgs(true));
             }
         }
 
@@ -61,7 +61,7 @@ namespace Formulatte
                 {
                     CanRedo(null, new UndoEventArgs(false));
                 }
-                CanUndo(null, new UndoEventArgs(true));                    
+                CanUndo(null, new UndoEventArgs(true));
             }
         }
 

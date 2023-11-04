@@ -5,8 +5,9 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     class SignBottomTop : EquationContainer
     {

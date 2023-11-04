@@ -6,7 +6,7 @@ using System.Windows.Data;
 using System.Globalization;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Common
 {
     public class EditorModeToVisibilityConverter : IValueConverter
     {

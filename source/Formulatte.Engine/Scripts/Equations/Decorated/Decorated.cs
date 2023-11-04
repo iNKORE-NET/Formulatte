@@ -5,25 +5,26 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Decorated
 {
     public class Decorated : EquationContainer
     {
         RowContainer rowContainer;
         DecorationDrawing decoration;
         DecorationType decorationType;
-        Position decorationPosition;   
+        Position decorationPosition;
 
         public Decorated(EquationContainer parent, DecorationType decorationType, Position decorationPosition)
             : base(parent)
-        {            
+        {
             ActiveChild = rowContainer = new RowContainer(this);
             this.decorationType = decorationType;
             this.decorationPosition = decorationPosition;
             decoration = new DecorationDrawing(this, decorationType);
-            this.childEquations.Add(rowContainer);
-            this.childEquations.Add(decoration);
+            childEquations.Add(rowContainer);
+            childEquations.Add(decoration);
         }
 
         public override void DrawEquation(DrawingContext dc)
@@ -47,8 +48,8 @@ namespace Formulatte
         {
             rowContainer.DeSerialize(xElement.Element(rowContainer.GetType().Name));
             CalculateSize();
-        }       
-               
+        }
+
         public override double Top
         {
             get { return base.Top; }
@@ -80,7 +81,7 @@ namespace Formulatte
             else
             {
                 rowContainer.Top = Top;
-                decoration.Bottom = Bottom;                
+                decoration.Bottom = Bottom;
             }
         }
 
@@ -98,7 +99,7 @@ namespace Formulatte
                 }
             }
         }
-        
+
         protected override void CalculateHeight()
         {
             if (decorationPosition == Position.Bottom)

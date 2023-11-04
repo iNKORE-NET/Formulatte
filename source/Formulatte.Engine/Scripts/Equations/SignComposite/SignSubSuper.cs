@@ -5,15 +5,16 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     class SignSubSuper : EquationContainer
     {
         RowContainer mainEquation;
         StaticSign sign;
         RowContainer superEquation;
-        RowContainer subEquation;        
+        RowContainer subEquation;
         double HGap { get { return FontSize * .06; } }
         double SubMinus = 0;
         double SuperMinus = 0;
@@ -56,7 +57,7 @@ namespace Formulatte
         }
 
         protected override void CalculateWidth()
-        {            
+        {
             if (sign.Symbol.ToString().ToLower().Contains("integral"))
             {
                 SubMinus = sign.OverhangTrailing;
@@ -69,7 +70,7 @@ namespace Formulatte
         {
             Height = Math.Max(sign.Height * .5 + subEquation.Height + superEquation.Height, mainEquation.Height);
         }
-        
+
         public override double RefY
         {
             get
@@ -90,7 +91,7 @@ namespace Formulatte
                 superEquation.Bottom = sign.Top + sign.Height * .2;
             }
         }
-        
+
         public override bool ConsumeMouseClick(System.Windows.Point mousePoint)
         {
             if (mainEquation.Bounds.Contains(mousePoint))
@@ -101,7 +102,7 @@ namespace Formulatte
             {
                 ActiveChild = superEquation;
             }
-            else 
+            else
             {
                 ActiveChild = subEquation;
             }
@@ -133,7 +134,7 @@ namespace Formulatte
                 if (ActiveChild == superEquation)
                 {
                     ActiveChild = mainEquation;
-                    return true;    
+                    return true;
                 }
                 else if (ActiveChild == mainEquation)
                 {

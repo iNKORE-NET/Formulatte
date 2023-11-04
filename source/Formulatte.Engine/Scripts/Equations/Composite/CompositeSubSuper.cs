@@ -7,11 +7,11 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
-    public class CompositeSubSuper: CompositeBase
+    public class CompositeSubSuper : CompositeBase
     {
-        RowContainer superRow;        
+        RowContainer superRow;
         RowContainer subRow;
 
         public CompositeSubSuper(EquationContainer parent)
@@ -20,7 +20,7 @@ namespace Formulatte
             SubLevel++;
             subRow = new RowContainer(this);
             superRow = new RowContainer(this);
-            superRow.FontFactor     = subRow.FontFactor     = SubFontFactor;
+            superRow.FontFactor = subRow.FontFactor = SubFontFactor;
             superRow.ApplySymbolGap = subRow.ApplySymbolGap = false;
             childEquations.AddRange(new EquationBase[] { mainRowContainer, subRow, superRow });
         }
@@ -41,8 +41,8 @@ namespace Formulatte
             subRow.DeSerialize(elementArray[1]);
             superRow.DeSerialize(elementArray[2]);
             CalculateSize();
-        }         
-        
+        }
+
         public override double Left
         {
             get { return base.Left; }
@@ -113,7 +113,7 @@ namespace Formulatte
             {
                 CalculateSize();
                 return true;
-            }            
+            }
             if (key == Key.Down)
             {
                 if (ActiveChild == mainRowContainer)

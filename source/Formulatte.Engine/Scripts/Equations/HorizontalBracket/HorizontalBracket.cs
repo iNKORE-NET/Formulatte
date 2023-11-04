@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.HorizontalBracket
 {
     public abstract class HorizontalBracket : EquationContainer
     {
@@ -20,7 +21,7 @@ namespace Formulatte
             bracketSign = new HorizontalBracketSign(this, signType);
             childEquations.Add(topEquation);
             childEquations.Add(bracketSign);
-            childEquations.Add(bottomEquation);            
+            childEquations.Add(bottomEquation);
         }
 
         public override XElement Serialize()
@@ -68,13 +69,13 @@ namespace Formulatte
         {
             topEquation.Top = Top;
             bracketSign.Top = topEquation.Bottom;
-            bottomEquation.Top = bracketSign.Bottom;            
+            bottomEquation.Top = bracketSign.Bottom;
         }
 
         protected override void CalculateWidth()
         {
             Width = Math.Max(topEquation.Width, bottomEquation.Width) + FontSize * .6;
-            bracketSign.Width = Width - FontSize * .2;            
+            bracketSign.Width = Width - FontSize * .2;
         }
 
         protected override void CalculateHeight()

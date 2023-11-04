@@ -6,7 +6,7 @@ using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivSlanted : DivBase
     {
@@ -30,7 +30,7 @@ namespace Formulatte
         public override void DrawEquation(DrawingContext dc)
         {
             base.DrawEquation(dc);
-            dc.DrawLine(StandardPen, new Point(Left + centerX + slantXTop, Top), new Point(Left + centerX - slantXBottom, Bottom));            
+            dc.DrawLine(StandardPen, new Point(Left + centerX + slantXTop, Top), new Point(Left + centerX - slantXBottom, Bottom));
         }
 
         public override double Left
@@ -49,7 +49,7 @@ namespace Formulatte
             set
             {
                 base.Top = value;
-                topEquation.Top = this.Top;
+                topEquation.Top = Top;
                 bottomEquation.Bottom = Bottom;
             }
         }
@@ -64,12 +64,12 @@ namespace Formulatte
         {
             double width = topEquation.Width + bottomEquation.Width + ExtraWidth;
             Rect rect = new Rect(0, 0, width, Height);
-            slantXTop = Math.Sin(Math.PI / 5) * (topEquation.Height + ExtraHeight/2);
-            slantXBottom = Math.Sin(Math.PI / 5) * (bottomEquation.Height + ExtraHeight/2);
-            rect.Union(new Point(topEquation.Width + slantXTop + ExtraWidth/2, Top));
-            rect.Union(new Point(bottomEquation.Width + slantXBottom + ExtraWidth/2, Bottom));            
+            slantXTop = Math.Sin(Math.PI / 5) * (topEquation.Height + ExtraHeight / 2);
+            slantXBottom = Math.Sin(Math.PI / 5) * (bottomEquation.Height + ExtraHeight / 2);
+            rect.Union(new Point(topEquation.Width + slantXTop + ExtraWidth / 2, Top));
+            rect.Union(new Point(bottomEquation.Width + slantXBottom + ExtraWidth / 2, Bottom));
             Width = rect.Width;
-            centerX = rect.Width - Math.Max(slantXTop, bottomEquation.Width) - ExtraWidth/2;
+            centerX = rect.Width - Math.Max(slantXTop, bottomEquation.Width) - ExtraWidth / 2;
         }
 
         protected override void CalculateHeight()

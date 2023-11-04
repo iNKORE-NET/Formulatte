@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Formulatte.Engine.Scripts.Equations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivMathInverted : DivMath
     {

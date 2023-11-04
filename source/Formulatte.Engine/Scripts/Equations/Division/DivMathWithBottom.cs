@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivMathWithBottom : DivMathWithOuterBase
     {
         public DivMathWithBottom(EquationContainer parent)
             : base(parent)
         {
-            divMathSign.IsInverted = true; 
-        }       
+            divMathSign.IsInverted = true;
+        }
 
         protected override void AdjustVertical()
         {
             outerEquation.Bottom = Bottom;
             insideEquation.Top = Top;
             divMathSign.Bottom = outerEquation.Top - VerticalGap;
-        } 
-      
+        }
+
         public override double RefY
         {
             get

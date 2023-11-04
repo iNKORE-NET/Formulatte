@@ -5,8 +5,10 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Input;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.HorizontalBracket
 {
     public class HorizontalBracketSign : EquationBase
     {
@@ -18,12 +20,12 @@ namespace Formulatte
         public HorizontalBracketSign(EquationContainer parent, HorizontalBracketSignType signType)
             : base(parent)
         {
-            this.SignType = signType;
+            SignType = signType;
             IsStatic = true;
         }
 
         public override void DrawEquation(DrawingContext dc)
-        {   
+        {
             switch (SignType)
             {
                 case HorizontalBracketSignType.TopCurly:
@@ -45,7 +47,7 @@ namespace Formulatte
         {
             PointCollection points = new PointCollection
             {
-                new Point(Left, Top), 
+                new Point(Left, Top),
                 new Point(Right, Top),
                 new Point(Right, Bottom),
                 new Point(Right - ThinLineThickness, Bottom),
@@ -60,7 +62,7 @@ namespace Formulatte
         {
             PointCollection points = new PointCollection
             {
-                new Point(Left, Top), 
+                new Point(Left, Top),
                 new Point(Left + ThinLineThickness, Top),
                 new Point(Left + ThinLineThickness, Bottom - LineThickness),
                 new Point(Right - ThinLineThickness, Bottom - LineThickness),
@@ -89,7 +91,7 @@ namespace Formulatte
                 {
                     line.DrawTextTopLeftAligned(dc, new Point(left, Top + leftCurlyPart.Extent - line.Extent));
                     left += line.GetFullWidth() * .8;
-                    double shoot = (left + line.GetFullWidth() * .8) - right;
+                    double shoot = left + line.GetFullWidth() * .8 - right;
                     if (shoot > 0)
                     {
                         left -= shoot;
@@ -103,7 +105,7 @@ namespace Formulatte
                 {
                     line.DrawTextTopLeftAligned(dc, new Point(left, Top + leftCurlyPart.Extent - line.Extent));
                     left += line.GetFullWidth() * .8;
-                    double shoot = (left + line.GetFullWidth() * .8) - right;
+                    double shoot = left + line.GetFullWidth() * .8 - right;
                     if (shoot > 0)
                     {
                         left -= shoot;
@@ -144,7 +146,7 @@ namespace Formulatte
                 {
                     extension.DrawTextTopLeftAligned(dc, new Point(left, Top + sign.Extent - extension.Extent));
                     left += extension.GetFullWidth() * .8;
-                    double shoot = (left + extension.GetFullWidth() * .8) - right;
+                    double shoot = left + extension.GetFullWidth() * .8 - right;
                     if (shoot > 0)
                     {
                         left -= shoot;
@@ -163,7 +165,7 @@ namespace Formulatte
                 {
                     extension.DrawTextTopLeftAligned(dc, new Point(left, Top + sign.Extent - extension.Extent));
                     left += extension.GetFullWidth() * .8;
-                    double shoot = (left + extension.GetFullWidth() * .8) - right;
+                    double shoot = left + extension.GetFullWidth() * .8 - right;
                     if (shoot > 0)
                     {
                         left -= shoot;

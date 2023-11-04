@@ -1,5 +1,4 @@
-﻿
-namespace Formulatte
+﻿namespace Formulatte.Engine.Common
 {
     public enum CommandType
     {
@@ -16,8 +15,8 @@ namespace Formulatte
     public enum HAlignment { Left, Center, Right }
     public enum VAlignment { Center, Top, Bottom }
 
-    public enum Position 
-    { 
+    public enum Position
+    {
         None, Middle, Top, Bottom, Left, Right, Sub, Super, SubAndSuper, BottomAndTop,
         TopLeft, BottomLeft, TopRight, BottomRight, Over
     }
@@ -25,9 +24,9 @@ namespace Formulatte
     public enum CharacterDecorationType
     {
         None,
-        StrikeThrough, DoubleStrikeThrough, VStrikeThrough, 
-        VDoubleStrikeThrough, Cross, LeftCross, RightCross,     
-        LeftUprightCross, RightUprightCross,        
+        StrikeThrough, DoubleStrikeThrough, VStrikeThrough,
+        VDoubleStrikeThrough, Cross, LeftCross, RightCross,
+        LeftUprightCross, RightUprightCross,
         Unicode,
     }
 
@@ -50,11 +49,11 @@ namespace Formulatte
     //    BottomRightHarpoon, BottomLeftHarpoon,
     //}
 
-    public enum DivisionType 
-    { 
-        DivRegular, DivDoubleBar, DivTripleBar, 
-        DivMath, DivMathWithTop, 
-        DivHoriz, DivSlanted, 
+    public enum DivisionType
+    {
+        DivRegular, DivDoubleBar, DivTripleBar,
+        DivMath, DivMathWithTop,
+        DivHoriz, DivSlanted,
         DivRegularSmall, DivHorizSmall, DivSlantedSmall,
         DivMathInverted, DivInvertedWithBottom,
         DivTriangleFixed, DivTriangleExpanding
@@ -72,7 +71,7 @@ namespace Formulatte
     {
         Tilde, Hat, Parenthesis, Tortoise, RightArrow, LeftArrow, DoubleArrow, RightHarpoonUpBarb, LeftHarpoonUpBarb,
         RightHarpoonDownBarb, LeftHarpoonDownBarb, Bar, DoubleBar, StrikeThrough, Cross, RightCross, LeftCross,
-    }    
+    }
 
     public enum SignCompositeSymbol
     {
@@ -122,6 +121,6 @@ namespace Formulatte
 
     public enum EditorMode
     {
-        Math, Text, 
+        Math, Text,
     }
 }

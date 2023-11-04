@@ -3,8 +3,9 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Linq;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SubSuper
 {
     public class Sub : SubSuperBase
     {
@@ -12,7 +13,7 @@ namespace Formulatte
 
         public Sub(EquationRow parent, Position position)
             : base(parent, position)
-        {   
+        {
             ActiveChild = rowContainer = new RowContainer(this);
             childEquations.Add(rowContainer);
             if (SubLevel == 1)
@@ -22,7 +23,7 @@ namespace Formulatte
             else if (SubLevel == 2)
             {
                 rowContainer.FontFactor = SubSubFontFactor;
-            }            
+            }
         }
 
         public override XElement Serialize()
@@ -60,7 +61,7 @@ namespace Formulatte
             set
             {
                 base.Left = value;
-                rowContainer.Left = this.Left + Padding;
+                rowContainer.Left = Left + Padding;
             }
         }
 

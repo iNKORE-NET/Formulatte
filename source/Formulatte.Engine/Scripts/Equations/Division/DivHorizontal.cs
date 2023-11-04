@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivHorizontal : DivBase
     {
@@ -18,15 +18,15 @@ namespace Formulatte
         }
 
         public DivHorizontal(EquationContainer parent, bool isSmall)
-            : base (parent, isSmall)
-        {  
+            : base(parent, isSmall)
+        {
         }
-        
+
         public override void DrawEquation(DrawingContext dc)
         {
             base.DrawEquation(dc);
-            dc.DrawLine(StandardPen, new Point(bottomEquation.Left - ExtraWidth/10, Top), new Point(topEquation.Right + ExtraWidth/10, Bottom));   
-        }     
+            dc.DrawLine(StandardPen, new Point(bottomEquation.Left - ExtraWidth / 10, Top), new Point(topEquation.Right + ExtraWidth / 10, Bottom));
+        }
 
         public override double Left
         {
@@ -41,7 +41,7 @@ namespace Formulatte
         private void AdjustHorizontal()
         {
 
-            topEquation.Left = this.Left;
+            topEquation.Left = Left;
             bottomEquation.Left = topEquation.Right + ExtraWidth;
         }
         public override double Top
@@ -65,14 +65,14 @@ namespace Formulatte
 
 
         protected override void CalculateWidth()
-        {            
+        {
             Width = topEquation.Width + bottomEquation.Width + ExtraWidth;
             AdjustHorizontal();
         }
 
         protected override void CalculateHeight()
-        {            
-            Height = Math.Max(topEquation.Height , bottomEquation.Height);            
+        {
+            Height = Math.Max(topEquation.Height, bottomEquation.Height);
         }
 
         public override bool ConsumeKey(Key key)

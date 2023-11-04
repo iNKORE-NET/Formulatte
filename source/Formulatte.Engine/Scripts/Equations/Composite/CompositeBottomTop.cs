@@ -7,11 +7,11 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public class CompositeBottomTop : CompositeBase
     {
-        RowContainer topRow;        
+        RowContainer topRow;
         RowContainer bottomRow;
 
         public CompositeBottomTop(EquationContainer parent)
@@ -41,8 +41,8 @@ namespace Formulatte
             bottomRow.DeSerialize(elementArray[1]);
             topRow.DeSerialize(elementArray[2]);
             CalculateSize();
-        }         
-        
+        }
+
         public override double Left
         {
             get { return base.Left; }
@@ -62,7 +62,7 @@ namespace Formulatte
 
         protected override void CalculateHeight()
         {
-            Height = mainRowContainer.Height + bottomRow.Height + topRow.Height + bottomGap;            
+            Height = mainRowContainer.Height + bottomRow.Height + topRow.Height + bottomGap;
         }
 
         public override double RefY
@@ -113,7 +113,7 @@ namespace Formulatte
             {
                 CalculateSize();
                 return true;
-            }            
+            }
             if (key == Key.Down)
             {
                 if (ActiveChild == mainRowContainer)

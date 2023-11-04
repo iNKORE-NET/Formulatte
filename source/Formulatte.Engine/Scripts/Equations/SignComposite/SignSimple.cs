@@ -5,20 +5,21 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     class SignSimple : EquationContainer
     {
         protected RowContainer mainEquation;
-        protected StaticSign sign;            
+        protected StaticSign sign;
 
         public SignSimple(EquationContainer parent, SignCompositeSymbol symbol, bool useUpright)
             : base(parent)
         {
             ActiveChild = mainEquation = new RowContainer(this);
-            sign = new StaticSign(this, symbol, useUpright);  
-            childEquations.AddRange(new EquationBase[] {mainEquation, sign});            
+            sign = new StaticSign(this, symbol, useUpright);
+            childEquations.AddRange(new EquationBase[] { mainEquation, sign });
         }
 
         public override XElement Serialize()
@@ -27,7 +28,7 @@ namespace Formulatte
             XElement parameters = new XElement("parameters");
             parameters.Add(new XElement(sign.Symbol.GetType().Name, sign.Symbol));
             parameters.Add(new XElement(typeof(bool).FullName, sign.UseItalicIntegralSign));
-            thisElement.Add(parameters);            
+            thisElement.Add(parameters);
             thisElement.Add(mainEquation.Serialize());
             return thisElement;
         }
@@ -37,7 +38,7 @@ namespace Formulatte
             mainEquation.DeSerialize(xElement.Element(mainEquation.GetType().Name));
             CalculateSize();
         }
-        
+
         protected override void CalculateWidth()
         {
             Width = sign.Width + mainEquation.Width;
@@ -58,7 +59,7 @@ namespace Formulatte
                 mainEquation.MidY = MidY;
             }
         }
-        
+
         public override double Left
         {
             get { return base.Left; }

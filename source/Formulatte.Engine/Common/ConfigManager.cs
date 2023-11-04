@@ -7,9 +7,22 @@ using System.Configuration;
 using System.Reflection;
 using System.Resources;
 using System.Collections;
+
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
 using System.Security.Cryptography;
 
 namespace Formulatte
+在此之后:
+using System.Security.Cryptography;
+using Formulatte;
+using Formulatte.Engine.Common;
+
+namespace Formulatte
+*/
+using System.Security.Cryptography;
+
+namespace Formulatte.Engine.Common
 {
     public enum KeyName { symbols, pass, loginName, version, default_font, default_mode, s01, s02, firstTime, checkUpdates };
 
@@ -18,7 +31,7 @@ namespace Formulatte
         static string exePath = Assembly.GetEntryAssembly().Location;
         static string appVersion = Assembly.GetEntryAssembly().GetName().Version.ToString();
         static AppSettingsSection appSection = null;
-        static Configuration config = null;        
+        static Configuration config = null;
 
         static ConfigManager()
         {
@@ -62,7 +75,7 @@ namespace Formulatte
         {
             try
             {
-                string numString = GetConfigurationValue(key);                
+                string numString = GetConfigurationValue(key);
                 int num = int.Parse(numString);
                 return num;
             }
@@ -72,7 +85,8 @@ namespace Formulatte
             }
         }
 
-        public static int GetEditorMode(int defaultMode){
+        public static int GetEditorMode(int defaultMode)
+        {
             return GetNumber(KeyName.default_mode, defaultMode);
         }
 
@@ -125,7 +139,7 @@ namespace Formulatte
                     {
                         appSection.Settings.Add(item.Key.ToString(), item.Value);
                     }
-                }                
+                }
                 config.Save();
                 return true;
             }
@@ -143,7 +157,7 @@ namespace Formulatte
         {
             get
             {
-                return Path.Combine(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "Math_Editor_MV");
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Math_Editor_MV");
             }
         }
 
@@ -178,7 +192,7 @@ namespace Formulatte
             var rStream = assembly.GetManifestResourceStream(strResources);
             var resourceReader = new ResourceReader(rStream);
             var items = resourceReader.OfType<DictionaryEntry>();
-            var stream = items.First(x => (x.Key as string) == resName.ToLower()).Value;
+            var stream = items.First(x => x.Key as string == resName.ToLower()).Value;
             return (UnmanagedMemoryStream)stream;
         }
 
@@ -197,7 +211,7 @@ namespace Formulatte
         {
             try
             {
-                return SetConfigurationValue(key, EncryptText(value,  "abcd_o82349834jefhdfer8&"));//GetConfigurationValue(KeyName.s01)));
+                return SetConfigurationValue(key, EncryptText(value, "abcd_o82349834jefhdfer8&"));//GetConfigurationValue(KeyName.s01)));
             }
             catch { }
             return false;

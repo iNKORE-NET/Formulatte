@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
-    class DivTriangle : EquationContainer 
+    class DivTriangle : EquationContainer
     {
         RowContainer insideEquation = null;
         DivTriangleSign divTriangleSign;
         bool isFixed;
 
-        double ExtraHeight 
+        double ExtraHeight
         {
             get { return FontSize * .2; }
         }
@@ -40,13 +40,13 @@ namespace Formulatte
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
-            thisElement.Add(insideEquation.Serialize());            
+            thisElement.Add(insideEquation.Serialize());
             return thisElement;
         }
 
         public override void DeSerialize(XElement xElement)
         {
-            insideEquation.DeSerialize(xElement.Elements().First());            
+            insideEquation.DeSerialize(xElement.Elements().First());
             CalculateSize();
         }
 
@@ -78,14 +78,14 @@ namespace Formulatte
         }
 
         protected override void CalculateHeight()
-        {            
+        {
             if (isFixed)
             {
-                 divTriangleSign.Height = insideEquation.LastRow.Height + ExtraHeight;
+                divTriangleSign.Height = insideEquation.LastRow.Height + ExtraHeight;
             }
             else
             {
-                 divTriangleSign.Height = insideEquation.Height + ExtraHeight;
+                divTriangleSign.Height = insideEquation.Height + ExtraHeight;
             }
             Height = insideEquation.Height + ExtraHeight;
         }

@@ -5,8 +5,9 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     class SignSub : EquationContainer
     {
@@ -22,14 +23,14 @@ namespace Formulatte
 
         public SignSub(EquationContainer parent, SignCompositeSymbol symbol, bool useUpright)
             : base(parent)
-        {   
+        {
             ActiveChild = mainEquation = new RowContainer(this);
-            this.SubLevel++;
+            SubLevel++;
             subEquation = new RowContainer(this);
-            subEquation.ApplySymbolGap = false;            
+            subEquation.ApplySymbolGap = false;
             sign = new StaticSign(this, symbol, useUpright);
             subEquation.FontFactor = SubFontFactor;
-            childEquations.AddRange(new EquationBase[] { mainEquation, sign, subEquation });            
+            childEquations.AddRange(new EquationBase[] { mainEquation, sign, subEquation });
         }
 
         public override XElement Serialize()
@@ -53,7 +54,7 @@ namespace Formulatte
         }
 
         protected override void CalculateWidth()
-        {            
+        {
             if (sign.Symbol.ToString().ToLower().Contains("integral"))
             {
                 LeftMinus = sign.OverhangTrailing;
@@ -99,7 +100,7 @@ namespace Formulatte
                 subEquation.Top = sign.Bottom - SubOverlap;
             }
         }
-        
+
         public override bool ConsumeMouseClick(System.Windows.Point mousePoint)
         {
             if (subEquation.Bounds.Contains(mousePoint))

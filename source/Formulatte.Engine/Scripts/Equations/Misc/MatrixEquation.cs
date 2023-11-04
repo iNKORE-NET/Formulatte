@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using System.Windows.Input;
 using System.Windows;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Misc
 {
     public class MatrixEquation : EquationContainer
     {
@@ -14,7 +14,7 @@ namespace Formulatte
         int rows = 1;
         double CellSpace { get { return FontSize * .7; } }
 
-        public override Thickness Margin 
+        public override Thickness Margin
         {
             get { return new Thickness(FontSize * .15, 0, FontSize * .15, 0); }
         }
@@ -146,7 +146,7 @@ namespace Formulatte
                     {
                         rowHeights[i] = childEquations.Skip(i * columns).Take(columns).Max(x => x.Height);
                     }
-                    return rowHeights.Sum() + CellSpace * rows/2 - CellSpace/2 + FontSize * .1;
+                    return rowHeights.Sum() + CellSpace * rows / 2 - CellSpace / 2 + FontSize * .1;
                 }
                 else
                 {

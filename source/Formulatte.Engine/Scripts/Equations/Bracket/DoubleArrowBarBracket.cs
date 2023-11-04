@@ -5,8 +5,9 @@ using System.Text;
 using System.Xml.Linq;
 using System.Windows.Media;
 using System.Windows;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Bracket
 {
     public class DoubleArrowBarBracket : EquationContainer
     {
@@ -82,7 +83,7 @@ namespace Formulatte
             set
             {
                 MidSpace = value * 0.5;
-                base.FontSize = value;                
+                base.FontSize = value;
             }
         }
 

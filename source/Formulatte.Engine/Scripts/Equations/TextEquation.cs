@@ -8,32 +8,49 @@ using System.Windows;
 using System.Globalization;
 using System.Xml.Linq;
 using System.Windows.Media.Imaging;
+
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
 using System.ComponentModel;
 
 namespace Formulatte
+在此之后:
+using System.ComponentModel;
+using Formulatte;
+using Formulatte.Engine.Scripts.Equations;
+
+namespace Formulatte
+*/
+using System.ComponentModel;
+using Formulatte.Engine.Scripts.Equations.Text;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
+
+namespace Formulatte.Engine.Scripts.Equations
 {
     public class TextEquation : EquationBase, ISupportsUndo
     {
-        static HashSet<char> symbols = new HashSet<char>() 
-        { 
+        static HashSet<char> symbols = new HashSet<char>()
+        {
             '+', '\u2212', '-', '=',  '>', '<',
-            '\u2190', '\u2191', '\u2192', '\u2193', '\u2194', '\u2195', '\u2196', 
-            '\u2197', '\u2198', '\u2199', '\u219A', '\u219B', '\u219C', '\u219D', 
-            '\u219E', '\u219F', '\u21A0', '\u21A1', '\u21A2', '\u21A3', '\u21A4', 
-            '\u21A5', '\u21A6', '\u21A7', '\u21A8', '\u21A9', '\u21AA', '\u21AB', 
+            '\u2190', '\u2191', '\u2192', '\u2193', '\u2194', '\u2195', '\u2196',
+            '\u2197', '\u2198', '\u2199', '\u219A', '\u219B', '\u219C', '\u219D',
+            '\u219E', '\u219F', '\u21A0', '\u21A1', '\u21A2', '\u21A3', '\u21A4',
+            '\u21A5', '\u21A6', '\u21A7', '\u21A8', '\u21A9', '\u21AA', '\u21AB',
             '\u21AC', '\u21AD', '\u21AE', '\u21AF', '\u21B0', '\u21B1', '\u21B2',
             '\u21B3', '\u21B4', '\u21B5', '\u21B6', '\u21B7', '\u21B8', '\u21B9',
             '\u21BA', '\u21BB', '\u21BC', '\u21BD', '\u21BE', '\u21BF', '\u21C0',
             '\u21C1', '\u21C2', '\u21C3', '\u21C4', '\u21C5', '\u21C6', '\u21C7',
             '\u21C8', '\u21C9', '\u21CA', '\u21CB', '\u21CC', '\u21CD', '\u21CE',
-            '\u21CF', '\u21D0', '\u21D1', '\u21D2', '\u21D3', '\u21D4', '\u21D5', 
+            '\u21CF', '\u21D0', '\u21D1', '\u21D2', '\u21D3', '\u21D4', '\u21D5',
             '\u21D6', '\u21D7', '\u21D8', '\u21D8', '\u21D9', '\u21DA', '\u21DB',
-            '\u21DC',  
-            '\u00d7', '\u00b7', '\u00f7', '\u00b1', 
-            '\u2200', '\u2208', '\u2209', '\u220B', '\u220C', 
-            '\u2217', '\u2227', '\u2228', 
-            '\u2229', '\u222A', '\u2234', '\u2235', '\u2237', '\u2238', '\u2264', 
-            '\u2265', '\u226e', '\u226f',  
+            '\u21DC',
+            '\u00d7', '\u00b7', '\u00f7', '\u00b1',
+            '\u2200', '\u2208', '\u2209', '\u220B', '\u220C',
+            '\u2217', '\u2227', '\u2228',
+            '\u2229', '\u222A', '\u2234', '\u2235', '\u2237', '\u2238', '\u2264',
+            '\u2265', '\u226e', '\u226f',
             '\u25E0', '\u25E1',
         };
 
@@ -208,7 +225,7 @@ namespace Formulatte
             if (SelectedItems != 0 && decorations.Count > 0)
             {
                 int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
-                int endIndex = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex);
+                int endIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
                 var selected = (from d in decorations where d.Index >= startIndex && d.Index < endIndex select d).ToArray();
                 foreach (var s in selected)
                 {
@@ -257,13 +274,13 @@ namespace Formulatte
             textData.Clear();
             textData.Append(text);
             this.caretIndex = caretIndex;
-            this.SelectionStartIndex = selectionStartIndex;
-            this.SelectedItems = selectedItems;
+            SelectionStartIndex = selectionStartIndex;
+            SelectedItems = selectedItems;
             this.formats.Clear();
             this.formats.AddRange(formats);
             this.modes.Clear();
             this.modes.AddRange(modes);
-            this.decorations.Clear();
+            decorations.Clear();
             decorations.AddRange(cdiList);
             FormatText();
         }
@@ -360,7 +377,7 @@ namespace Formulatte
             if (selectedText.Length > 0)
             {
                 FormattedText formattedText = textManager.GetFormattedText(selectedText, selectedFormats.ToList());
-                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)(Math.Ceiling(Width + 4)), (int)(Math.Ceiling(Height + 4)), 96, 96, PixelFormats.Default);
+                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)Math.Ceiling(Width + 4), (int)Math.Ceiling(Height + 4), 96, 96, PixelFormats.Default);
                 DrawingVisual dv = new DrawingVisual();
                 using (DrawingContext dc = dv.RenderOpen())
                 {
@@ -585,7 +602,7 @@ namespace Formulatte
             }
             else if (text.Length == 1 && EditorMode == Editor.EditorMode.Math)
             {
-                if (((int)text[0] >= 65 && (int)text[0] <= 90 || (int)text[0] >= 97 && (int)text[0] <= 122) || char.IsWhiteSpace(text[0]))
+                if (text[0] >= 65 && text[0] <= 90 || text[0] >= 97 && text[0] <= 122 || char.IsWhiteSpace(text[0]))
                 {
                     style = FontStyles.Italic;
                 }
@@ -1333,7 +1350,7 @@ namespace Formulatte
                     bool isSymbol = true;
                     if (i > 0 && symbols.Contains(textData[i - 1]))
                     {
-                        if (i + 1 == textData.Length || (i + 1 < textData.Length && !symbols.Contains(textData[i + 1])))
+                        if (i + 1 == textData.Length || i + 1 < textData.Length && !symbols.Contains(textData[i + 1]))
                         {
                             isSymbol = false;
                         }
@@ -1546,7 +1563,7 @@ namespace Formulatte
                                 v.DecorationType == CharacterDecorationType.LeftCross || v.DecorationType == CharacterDecorationType.RightCross ||
                                 v.DecorationType == CharacterDecorationType.StrikeThrough)
                 {
-                    double diff = (ft.GetFullWidth() + FontSize * .1) - width;
+                    double diff = ft.GetFullWidth() + FontSize * .1 - width;
                     if (diff > 0)
                     {
                         width = ft.GetFullWidth() + FontSize * .1;

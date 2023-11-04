@@ -6,8 +6,9 @@ using System.Windows.Media;
 using System.Windows;
 using System.Globalization;
 using System.Xml.Linq;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Text
 {
     //Only those EquationBase classes should use it which are able to remeber the formats (as of May 15, 2013 only TextEquation)!!
     public class TextManager
@@ -28,7 +29,7 @@ namespace Formulatte
         {
             mapping.Clear();
             List<TextFormat> newList = new List<TextFormat>();
-            HashSet<int> usedOnes = root.GetUsedTextFormats();                 
+            HashSet<int> usedOnes = root.GetUsedTextFormats();
             foreach (int i in usedOnes)
             {
                 TextFormat tf = formattingList[i];
@@ -42,20 +43,20 @@ namespace Formulatte
         }
 
         public void RestoreAfterSave(EquationRoot root)
-        {   
+        {
             Dictionary<int, int> oldMapping = new Dictionary<int, int>();
             foreach (int i in mapping.Keys)
             {
                 oldMapping.Add(mapping[i], i);
                 TextFormat tf = formattingListBeforeSave[i];
                 tf.Index = i;
-            }            
+            }
             root.ResetTextFormats(oldMapping);
             formattingList = formattingListBeforeSave;
         }
 
         public XElement Serialize()
-        {            
+        {
             XElement thisElement = new XElement(GetType().Name);
             XElement children = new XElement("Formats");
             foreach (TextFormat tf in formattingList)
@@ -77,7 +78,7 @@ namespace Formulatte
             formattingList.Clear();
             XElement children = xElement.Element("Formats");
             foreach (XElement xe in children.Elements())
-            {                
+            {
                 AddToList(TextFormat.DeSerialize(xe));
             }
         }
@@ -103,7 +104,7 @@ namespace Formulatte
                     }
                 }
             }
-            for (int i=0;i < allFormatIds.Count;i++)
+            for (int i = 0; i < allFormatIds.Count; i++)
             {
                 int key = allFormatIds.ElementAt(i).Key;
                 TextFormat tf = TextFormat.DeSerialize(formatElements[key]);
@@ -151,7 +152,7 @@ namespace Formulatte
                         strBuilder.Remove(strBuilder.Length - 1, 1);
                     }
                     formatsElement.Value = strBuilder.ToString();
-                }                
+                }
             }
         }
 
@@ -172,7 +173,7 @@ namespace Formulatte
             {
                 tf = new TextFormat(fontSize, fontType, fontStyle, fontWeight, textBrush, useUnderline);
                 AddToList(tf);
-            } 
+            }
             return tf.Index;
         }
 
@@ -197,7 +198,7 @@ namespace Formulatte
             }
             return tf.Index;
         }
-        
+
         public int GetFormatIdForNewSize(int oldId, double newSize)
         {
             TextFormat oldFormat = formattingList[oldId];
@@ -342,10 +343,10 @@ namespace Formulatte
                                                             formattingList[format].TypeFace,
                                                             formattingList[format].FontSize,
                                                             formattingList[format].TextBrush);
-            
-            
+
+
             formattedText.SetFontStyle(formattingList[format].FontStyle);
-            formattedText.SetFontWeight(formattingList[format].FontWeight);            
+            formattedText.SetFontWeight(formattingList[format].FontWeight);
             return formattedText;
         }
 

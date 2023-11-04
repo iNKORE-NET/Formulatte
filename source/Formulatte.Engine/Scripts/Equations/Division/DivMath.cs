@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivMath : EquationContainer
     {
         protected RowContainer insideEquation = null;
         protected DivMathSign divMathSign;
-        protected double ExtraHeight 
+        protected double ExtraHeight
         {
             get { return FontSize * .3; }
         }
@@ -29,7 +29,7 @@ namespace Formulatte
             : base(parent)
         {
             divMathSign = new DivMathSign(this);
-            ActiveChild = insideEquation = new RowContainer(this);            
+            ActiveChild = insideEquation = new RowContainer(this);
             childEquations.Add(insideEquation);
             childEquations.Add(divMathSign);
         }
@@ -37,13 +37,13 @@ namespace Formulatte
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
-            thisElement.Add(insideEquation.Serialize());            
+            thisElement.Add(insideEquation.Serialize());
             return thisElement;
         }
 
         public override void DeSerialize(XElement xElement)
         {
-            insideEquation.DeSerialize(xElement.Elements().First());            
+            insideEquation.DeSerialize(xElement.Elements().First());
             CalculateSize();
         }
 
@@ -77,7 +77,7 @@ namespace Formulatte
         protected override void CalculateHeight()
         {
             divMathSign.Height = insideEquation.FirstRow.Height + ExtraHeight;
-            Height = Math.Max(insideEquation.Height + ExtraHeight, divMathSign.Height);            
+            Height = Math.Max(insideEquation.Height + ExtraHeight, divMathSign.Height);
         }
 
         public override double Left

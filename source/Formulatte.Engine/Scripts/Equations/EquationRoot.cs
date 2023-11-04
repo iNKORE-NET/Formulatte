@@ -12,8 +12,11 @@ using System.Xml.Linq;
 using System.Threading;
 using System.Diagnostics;
 using System.Reflection;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations
 {
     public class EquationRoot : EquationContainer
     {
@@ -29,7 +32,7 @@ namespace Formulatte
             this.vCaret = vCaret;
             this.hCaret = hCaret;
             ActiveChild = new RowContainer(this, 0.3);
-            childEquations.Add(ActiveChild);            
+            childEquations.Add(ActiveChild);
             ActiveChild.Location = Location = new Point(15, 15);
             AdjustCarets();
         }
@@ -75,7 +78,7 @@ namespace Formulatte
             {
                 fileVersionAttribute = root.Attributes("fileVersion").FirstOrDefault();
                 appVersionAttribute = root.Attributes("appVersion").FirstOrDefault();
-            }            
+            }
             string appVersion = appVersionAttribute != null ? appVersionAttribute.Value : "Unknown";
             if (fileVersionAttribute == null || fileVersionAttribute.Value != fileVersion)
             {
@@ -105,7 +108,7 @@ namespace Formulatte
             {
                 IsSelecting = true;
                 ActiveChild.StartSelection();
-                ActiveChild.HandleMouseDrag(mousePoint);                
+                ActiveChild.HandleMouseDrag(mousePoint);
             }
             else
             {
@@ -126,9 +129,9 @@ namespace Formulatte
                 IsSelecting = true;
             }
         }
-                
+
         public void HandleUserCommand(CommandDetails commandDetails)
-        {            
+        {
             if (commandDetails.CommandType == CommandType.Text)
             {
                 ConsumeText(commandDetails.UnicodeString); //ConsumeText() will call DeSelect() itself. No worries here
@@ -147,7 +150,7 @@ namespace Formulatte
                 }
                 CalculateSize();
                 AdjustCarets();
-                DeSelect();                
+                DeSelect();
             }
         }
 
@@ -165,7 +168,7 @@ namespace Formulatte
             CopyDataObject temp = base.Copy(removeSelection);
             DataObject data = new DataObject();
             data.SetImage(temp.Image);
-            XElement rootElement = new XElement(this.GetType().Name);
+            XElement rootElement = new XElement(GetType().Name);
             rootElement.Add(new XElement("SessionId", sessionString));
             rootElement.Add(textManager.Serialize());
             rootElement.Add(new XElement("payload", temp.XElement));
@@ -218,7 +221,7 @@ namespace Formulatte
                 {
                     if (Clipboard.ContainsData(typeof(MathEditorData).FullName))
                     {
-                        data = Clipboard.GetData(typeof(MathEditorData).FullName) as MathEditorData;                        
+                        data = Clipboard.GetData(typeof(MathEditorData).FullName) as MathEditorData;
                         break;
                     }
                     else if (Clipboard.ContainsText())
@@ -246,7 +249,7 @@ namespace Formulatte
                     success = true;
                 }
             }
-            catch 
+            catch
             {
                 success = false;
             }
@@ -294,9 +297,9 @@ namespace Formulatte
                 {
                     dc.DrawRectangle(Brushes.White, null, new Rect(0, 0, Math.Ceiling(Width + Location.X * 2), Math.Ceiling(Width + Location.Y * 2)));
                 }
-                ActiveChild.DrawEquation(dc);                
+                ActiveChild.DrawEquation(dc);
             }
-            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)(Math.Ceiling(Width + Location.X * 2)), (int)(Math.Ceiling(Height + Location.Y * 2)), 96, 96, PixelFormats.Default);
+            RenderTargetBitmap bitmap = new RenderTargetBitmap((int)Math.Ceiling(Width + Location.X * 2), (int)Math.Ceiling(Height + Location.Y * 2), 96, 96, PixelFormats.Default);
             bitmap.Render(dv);
             BitmapEncoder encoder = null;
             switch (extension)
@@ -358,11 +361,11 @@ namespace Formulatte
                 }
                 else
                 {
-                    ActiveChild.ConsumeKey(key);                    
+                    ActiveChild.ConsumeKey(key);
                 }
                 CalculateSize();
                 AdjustCarets();
-                DeSelect();                
+                DeSelect();
             }
             return result;
         }
@@ -375,7 +378,7 @@ namespace Formulatte
                 CalculateSize();
                 AdjustCarets();
                 DeSelect();
-            }            
+            }
         }
 
         protected override void CalculateWidth()
@@ -390,7 +393,7 @@ namespace Formulatte
 
         public void ZoomOut(int difference)
         {
-            FontSize -= difference;            
+            FontSize -= difference;
         }
 
         public void ZoomIn(int difference)
@@ -411,7 +414,7 @@ namespace Formulatte
             get { return base.FontSize; }
             set
             {
-                base.FontSize = value;                
+                base.FontSize = value;
                 AdjustCarets();
             }
         }

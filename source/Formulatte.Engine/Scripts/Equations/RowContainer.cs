@@ -8,8 +8,10 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using System.IO;
 using System.Windows.Media.Imaging;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Scripts.Equations.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations
 {
     public class RowContainer : EquationContainer, ISupportsUndo
     {
@@ -58,7 +60,7 @@ namespace Formulatte
                         HeadFormatsOfPastedRows = newRows[0].GetFirstTextEquation().GetFormats(),
                         TailFormatsOfPastedRows = newRows.Last().GetLastTextEquation().GetFormats(),
                         HeadModeOfPastedRows = newRows[0].GetFirstTextEquation().GetModes(),
-                        TailModesOfPastedRows = newRows.Last().GetLastTextEquation().GetModes(),                        
+                        TailModesOfPastedRows = newRows.Last().GetLastTextEquation().GetModes(),
                         HeadDecorationsOfPastedRows = newRows[0].GetFirstTextEquation().GetDecorations(),
                         TailDecorationsOfPastedRows = newRows.Last().GetLastTextEquation().GetDecorations(),
                         Equations = newRows
@@ -210,7 +212,7 @@ namespace Formulatte
             if (SelectedItems != 0)
             {
                 int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
-                int endIndex = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex);
+                int endIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
                 EquationRow firstRow = (EquationRow)childEquations[startIndex];
                 EquationRow lastRow = (EquationRow)childEquations[endIndex];
                 TextEquation firstText = firstRow.GetFirstSelectionText();
@@ -244,9 +246,9 @@ namespace Formulatte
                     FirstModes = firstText.GetModes(),
                     LastModes = lastText.GetModes(),
                     FirstRowDeletedContent = firstRow.DeleteTail(),
-                    LastRowDeletedContent = lastRow.DeleteHead(), 
+                    LastRowDeletedContent = lastRow.DeleteHead(),
                     FirstDecorations = firstRow.GetFirstTextEquation().GetDecorations(),
-                    LastDecorations = lastRow.GetLastTextEquation().GetDecorations(), 
+                    LastDecorations = lastRow.GetLastTextEquation().GetDecorations(),
                     Equations = equations,
                 };
                 action.FirstRowActiveIndexAfterRemoval = firstRow.ActiveChildIndex;
@@ -310,7 +312,7 @@ namespace Formulatte
                 {
                     eb.Left = 1;
                 }
-                double left = firstRow.GetFirstSelectionText().Right - this.Left;
+                double left = firstRow.GetFirstSelectionText().Right - Left;
                 Rect firstTextRect = firstRow.GetFirstSelectionText().GetSelectionBounds();
                 if (!firstTextRect.IsEmpty)
                 {
@@ -329,7 +331,7 @@ namespace Formulatte
                     height += eb.Height + LineSpace;
                 }
                 height -= LineSpace;
-                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)(Math.Ceiling(width + 2)), (int)(Math.Ceiling(height + 2)), 96, 96, PixelFormats.Default);
+                RenderTargetBitmap bitmap = new RenderTargetBitmap((int)Math.Ceiling(width + 2), (int)Math.Ceiling(height + 2), 96, 96, PixelFormats.Default);
                 DrawingVisual dv = new DrawingVisual();
                 IsSelecting = false;
                 using (DrawingContext dc = dv.RenderOpen())
@@ -559,7 +561,7 @@ namespace Formulatte
             if (newRow != null)
             {
                 EquationRow activeRow = ActiveChild as EquationRow;
-                var rca = new RowContainerAction(this, childEquations.IndexOf(activeRow), activeRow.ActiveChildIndex, activeRow.TextLength, newRow) { UndoFlag = false };                
+                var rca = new RowContainerAction(this, childEquations.IndexOf(activeRow), activeRow.ActiveChildIndex, activeRow.TextLength, newRow) { UndoFlag = false };
                 UndoManager.AddUndoAction(rca);
                 AddLine(newRow);
             }
@@ -691,7 +693,7 @@ namespace Formulatte
 
         public override bool ConsumeKey(Key key)
         {
-            if ((Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 if (key == Key.Home)
                 {
@@ -925,15 +927,15 @@ namespace Formulatte
                 }
                 ActiveChild = textAction.ActiveEquationAfterChange;
                 textAction.ActiveTextInRow.MoveToEnd();
-                SelectedItems = 0; 
+                SelectedItems = 0;
             }
             else
             {
-                this.SelectedItems = textAction.SelectedItems;
-                this.SelectionStartIndex = textAction.SelectionStartIndex;
+                SelectedItems = textAction.SelectedItems;
+                SelectionStartIndex = textAction.SelectionStartIndex;
                 activeRow.Merge((EquationRow)textAction.Equations.Last());
-                textAction.ActiveTextInRow.ResetTextEquation(textAction.CaretIndexOfActiveText, textAction.SelectionStartIndexOfTextEquation, 
-                                                             textAction.SelectedItemsOfTextEquation, textAction.TextEquationContents, 
+                textAction.ActiveTextInRow.ResetTextEquation(textAction.CaretIndexOfActiveText, textAction.SelectionStartIndexOfTextEquation,
+                                                             textAction.SelectedItemsOfTextEquation, textAction.TextEquationContents,
                                                              textAction.TextEquationFormats, textAction.FirstModesOfInsertedText,
                                                              textAction.FirstDecorationsOfInsertedText);
                 foreach (EquationBase eb in textAction.Equations)
@@ -1002,7 +1004,7 @@ namespace Formulatte
                 activeRow.Truncate(containerAction.ChildIndexInRow + 1, containerAction.CaretIndex);
                 childEquations.Insert(containerAction.Index + 1, containerAction.Equation);
                 ActiveChild = containerAction.Equation;
-                ActiveChild.FontSize = this.FontSize;
+                ActiveChild.FontSize = FontSize;
             }
             else
             {
@@ -1066,8 +1068,8 @@ namespace Formulatte
             {
                 IsSelecting = true;
                 ActiveChild = rcfa.ActiveChild;
-                this.SelectedItems = rcfa.SelectedItems;
-                this.SelectionStartIndex = rcfa.SelectionStartIndex;
+                SelectedItems = rcfa.SelectedItems;
+                SelectionStartIndex = rcfa.SelectionStartIndex;
                 int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
                 int endIndex = SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex;
                 ((EquationRow)childEquations[startIndex]).ActiveChildIndex = rcfa.FirstRowActiveChildIndex;

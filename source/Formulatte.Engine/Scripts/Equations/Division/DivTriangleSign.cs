@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using Formulatte.Engine.Scripts.Equations.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivTriangleSign : EquationBase
     {
@@ -24,7 +25,7 @@ namespace Formulatte
             set
             {
                 base.Height = value;
-                Width = FontSize * .25 + Height * .06;                
+                Width = FontSize * .25 + Height * .06;
             }
         }
 
@@ -42,7 +43,7 @@ namespace Formulatte
 
         public override void DrawEquation(DrawingContext dc)
         {
-            dc.DrawPolyline(new Point(ParentEquation.Right, Bottom), new PointCollection{new Point(Left, Bottom), new Point(Right, Top)}, StandardRoundPen);
+            dc.DrawPolyline(new Point(ParentEquation.Right, Bottom), new PointCollection { new Point(Left, Bottom), new Point(Right, Top) }, StandardRoundPen);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common
 {
 
     public static class PenManager
@@ -41,7 +41,7 @@ namespace Formulatte
             }
         }
 
-        static Pen GetPen(object lockObj, Dictionary<double, Pen> penDictionary, double thickness, PenLineJoin lineJoin, Brush brush=null)
+        static Pen GetPen(object lockObj, Dictionary<double, Pen> penDictionary, double thickness, PenLineJoin lineJoin, Brush brush = null)
         {
             lock (lockObj)
             {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Data;
 using System.Globalization;
 
-namespace Formulatte
+namespace Formulatte.Engine.Common
 {
     public class EditorModeToBoolConverter : IValueConverter
     {

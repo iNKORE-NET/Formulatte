@@ -5,8 +5,9 @@ using System.Text;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     class SignBottom : EquationContainer
     {
@@ -30,18 +31,18 @@ namespace Formulatte
 
         public override XElement Serialize()
         {
-            XElement thisElement = new XElement(GetType().Name);            
+            XElement thisElement = new XElement(GetType().Name);
             XElement parameters = new XElement("parameters");
             parameters.Add(new XElement(sign.Symbol.GetType().Name, sign.Symbol));
             parameters.Add(new XElement(typeof(bool).FullName, sign.UseItalicIntegralSign));
             thisElement.Add(parameters);
             thisElement.Add(mainEquation.Serialize());
-            thisElement.Add(bottomEquation.Serialize());            
+            thisElement.Add(bottomEquation.Serialize());
             return thisElement;
         }
 
         public override void DeSerialize(XElement xElement)
-        {   
+        {
             XElement[] elements = xElement.Elements(typeof(RowContainer).Name).ToArray();
             mainEquation.DeSerialize(elements[0]);
             bottomEquation.DeSerialize(elements[1]);
@@ -126,7 +127,7 @@ namespace Formulatte
             get { return base.Height; }
             set
             {
-                base.Height = value;                
+                base.Height = value;
             }
         }
 

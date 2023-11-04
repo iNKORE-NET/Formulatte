@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Text
 {
     public class CharacterDecorationInfo
     {

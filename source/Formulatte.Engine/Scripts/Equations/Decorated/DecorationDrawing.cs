@@ -5,8 +5,10 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Shapes;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Decorated
 {
     class DecorationDrawing : EquationBase
     {
@@ -250,10 +252,10 @@ namespace Formulatte
                     break;
                 case DecorationType.Hat:
                     dc.DrawPolyline(new Point(Left, Bottom - FontSize * .02),
-                                    new PointCollection 
-                                    {   
-                                        new Point(MidX, Top + FontSize * .03), 
-                                        new Point(Right, Bottom - FontSize * .02) 
+                                    new PointCollection
+                                    {
+                                        new Point(MidX, Top + FontSize * .03),
+                                        new Point(Right, Bottom - FontSize * .02)
                                     },
                                     ThinPen);
                     break;
@@ -316,7 +318,7 @@ namespace Formulatte
                     text = FontFactory.GetFormattedText("\u2194", FontType.STIXGeneral, FontSize * factor);
                     factor += .1;
                 }
-                while (Width > text.GetFullWidth());                
+                while (Width > text.GetFullWidth());
                 text.DrawTextTopLeftAligned(dc, Location);
             }
             else
@@ -344,7 +346,7 @@ namespace Formulatte
                 {
                     bar.DrawTextTopLeftAligned(dc, new Point(left, Top));
                     left += bar.GetFullWidth() * .8;
-                    double shoot = (left + bar.GetFullWidth() * .8) - right;
+                    double shoot = left + bar.GetFullWidth() * .8 - right;
                     if (shoot > 0)
                     {
                         left -= shoot;
@@ -357,7 +359,7 @@ namespace Formulatte
 
         private void DrawLeftHarpoonUpBarb(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(Left + FontSize * .3, Top),
                                                             //new Point(Left + FontSize * .31, Top + FontSize * .041),
                                                             new Point(Left + FontSize * .18, Bottom - FontSize * .06),
@@ -369,7 +371,7 @@ namespace Formulatte
 
         private void DrawRightHarpoonUpBarb(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(Right - FontSize * .3, Top),
                                                             //new Point(Right - FontSize * .31, Top + FontSize * .041),
                                                             new Point(Right - FontSize * .18, Bottom - FontSize * .06),
@@ -381,7 +383,7 @@ namespace Formulatte
 
         private void DrawLeftHarpoonDownBarb(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(Left + FontSize * .3, Bottom),
                                                             //new Point(Left + FontSize * .31, Bottom - FontSize * .041),
                                                             new Point(Left + FontSize * .18, Top + FontSize * .06),
@@ -393,7 +395,7 @@ namespace Formulatte
 
         private void DrawRightHarpoonDownBarb(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(Right - FontSize * .3, Bottom),
                                                             //new Point(Right - FontSize * .31, Bottom - FontSize * .041),
                                                             new Point(Right - FontSize * .18, Top + FontSize * .06),
@@ -405,7 +407,7 @@ namespace Formulatte
 
         private void DrawTortoise(DrawingContext dc)
         {
-            PointCollection points = new PointCollection {  
+            PointCollection points = new PointCollection {
                                                             new Point(Left + Height * .5, Top),
                                                             new Point(Right - Height * .5, Top),
                                                             new Point(Right, Bottom),

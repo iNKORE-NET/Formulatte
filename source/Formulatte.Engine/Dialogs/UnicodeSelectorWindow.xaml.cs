@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
+using Formulatte.Engine.Common;
 
 namespace Formulatte
 {

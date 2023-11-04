@@ -2,9 +2,23 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
+
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
 using System.Collections.Generic;
 
 namespace Formulatte
+在此之后:
+using System.Collections.Generic;
+using Formulatte.Engine.Common;
+using Formulatte;
+
+namespace Formulatte
+*/
+using System.Collections.Generic;
+using Formulatte.Engine.Scripts.Equations.Common;
+
+namespace Formulatte.Engine.Common
 {
     public class Caret : FrameworkElement
     {
@@ -29,7 +43,7 @@ namespace Formulatte
             }
             else if (isHorizontal)
             {
-                dc.DrawLine(PenManager.GetWhitePen(Math.Max(1, EditorControl.RootFontSize *.8 / EditorControl.rootFontBaseSize)), location, OtherPoint);
+                dc.DrawLine(PenManager.GetWhitePen(Math.Max(1, EditorControl.RootFontSize * .8 / EditorControl.rootFontBaseSize)), location, OtherPoint);
             }
         }
 

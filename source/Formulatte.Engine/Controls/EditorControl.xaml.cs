@@ -15,6 +15,9 @@ using System.Globalization;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
+using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Scripts.Equations;
 
 namespace Formulatte
 {

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
-    public abstract class DivMathWithOuterBase: DivMath
+    public abstract class DivMathWithOuterBase : DivMath
     {
         protected RowContainer outerEquation;
 
         public DivMathWithOuterBase(EquationContainer parent)
             : base(parent)
-        {            
+        {
             outerEquation = new RowContainer(this);
             outerEquation.HAlignment = Editor.HAlignment.Right;
             //insideEquation.HAlignment = Editor.HAlignment.Right;
@@ -33,7 +33,7 @@ namespace Formulatte
             insideEquation.DeSerialize(elements[0]);
             outerEquation.DeSerialize(elements[1]);
             CalculateSize();
-        }       
+        }
 
         public override void CalculateSize()
         {
@@ -47,7 +47,7 @@ namespace Formulatte
         }
 
         protected override void CalculateHeight()
-        {            
+        {
             Height = outerEquation.Height + insideEquation.Height + ExtraHeight;
             divMathSign.Height = insideEquation.FirstRow.Height + ExtraHeight;
         }

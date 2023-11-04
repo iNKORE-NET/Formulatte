@@ -5,18 +5,20 @@ using System.Text;
 using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.SignComposite
 {
     public class StaticSign : StaticText
     {
         bool integralSignItalic = false;
         public SignCompositeSymbol Symbol { get; set; }
-        public bool UseItalicIntegralSign 
-        { 
-            get {return integralSignItalic;}
-            set 
-            { 
+        public bool UseItalicIntegralSign
+        {
+            get { return integralSignItalic; }
+            set
+            {
                 integralSignItalic = value;
                 DetermineMargin();
                 DetermineFontType();
@@ -37,7 +39,7 @@ namespace Formulatte
         }
 
         void DetermineMargin()
-        {            
+        {
             switch (Symbol)
             {
                 case SignCompositeSymbol.Integral:
@@ -61,7 +63,7 @@ namespace Formulatte
                 default:
                     RightMarginFactor = 0.05;
                     break;
-            }            
+            }
         }
 
         void DetermineFontType()
@@ -74,7 +76,7 @@ namespace Formulatte
                 case SignCompositeSymbol.TripleIntegral:
                 case SignCompositeSymbol.ContourIntegral:
                 case SignCompositeSymbol.SurfaceIntegral:
-                case SignCompositeSymbol.VolumeIntegral:                
+                case SignCompositeSymbol.VolumeIntegral:
                 case SignCompositeSymbol.ClockContourIntegral:
                 case SignCompositeSymbol.AntiClockContourIntegral:
                     if (UseItalicIntegralSign)
@@ -90,7 +92,7 @@ namespace Formulatte
                 case SignCompositeSymbol.Union:
                     fontType = FontType.STIXGeneral;
                     break;
-            }            
+            }
             FontType = fontType;
         }
 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Scripts.Equations.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Formulatte.Engine.Scripts.Equations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public class DivRegularSmall : DivRegular
     {
         public DivRegularSmall(EquationContainer parent)
             : base(parent, true)
-        {            
+        {
         }
     }
 
@@ -36,7 +37,7 @@ namespace Formulatte
     {
         public DivSlantedSmall(EquationContainer parent)
             : base(parent, true)
-        {            
+        {
         }
     }
 
@@ -44,8 +45,8 @@ namespace Formulatte
     {
         public DivHorizSmall(EquationContainer parent)
             : base(parent, true)
-        {           
+        {
         }
-    }   
+    }
 
 }

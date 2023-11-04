@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Formulatte.Engine.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Division
 {
     public static class DivisionFactory
     {
@@ -30,7 +31,7 @@ namespace Formulatte
                     break;
                 case DivisionType.DivHorizSmall:
                     equation = new DivHorizSmall(equationParent);
-                    break;                
+                    break;
 
                 case DivisionType.DivMath:
                     equation = new DivMath(equationParent);
@@ -38,13 +39,13 @@ namespace Formulatte
                 case DivisionType.DivMathWithTop:
                     equation = new DivMathWithTop(equationParent);
                     break;
-                
+
                 case DivisionType.DivSlanted:
                     equation = new DivSlanted(equationParent);
-                    break;  
+                    break;
                 case DivisionType.DivSlantedSmall:
                     equation = new DivSlantedSmall(equationParent);
-                    break;  
+                    break;
 
                 case DivisionType.DivMathInverted:
                     equation = new DivMathInverted(equationParent);
@@ -57,7 +58,7 @@ namespace Formulatte
                     break;
                 case DivisionType.DivTriangleExpanding:
                     equation = new DivTriangle(equationParent, false);
-                    break;                
+                    break;
             }
             return equation;
         }

@@ -3,9 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
+
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
 using System.Windows;
 
 namespace Formulatte
+在此之后:
+using System.Windows;
+using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte;
+
+namespace Formulatte
+*/
+using System.Windows;
+
+namespace Formulatte.Engine.Scripts.Equations.Common
 {
     public static class FormattedTextHelper
     {
@@ -22,7 +35,7 @@ namespace Formulatte
             dc.DrawText(text, new Point(topLeft.X - padding, topLeft.Y - topExtra));
         }
 
-        public static void DrawText (this FormattedText ft, DrawingContext dc, Point topLeft)
+        public static void DrawText(this FormattedText ft, DrawingContext dc, Point topLeft)
         {
             if (ft.Text.Length > 0)
             {
@@ -56,7 +69,7 @@ namespace Formulatte
 
         public static void DrawTextRightAligned(this FormattedText text, DrawingContext dc, Point topRight)
         {
-           dc.DrawText(text, new Point(topRight.X - text.GetFullWidth(), topRight.Y));
+            dc.DrawText(text, new Point(topRight.X - text.GetFullWidth(), topRight.Y));
         }
 
 
@@ -78,7 +91,7 @@ namespace Formulatte
         {
             double descent = text.Height - text.Baseline + text.OverhangAfter;
             double topExtra = text.Baseline - text.Extent + descent;
-            dc.DrawText(text, new Point(bottomCenter.X - text.OverhangLeading - text.GetFullWidth()/2, bottomCenter.Y - topExtra - text.Extent));
+            dc.DrawText(text, new Point(bottomCenter.X - text.OverhangLeading - text.GetFullWidth() / 2, bottomCenter.Y - topExtra - text.Extent));
         }
 
         public static void DrawTextTopCenterAligned(this FormattedText text, DrawingContext dc, Point topCenter)
@@ -99,7 +112,7 @@ namespace Formulatte
         {
             if (ft.Text.Length > 0)
             {
-                if (char.IsWhiteSpace(ft.Text[0]) && char.IsWhiteSpace(ft.Text[ft.Text.Length-1]))
+                if (char.IsWhiteSpace(ft.Text[0]) && char.IsWhiteSpace(ft.Text[ft.Text.Length - 1]))
                 {
                     return ft.WidthIncludingTrailingWhitespace;
                 }
@@ -139,7 +152,7 @@ namespace Formulatte
         //}
         //return width;
         */
-        
+
         public static double Descent(this FormattedText ft)
         {
             return ft.Height - ft.Baseline + ft.OverhangAfter;
@@ -159,7 +172,7 @@ namespace Formulatte
                 if (char.IsWhiteSpace(ft.Text[ft.Text.Length - 1]))
                 {
                     return ft.WidthIncludingTrailingWhitespace;
-                }                
+                }
                 else
                 {
                     return ft.WidthIncludingTrailingWhitespace - ft.OverhangTrailing;
@@ -169,6 +182,6 @@ namespace Formulatte
             {
                 return 0;
             }
-        }  
+        }
     }
 }

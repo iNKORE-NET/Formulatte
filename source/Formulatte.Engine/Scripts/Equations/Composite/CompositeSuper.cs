@@ -6,11 +6,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Composite
 {
     public class CompositeSuper : CompositeBase
-    {        
-        RowContainer topRowContainer;       
+    {
+        RowContainer topRowContainer;
 
         public CompositeSuper(EquationContainer parent)
             : base(parent)
@@ -36,7 +36,7 @@ namespace Formulatte
             topRowContainer.DeSerialize(xElement.Elements().Last());
             CalculateSize();
         }
-        
+
         public override double Left
         {
             get { return base.Left; }
@@ -45,7 +45,7 @@ namespace Formulatte
                 base.Left = value;
                 mainRowContainer.Left = Left;
                 topRowContainer.Left = mainRowContainer.Right;
-                
+
             }
         }
 
@@ -56,7 +56,7 @@ namespace Formulatte
 
         protected override void CalculateHeight()
         {
-            Height = mainRowContainer.Height + topRowContainer.Height - SuperOverlap;            
+            Height = mainRowContainer.Height + topRowContainer.Height - SuperOverlap;
         }
 
         public override double RefY
@@ -119,6 +119,6 @@ namespace Formulatte
                 }
             }
             return false;
-        }        
+        }
     }
 }

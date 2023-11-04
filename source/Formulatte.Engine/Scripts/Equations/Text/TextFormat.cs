@@ -6,8 +6,18 @@ using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
 
-namespace Formulatte
-{   
+/* 项目“Formulatte.Engine (net6.0-windows)”的未合并的更改
+在此之前:
+using Formulatte.Engine.Common;
+在此之后:
+using Formulatte.Engine.Common;
+using Formulatte;
+using Formulatte.Engine.Scripts.Equations.Text;
+*/
+using Formulatte.Engine.Common;
+
+namespace Formulatte.Engine.Scripts.Equations.Text
+{
     public class TextFormat
     {
         public double FontSize { get; private set; }
@@ -23,14 +33,14 @@ namespace Formulatte
 
         public TextFormat(double size, FontType ft, FontStyle fs, FontWeight fw, SolidColorBrush brush, bool useUnderline)
         {
-            this.FontSize = Math.Round(size, 1);
-            this.FontType = ft;
-            this.FontFamily = FontFactory.GetFontFamily(ft);
-            this.FontStyle = fs;
-            this.UseUnderline = useUnderline;
-            this.FontWeight = fw;
-            this.TextBrush = brush;
-            this.TypeFace = new Typeface(FontFamily, fs, fw, FontStretches.Normal, FontFactory.GetFontFamily(FontType.STIXGeneral));
+            FontSize = Math.Round(size, 1);
+            FontType = ft;
+            FontFamily = FontFactory.GetFontFamily(ft);
+            FontStyle = fs;
+            UseUnderline = useUnderline;
+            FontWeight = fw;
+            TextBrush = brush;
+            TypeFace = new Typeface(FontFamily, fs, fw, FontStretches.Normal, FontFactory.GetFontFamily(FontType.STIXGeneral));
             BrushConverter bc = new BrushConverter();
             TextBrushString = bc.ConvertToString(brush);
         }
@@ -43,7 +53,7 @@ namespace Formulatte
                              new XElement("FontStyle", FontStyle),
                              new XElement("Underline", UseUnderline),
                              new XElement("FontWeight", FontWeight),
-                             new XElement("Brush", TextBrushString));                             
+                             new XElement("Brush", TextBrushString));
             return thisElement;
         }
 
@@ -52,7 +62,7 @@ namespace Formulatte
             double fontSize = double.Parse(xe.Element("FontSize").Value);
             FontType fontType = (FontType)Enum.Parse(typeof(FontType), xe.Element("FontType").Value);
             FontStyle fontStyle = xe.Element("FontStyle").Value == "Italic" ? FontStyles.Italic : FontStyles.Normal;
-            FontWeight fontWeight = xe.Element("FontWeight").Value == "Bold" ? FontWeights.Bold : FontWeights.Normal;                      
+            FontWeight fontWeight = xe.Element("FontWeight").Value == "Bold" ? FontWeights.Bold : FontWeights.Normal;
             BrushConverter bc = new BrushConverter();
             SolidColorBrush brush = (SolidColorBrush)bc.ConvertFrom(xe.Element("Brush").Value);
             bool useUnderline = Convert.ToBoolean(xe.Element("Underline").Value);

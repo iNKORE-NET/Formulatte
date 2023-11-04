@@ -6,8 +6,9 @@ using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
 using System.Windows.Input;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Decorated
 {
     public class Arrow : EquationContainer
     {
@@ -22,7 +23,7 @@ namespace Formulatte
         {
             get
             {
-                if (arrowType == ArrowType.SmallRightLeftHarpoon || arrowType == ArrowType.RightSmallLeftHarpoon || 
+                if (arrowType == ArrowType.SmallRightLeftHarpoon || arrowType == ArrowType.RightSmallLeftHarpoon ||
                     arrowType == ArrowType.RightLeftHarpoon)
                 {
                     return FontSize * .2;
@@ -43,7 +44,7 @@ namespace Formulatte
             ApplySymbolGap = false;
             ActiveChild = rowContainer1 = new RowContainer(this);
             rowContainer1.FontFactor = SubFontFactor;
-            this.childEquations.Add(rowContainer1);
+            childEquations.Add(rowContainer1);
             CreateDecorations();
             if (equationPosition == Position.BottomAndTop)
             {
@@ -222,11 +223,11 @@ namespace Formulatte
         {
             if (arrowType.ToString().ToLower().Contains("small"))
             {
-                Width = Math.Max(rowContainer1.Width, (rowContainer2 != null ? rowContainer2.Width : 0)) + FontSize * 3;
+                Width = Math.Max(rowContainer1.Width, rowContainer2 != null ? rowContainer2.Width : 0) + FontSize * 3;
             }
             else
             {
-                Width = Math.Max(rowContainer1.Width, (rowContainer2 != null ? rowContainer2.Width : 0)) + FontSize * 2;
+                Width = Math.Max(rowContainer1.Width, rowContainer2 != null ? rowContainer2.Width : 0) + FontSize * 2;
             }
             switch (arrowType)
             {

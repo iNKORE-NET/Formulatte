@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formulatte.Editor", "Formulatte.Editor\Formulatte.Editor.csproj", "{A5B2CE28-4EAA-482C-BFF8-C532A652C710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formulatte.Editor", "source\Formulatte.Editor\Formulatte.Editor.csproj", "{A5B2CE28-4EAA-482C-BFF8-C532A652C710}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formulatte.Engine", "Formulatte.Engine\Formulatte.Engine.csproj", "{9FB050CD-77D2-4C88-9EE5-8EF97F6D1AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formulatte.Engine", "source\Formulatte.Engine\Formulatte.Engine.csproj", "{9FB050CD-77D2-4C88-9EE5-8EF97F6D1AA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

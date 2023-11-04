@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows;
+using Formulatte.Engine.Common;
 
-namespace Formulatte
+namespace Formulatte.Engine.Scripts.Equations.Common
 {
     public class StaticText : EquationBase
     {
-        protected string Text { get; set; }        
+        protected string Text { get; set; }
         protected FontType FontType { get; set; }
         protected double FontSizeFactor = 1;
         protected FontWeight FontWeight = FontWeights.Normal;
@@ -20,7 +21,7 @@ namespace Formulatte
         FormattedText formattedText;
 
         public StaticText(EquationContainer parent)
-            :base(parent)
+            : base(parent)
         {
             IsStatic = true;
         }
@@ -40,7 +41,7 @@ namespace Formulatte
             set
             {
                 base.FontSize = value;
-                ReformatSign();            
+                ReformatSign();
             }
         }
 
