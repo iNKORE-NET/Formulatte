@@ -15,6 +15,7 @@ using System.Reflection;
 using Formulatte.Engine.Scripts.Equations.Common;
 using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using Formulatte.Engine.Controls;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -57,9 +58,24 @@ namespace Formulatte.Engine.Scripts.Equations
             textManager.RestoreAfterSave(this);
         }
 
+        private EditorControl? _editorControl;
+        private EditorHandler? _editorHandler;
+
+        public EditorHandler? EditorHandler
+        {
+            get { return _editorHandler ?? _editorControl?.EditorHandler; }
+            set { _editorHandler = value; }
+        }
+
+        public EditorControl? EditorControl
+        {
+            get { return _editorControl ?? _editorHandler?.Control_Editor; }
+            set { _editorControl = value; }
+        }
+
         public void LoadFile(Stream stream)
         {
-            UndoManager.ClearAll();
+            EditorHandler?.UndoManager?.ClearAll();
             DeSelect();
             XDocument xDoc = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
             XElement root = xDoc.Root;
@@ -138,15 +154,15 @@ namespace Formulatte.Engine.Scripts.Equations
             }
             else
             {
-                int undoCount = UndoManager.UndoCount + 1;
+                int undoCount = EditorHandler != null ? EditorHandler.UndoManager.UndoCount + 1 : 0;
                 if (IsSelecting)
                 {
                     ActiveChild.RemoveSelection(true);
                 }
                 ((EquationContainer)ActiveChild).ExecuteCommand(commandDetails.CommandType, commandDetails.CommandParam);
-                if (IsSelecting && undoCount < UndoManager.UndoCount)
+                if (EditorHandler != null && IsSelecting && undoCount < EditorHandler.UndoManager.UndoCount)
                 {
-                    UndoManager.ChangeUndoCountOfLastAction(1);
+                    EditorHandler.UndoManager.ChangeUndoCountOfLastAction(1);
                 }
                 CalculateSize();
                 AdjustCarets();
@@ -195,15 +211,15 @@ namespace Formulatte.Engine.Scripts.Equations
             {
                 textManager.ProcessPastedXML(xe);
             }
-            int undoCount = UndoManager.UndoCount + 1;
+            int undoCount = EditorHandler != null ? EditorHandler.UndoManager.UndoCount + 1 : 0;
             if (IsSelecting)
             {
                 ActiveChild.RemoveSelection(true);
             }
             ActiveChild.Paste(xe.Element("payload").Elements().First());
-            if (IsSelecting && undoCount < UndoManager.UndoCount)
+            if (EditorHandler != null && IsSelecting && undoCount < EditorHandler.UndoManager.UndoCount)
             {
-                UndoManager.ChangeUndoCountOfLastAction(1);
+                EditorHandler.UndoManager.ChangeUndoCountOfLastAction(1);
             }
             CalculateSize();
             AdjustCarets();
@@ -258,15 +274,15 @@ namespace Formulatte.Engine.Scripts.Equations
 
         public override void ConsumeText(string text)
         {
-            int undoCount = UndoManager.UndoCount + 1;
+            int undoCount = EditorHandler != null ? EditorHandler.UndoManager.UndoCount + 1 : 0;
             if (IsSelecting)
             {
                 ActiveChild.RemoveSelection(true);
             }
             ActiveChild.ConsumeText(text);
-            if (IsSelecting && undoCount < UndoManager.UndoCount)
+            if (EditorHandler != null && IsSelecting && undoCount < EditorHandler.UndoManager.UndoCount)
             {
-                UndoManager.ChangeUndoCountOfLastAction(1);
+                EditorHandler.UndoManager.ChangeUndoCountOfLastAction(1);
             }
             CalculateSize();
             AdjustCarets();

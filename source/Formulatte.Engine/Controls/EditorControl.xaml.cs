@@ -29,6 +29,8 @@ namespace Formulatte.Engine.Controls
         System.Threading.Timer timer;
         int blinkPeriod = 600;
 
+        public EditorHandler EditorHandler { get; set; }
+
         bool _disposed = false;
         public void Dispose()
         {
@@ -74,6 +76,7 @@ namespace Formulatte.Engine.Controls
             mainGrid.Children.Add(hCaret);
             equationRoot = new EquationRoot(vCaret, hCaret);
             equationRoot.FontSize = fontSize;
+            equationRoot.EditorControl = this;
             timer = new System.Threading.Timer(blinkCaret, null, blinkPeriod, blinkPeriod);
         }
 
@@ -324,7 +327,7 @@ namespace Formulatte.Engine.Controls
 
         public void Undo()
         {
-            UndoManager.Undo();
+            EditorHandler?.UndoManager?.Undo();
             AdjustView();
             Dirty = true;
             equationRoot.AdjustCarets();
@@ -332,7 +335,7 @@ namespace Formulatte.Engine.Controls
 
         public void Redo()
         {
-            UndoManager.Redo();
+            EditorHandler?.UndoManager?.Redo();
             AdjustView();
             Dirty = true;
             equationRoot.AdjustCarets();

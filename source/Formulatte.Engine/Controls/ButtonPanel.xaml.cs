@@ -22,10 +22,13 @@ namespace Formulatte.Engine.Controls
     {
         public event EventHandler ButtonClick = (x, y) => { };
 
+        public IEditorToolbar EditorToolbar { get; private set; }
+
         List<CommandDetails> commandDetails;
-        public ButtonPanel(List<CommandDetails> listCommandDetails, int columns, int buttonMargin)
+        public ButtonPanel(List<CommandDetails> listCommandDetails, int columns, int buttonMargin, IEditorToolbar toolbar)
         {
             InitializeComponent();
+            EditorToolbar = toolbar;
             commandDetails = listCommandDetails;
             mainGrid.Columns = columns;//listButtonDetails.Count < 5 ? listButtonDetails.Count : 5;
             mainGrid.Rows = (int)Math.Ceiling(listCommandDetails.Count / (double)mainGrid.Columns);
@@ -34,7 +37,7 @@ namespace Formulatte.Engine.Controls
 
             for (int i = 0; i < commandDetails.Count; i++)
             {
-                EditorToolBarButton b = new EditorToolBarButton(commandDetails[i]);
+                EditorToolBarButton b = new EditorToolBarButton(commandDetails[i], EditorToolbar);
                 b.Margin = new Thickness(buttonMargin);
                 b.Click += new RoutedEventHandler(panelButton_Click);
                 b.Style = (Style)FindResource("MathToolBarButtonStyle");
@@ -67,17 +70,24 @@ namespace Formulatte.Engine.Controls
 
     public class EditorToolBarButton : Button
     {
-        CommandDetails commandDetails = null;
+        CommandDetails commandDetails;
+        IEditorToolbar toolbar;
 
-        public EditorToolBarButton(CommandDetails commandDetails)
+        public EditorToolBarButton(CommandDetails commandDetails, IEditorToolbar toolbar)
         {
             this.commandDetails = commandDetails;
+            this.toolbar = toolbar;
         }
 
         protected override void OnClick()
         {
             base.OnClick();
-            //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+            toolbar?.EditorHandler?.HandleToolBarCommand(commandDetails);
         }
+    }
+
+    public interface IEditorToolbar
+    {
+        EditorHandler? EditorHandler { get; set; }
     }
 }

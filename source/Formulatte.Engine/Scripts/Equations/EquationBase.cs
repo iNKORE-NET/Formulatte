@@ -1,5 +1,6 @@
 ﻿using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common;
+using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations.Text;
 using System;
 using System.Collections.Generic;
@@ -72,6 +73,25 @@ namespace Formulatte.Engine.Scripts.Equations
                     SelectionUnavailable(null, EventArgs.Empty); //there MUST always be one handler attached!
                 }
             }
+        }
+
+
+        public EquationRoot Root
+        {
+            get
+            {
+                var ele = this;
+                while(ele is not EquationRoot && ele is not null && ele.ParentEquation is not null)
+                {
+                    ele = ele.ParentEquation;
+                }
+
+                return ele as EquationRoot;
+            }
+        }
+        public UndoManager? UndoManager
+        {
+            get { return Root?.EditorHandler?.UndoManager; }
         }
 
         public static bool ShowNesting { get; set; }

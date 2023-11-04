@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows10.0.18362.0;net472</TargetFrameworks>
+      <TargetFrameworks>net6.0-windows10.0.18362.0;net472</TargetFrameworks>
 	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Nullable>disable</Nullable>
-    <UseWPF>true</UseWPF>
+      <Nullable>enable</Nullable>
+      <UseWPF>true</UseWPF>
 	  <UseWindowsForms>true</UseWindowsForms>
+      <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

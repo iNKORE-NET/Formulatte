@@ -36,6 +36,7 @@ namespace Formulatte
         static string meExtension = "med";
         static string meFileFilter = "Math Editor File (*." + meExtension + ")|*." + meExtension;
         
+        public EditorHandler EditorHandler { get; set; }
 
         public MainWindow()
         {
@@ -46,7 +47,7 @@ namespace Formulatte
             equationToolBar.CommandCompleted += (x, y) => { editor.Focus(); };
             SetTitle();
             AddHandler(UIElement.MouseDownEvent, new MouseButtonEventHandler(MainWindow_MouseDown), true);
-            Task.Factory.StartNew(CheckForUpdate);
+
             //if (ConfigManager.GetConfigurationValue(KeyName.firstTime) == "true" || ConfigManager.GetConfigurationValue(KeyName.version) != version)
             //{
             //    string successMessage = "";
@@ -58,12 +59,15 @@ namespace Formulatte
             //                    "Please help us by sending your suggestions, feature requests or bug reports using our facebook page or our website (see help)." + Environment.NewLine + Environment.NewLine +
             //                    successMessage, "Important message");
             //}
-            UndoManager.CanUndo += (a, b) => { AppBarButton_MainBar_Undo.IsEnabled = b.ActionPossible; };
-            UndoManager.CanRedo += (a, b) => { AppBarButton_MainBar_Redo.IsEnabled = b.ActionPossible; };
+
+            EditorHandler = new EditorHandler(editor, characterToolBar, equationToolBar, historyToolBar);
+
+            EditorHandler.UndoManager.CanUndo += (a, b) => { AppBarButton_MainBar_Undo.IsEnabled = b.ActionPossible; };
+            EditorHandler.UndoManager.CanRedo += (a, b) => { AppBarButton_MainBar_Redo.IsEnabled = b.ActionPossible; };
             EquationBase.SelectionAvailable += new EventHandler<EventArgs>(editor_SelectionAvailable);
             EquationBase.SelectionUnavailable += new EventHandler<EventArgs>(editor_SelectionUnavailable);
             AppBarToggleButton_MainBar_Underbar.IsChecked = true;
-            TextEquation.InputPropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(TextEquation_InputPropertyChanged);
+            TextEquation.InputPropertyChanged += new PropertyChangedEventHandler(TextEquation_InputPropertyChanged);
             editor.ZoomChanged += new EventHandler(editor_ZoomChanged);
         }
 
@@ -138,33 +142,6 @@ namespace Formulatte
         //    }
         //    return image;
         //}
-
-        void CheckForUpdate()
-        {
-        }
-
-        public void HandleToolBarCommand(CommandDetails commandDetails)
-        {
-            if (commandDetails.CommandType == CommandType.CustomMatrix)
-            {
-                MatrixInputForm inputForm = new MatrixInputForm(((int[])commandDetails.CommandParam)[0], ((int[])commandDetails.CommandParam)[1]);
-                inputForm.ProcessRequest += (x, y) =>
-                {
-                    CommandDetails newCommand = new CommandDetails { CommandType = CommandType.Matrix };
-                    newCommand.CommandParam = new int[] { x, y };
-                    editor.HandleUserCommand(newCommand);
-                };
-                inputForm.ShowDialog(this);
-            }
-            else
-            {
-                editor.HandleUserCommand(commandDetails);
-                if (commandDetails.CommandType == CommandType.Text)
-                {
-                    historyToolBar.AddItem(commandDetails.UnicodeString);
-                }
-            }
-        }
 
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -428,7 +405,7 @@ namespace Formulatte
 
         private void contentsMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://mathiversity.com/MathEditor/Documentation");
+            //Process.Start("http://mathiversity.com/MathEditor/Documentation");
         }
 
         private void aboutMenuItem_Click(object sender, RoutedEventArgs e)
@@ -440,7 +417,7 @@ namespace Formulatte
 
         private void videoMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://youtu.be/_j6R2mv3StQ");
+            //Process.Start("http://youtu.be/_j6R2mv3StQ");
         }
 
         private void deleteMenuItem_Click(object sender, RoutedEventArgs e)
@@ -494,7 +471,7 @@ namespace Formulatte
 
         private void fbMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://www.facebook.com/matheditor");
+            //Process.Start("http://www.facebook.com/matheditor");
         }
 
         MenuItem lastZoomMenuItem = null;
@@ -566,7 +543,7 @@ namespace Formulatte
         {
             if (symbolWindow == null)
             {
-                symbolWindow = new UnicodeSelectorWindow();
+                symbolWindow = new UnicodeSelectorWindow(EditorHandler);
                 //symbolWindow.Owner = this;
             }
             symbolWindow.Show();
@@ -607,12 +584,12 @@ namespace Formulatte
 
         private void meLinkClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://mathiversity.com/MathEditor");
+            //Process.Start("http://mathiversity.com/MathEditor");
         }
 
         private void spiroLinkClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://mathiversity.com/Spirograph");
+            //Process.Start("http://mathiversity.com/Spirograph");
         }
 
         public bool InputBold
@@ -739,7 +716,7 @@ namespace Formulatte
 
         private void mvHelpMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.MathiVersity.com/MathEditor/Documentation/Online-Storage");
+
         }   
       
 

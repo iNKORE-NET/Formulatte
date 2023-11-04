@@ -74,7 +74,7 @@ namespace Formulatte.Engine.Scripts.Equations
                     newRows.Last().Merge(newRow);
                     newRows.Add(newRow);
                     ActiveChild = childEquations[index + newRows.Count - 3];
-                    UndoManager.AddUndoAction(action);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(action);
                 }
                 CalculateSize();
             }
@@ -121,7 +121,10 @@ namespace Formulatte.Engine.Scripts.Equations
                         FirstLineOfInsertedText = lines[0],
                         Equations = newEquations
                     };
-                    UndoManager.DisableAddingActions = true;
+
+                    if (Root?.EditorHandler?.UndoManager != null)
+                        Root.EditorHandler.UndoManager.DisableAddingActions = true;
+
                     ActiveChild.ConsumeText(lines[0]);
                     action.FirstFormatsOfInsertedText = activeText.GetFormats();
                     EquationRow splitRow = (EquationRow)ActiveChild.Split(this);
@@ -138,13 +141,16 @@ namespace Formulatte.Engine.Scripts.Equations
                         childEquations.Insert(activeIndex + i, row);
                         newEquations.Add(row);
                     }
-                    UndoManager.DisableAddingActions = false;
+
+                    if (Root?.EditorHandler?.UndoManager != null)
+                        Root.EditorHandler.UndoManager.DisableAddingActions = false;
+
                     newEquations.Add(splitRow);
                     ActiveChild = childEquations[activeIndex + lines.Count - 1];
                     ((TextEquation)((EquationRow)ActiveChild).ActiveChild).MoveToEnd();
                     SelectedItems = 0;
                     action.ActiveEquationAfterChange = ActiveChild;
-                    UndoManager.AddUndoAction(action);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(action);
                 }
                 CalculateSize();
             }
@@ -267,7 +273,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 ActiveChild = firstRow;
                 if (registerUndo)
                 {
-                    UndoManager.AddUndoAction(action);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(action);
                 }
             }
             else
@@ -564,7 +570,7 @@ namespace Formulatte.Engine.Scripts.Equations
             {
                 EquationRow activeRow = ActiveChild as EquationRow;
                 var rca = new RowContainerAction(this, childEquations.IndexOf(activeRow), activeRow.ActiveChildIndex, activeRow.TextLength, newRow) { UndoFlag = false };
-                UndoManager.AddUndoAction(rca);
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(rca);
                 AddLine(newRow);
             }
             CalculateSize();
@@ -726,7 +732,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 {
                     EquationRow activeRow = ActiveChild as EquationRow;
                     EquationRow rowToRemove = (EquationRow)childEquations[childEquations.IndexOf(activeRow) + 1];
-                    UndoManager.AddUndoAction(new RowContainerAction(this, childEquations.IndexOf(activeRow), activeRow.ActiveChildIndex, activeRow.TextLength, rowToRemove));
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(new RowContainerAction(this, childEquations.IndexOf(activeRow), activeRow.ActiveChildIndex, activeRow.TextLength, rowToRemove));
                     activeRow.Merge(rowToRemove);
                     childEquations.RemoveAt(childEquations.IndexOf(activeRow) + 1);
                 }
@@ -774,7 +780,7 @@ namespace Formulatte.Engine.Scripts.Equations
                         EquationRow previousRow = (EquationRow)childEquations[childEquations.IndexOf(activeRow) - 1];
                         int index = previousRow.ActiveChildIndex;
                         previousRow.MoveToEnd();
-                        UndoManager.AddUndoAction(new RowContainerAction(this, childEquations.IndexOf(previousRow), previousRow.ActiveChildIndex, previousRow.TextLength, activeRow));
+                        Root?.EditorHandler?.UndoManager?.AddUndoAction(new RowContainerAction(this, childEquations.IndexOf(previousRow), previousRow.ActiveChildIndex, previousRow.TextLength, activeRow));
                         previousRow.Merge(activeRow);
                         childEquations.Remove(activeRow);
                         ActiveChild = previousRow;
@@ -918,9 +924,15 @@ namespace Formulatte.Engine.Scripts.Equations
             if (textAction.UndoFlag)
             {
                 textAction.ActiveTextInRow.ResetTextEquation(textAction.CaretIndexOfActiveText, textAction.SelectionStartIndexOfTextEquation, textAction.SelectedItemsOfTextEquation, textAction.TextEquationContents, textAction.TextEquationFormats, textAction.TextEquationModes, textAction.TextEquationDecoration);
-                UndoManager.DisableAddingActions = true;
+              
+                if(Root?.EditorHandler?.UndoManager != null)
+                    Root.EditorHandler.UndoManager.DisableAddingActions = true;
+            
                 ActiveChild.ConsumeFormattedText(textAction.FirstLineOfInsertedText, textAction.FirstFormatsOfInsertedText, textAction.FirstModesOfInsertedText, textAction.FirstDecorationsOfInsertedText, false);
-                UndoManager.DisableAddingActions = false;
+
+                if (Root?.EditorHandler?.UndoManager != null)
+                    Root.EditorHandler.UndoManager.DisableAddingActions = false;
+
                 EquationRow splitRow = (EquationRow)ActiveChild.Split(this);
                 childEquations.InsertRange(childEquations.IndexOf(ActiveChild) + 1, textAction.Equations);
                 if (splitRow.IsEmpty)
@@ -1052,7 +1064,7 @@ namespace Formulatte.Engine.Scripts.Equations
                             LastTextSelectionStartIndex = ((EquationRow)childEquations[endIndex]).GetLastSelectionText().SelectionStartIndex,
                             LastTextSelectedItems = ((EquationRow)childEquations[endIndex]).GetLastSelectionText().SelectedItems,
                         };
-                        UndoManager.AddUndoAction(ecfa);
+                        Root?.EditorHandler?.UndoManager?.AddUndoAction(ecfa);
                     }
                 }
                 else

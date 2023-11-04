@@ -300,7 +300,7 @@ namespace Formulatte.Engine.Scripts.Equations
                                                                              modes.GetRange(startIndex, count).ToArray(),
                                                                              (from d in decorations where d.Index >= startIndex && d.Index < startIndex + count select d).ToArray()
                                                                              );
-                    UndoManager.AddUndoAction(textRemoveAction);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(textRemoveAction);
                 }
                 RemoveContent(startIndex, count);
                 SetCaretIndex(startIndex);
@@ -624,7 +624,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 tempFormats[i] = formatId;
                 tempModes[i] = EditorMode;
             }
-            UndoManager.AddUndoAction(new TextAction(this, caretIndex, text, tempFormats, tempModes, new CharacterDecorationInfo[0]) { UndoFlag = false });
+            Root?.EditorHandler?.UndoManager?.AddUndoAction(new TextAction(this, caretIndex, text, tempFormats, tempModes, new CharacterDecorationInfo[0]) { UndoFlag = false });
             SetCaretIndex(caretIndex + text.Length);
             FormatText();
         }
@@ -645,7 +645,7 @@ namespace Formulatte.Engine.Scripts.Equations
             }
             if (addUndo)
             {
-                UndoManager.AddUndoAction(new TextAction(this, caretIndex, text, formats, modes, decorations ?? new CharacterDecorationInfo[0]) { UndoFlag = false });
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(new TextAction(this, caretIndex, text, formats, modes, decorations ?? new CharacterDecorationInfo[0]) { UndoFlag = false });
             }
             SetCaretIndex(caretIndex + text.Length);
             FormatText();
@@ -730,7 +730,7 @@ namespace Formulatte.Engine.Scripts.Equations
         void RemoveDecoration(CharacterDecorationInfo cdi)
         {
             decorations.Remove(cdi);
-            UndoManager.AddUndoAction(new DecorationAction(this, new[] { cdi }) { UndoFlag = false });
+            Root?.EditorHandler?.UndoManager?.AddUndoAction(new DecorationAction(this, new[] { cdi }) { UndoFlag = false });
         }
 
         public override void ModifySelection(string operation, string argument, bool applied, bool addUndo)
@@ -778,7 +778,7 @@ namespace Formulatte.Engine.Scripts.Equations
             if (addUndo)
             {
                 TextFormatAction tfa = new TextFormatAction(this, startIndex, oldFormats, formats.GetRange(startIndex, count).ToArray());
-                UndoManager.AddUndoAction(tfa);
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(tfa);
             }
         }
 
@@ -804,7 +804,7 @@ namespace Formulatte.Engine.Scripts.Equations
             if (addUndo)
             {
                 ModeChangeAction mca = new ModeChangeAction(this, startIndex, oldModes, modes.GetRange(startIndex, count).ToArray());
-                UndoManager.AddUndoAction(mca);
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(mca);
             }
         }
 
@@ -820,7 +820,7 @@ namespace Formulatte.Engine.Scripts.Equations
             if (addUndo)
             {
                 TextFormatAction tfa = new TextFormatAction(this, startIndex, oldFormats, formats.GetRange(startIndex, count).ToArray());
-                UndoManager.AddUndoAction(tfa);
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(tfa);
             }
         }
 
@@ -1126,7 +1126,7 @@ namespace Formulatte.Engine.Scripts.Equations
         void RemoveChar(int index)
         {
             var decos = (from d in decorations where d.Index == index select d).ToArray();
-            UndoManager.AddUndoAction(new TextAction(this, index, textData.ToString(index, 1), formats.GetRange(index, 1).ToArray(), modes.GetRange(index, 1).ToArray(), decos));
+            Root?.EditorHandler?.UndoManager?.AddUndoAction(new TextAction(this, index, textData.ToString(index, 1), formats.GetRange(index, 1).ToArray(), modes.GetRange(index, 1).ToArray(), decos));
             decorations.RemoveAll(x => x.Index == index);
             var list = from d in decorations where d.Index > index select d;
             foreach (var v in list)
@@ -1320,7 +1320,7 @@ namespace Formulatte.Engine.Scripts.Equations
             if (cdt == CharacterDecorationType.None)
             {
                 var decoArray = (from d in decorations where d.Index == caretIndex - 1 select d).ToArray();
-                UndoManager.AddUndoAction(new DecorationAction(this, decoArray) { UndoFlag = false });
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(new DecorationAction(this, decoArray) { UndoFlag = false });
                 decorations.RemoveAll(x => x.Index == caretIndex - 1);
             }
             else if (!char.IsWhiteSpace(textData[caretIndex - 1]))
@@ -1331,7 +1331,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 cdi.UnicodeString = sign;
                 cdi.Index = caretIndex - 1;
                 decorations.Add(cdi);
-                UndoManager.AddUndoAction(new DecorationAction(this, new[] { cdi }));
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(new DecorationAction(this, new[] { cdi }));
             }
             FormatText();
         }

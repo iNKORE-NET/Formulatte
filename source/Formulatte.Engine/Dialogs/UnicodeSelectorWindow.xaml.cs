@@ -25,8 +25,10 @@ namespace Formulatte.Engine.Dialogs
         //Dictionary<int, Dictionary<string, ObservableCollection<UnicodeListItem>>> fontCache = new Dictionary<int, Dictionary<string, ObservableCollection<UnicodeListItem>>>();
         ObservableCollection<UnicodeListItem> recentList = new ObservableCollection<UnicodeListItem>();
         ObservableCollection<UnicodeListItem> allList = new ObservableCollection<UnicodeListItem>();
+
+        public EditorHandler EditorHandler { get; private set; }
         
-        public UnicodeSelectorWindow()
+        public UnicodeSelectorWindow(EditorHandler handler)
         {
             InitializeComponent();
             DataContext = this;
@@ -40,6 +42,8 @@ namespace Formulatte.Engine.Dialogs
             //fontBox.ItemsSource = names;
             //fontBox.SelectedIndex = 0;
             SetupCategories();
+
+            EditorHandler = handler;
         }
 
         private void SetupCategories()
@@ -143,7 +147,7 @@ namespace Formulatte.Engine.Dialogs
 
         void InsertSymbol()
         {
-            UnicodeListItem item = null;
+            UnicodeListItem? item = null;
             if (useRecentList)
             {
                 item = recentListBox.SelectedItem as UnicodeListItem;
@@ -154,8 +158,8 @@ namespace Formulatte.Engine.Dialogs
             }
             if (item != null)
             {
-                //CommandDetails commandDetails = new CommandDetails { UnicodeString = item.UnicodeText, CommandType = Editor.CommandType.Text };
-                //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+                CommandDetails commandDetails = new CommandDetails { UnicodeString = item.UnicodeText, CommandType = CommandType.Text };
+                EditorHandler?.HandleToolBarCommand(commandDetails);
                 if (!useRecentList)
                 {
                     if (recentList.Contains(item))
@@ -184,14 +188,14 @@ namespace Formulatte.Engine.Dialogs
 
         private void symbolList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UnicodeListItem item = symbolListBox.SelectedItem as UnicodeListItem;
-            characterCodeChanged(item);
+            UnicodeListItem? item = symbolListBox.SelectedItem as UnicodeListItem;
+            if(item != null) characterCodeChanged(item);
         }
 
         private void recentListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UnicodeListItem item = recentListBox.SelectedItem as UnicodeListItem;
-            characterCodeChanged(item);
+            UnicodeListItem? item = recentListBox.SelectedItem as UnicodeListItem;
+            if (item != null) characterCodeChanged(item);
         }
 
         private void characterCodeChanged(UnicodeListItem item)
@@ -214,7 +218,7 @@ namespace Formulatte.Engine.Dialogs
 
         private void codeFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UnicodeListItem item = symbolListBox.SelectedItem as UnicodeListItem;
+            UnicodeListItem? item = symbolListBox.SelectedItem as UnicodeListItem;
             if (item != null)
             {
                 int numberBase = int.Parse((string)((ComboBoxItem)codeFormatComboBox.SelectedItem).Tag);
@@ -262,7 +266,7 @@ namespace Formulatte.Engine.Dialogs
     public class UnicodeListItem
     {        
         public int CodePoint { get; set; }
-        public string UnicodeText { get; set; }
+        public string UnicodeText { get; set; } = "";
     }
 
     public static class NativeMethods

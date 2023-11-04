@@ -100,9 +100,14 @@
         <Grid DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,2,0,4">
             <ui:CommandBar HorizontalAlignment="Left">
 
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_New" Command="New" Label="New" LabelPosition="Collapsed">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Document}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
                 <ui:AppBarButton x:Name="AppBarButton_MainBar_Open" Command="Open" Label="Open" LabelPosition="Collapsed">
                     <ui:AppBarButton.Icon>
-                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.OpenFile}"/>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.OpenFolderHorizontal}"/>
                     </ui:AppBarButton.Icon>
                 </ui:AppBarButton>
                 <ui:AppBarButton x:Name="AppBarButton_MainBar_Save" Command="Save" Label="Save" LabelPosition="Collapsed" FlyoutOpeningMode="RightMouseButtonUp">
@@ -220,13 +225,18 @@
 
                 <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underbar" ToolTip="Show/Hide Underbar" Unchecked="UnderbarToggleCheckChanged" Checked="UnderbarToggleCheckChanged" Label="Underline" LabelPosition="Collapsed">
                     <ui:AppBarToggleButton.Icon>
-                        <Image Source="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png" Width="16"/>
+                        <Rectangle Fill="{Binding ElementName=AppBarToggleButton_MainBar_Underbar, Path=Foreground}" Width="16" Height="16">
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png"/>
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
                     </ui:AppBarToggleButton.Icon>
                 </ui:AppBarToggleButton>
 
+                <ui:AppBarSeparator/>
 
                 <ui:AppBarElementContainer>
-                    <CheckBox x:Name="integralItalicCheckbox" Content="New Integral Italic" Checked="integralItalicCheckbox_Checked" Unchecked="integralItalicCheckbox_Unchecked"/>
+                    <CheckBox x:Name="integralItalicCheckbox" FontSize="12" Content="New Integral Italic" Checked="integralItalicCheckbox_Checked" Unchecked="integralItalicCheckbox_Unchecked" VerticalContentAlignment="Center" Padding="4,0,0,0" Margin="4,0,0,0"/>
                 </ui:AppBarElementContainer>
                 
             </ui:CommandBar>

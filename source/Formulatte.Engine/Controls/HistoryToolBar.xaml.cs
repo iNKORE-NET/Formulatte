@@ -25,6 +25,8 @@ namespace Formulatte.Engine.Controls
         ObservableCollection<string> recentList = new ObservableCollection<string>();
         Dictionary<string, int> usedCount = new Dictionary<string, int>();
 
+        public EditorHandler EditorHandler { get; set; }
+
         public HistoryToolBar()
         {
             this.DataContext = this;
@@ -75,7 +77,7 @@ namespace Formulatte.Engine.Controls
         {
             string item = ((TextBlock)sender).DataContext as string;
             CommandDetails commandDetails = new CommandDetails { UnicodeString = item, CommandType = CommandType.Text };
-            //((MainWindow)Application.Current.MainWindow).HandleToolBarCommand(commandDetails);
+            EditorHandler?.HandleToolBarCommand(commandDetails);
         }
 
         public void Save()

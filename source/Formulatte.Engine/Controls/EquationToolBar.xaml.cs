@@ -19,11 +19,13 @@ namespace Formulatte.Engine.Controls
     /// <summary>
     /// Interaction logic for MathToolbar.xaml
     /// </summary>
-    public partial class EquationToolBar : UserControl
+    public partial class EquationToolBar : UserControl, IEditorToolbar
     {
         public event EventHandler CommandCompleted = (x, y) => { };
         Dictionary<object, ButtonPanel> buttonPanelMapping = new Dictionary<object, ButtonPanel>();
         ButtonPanel visiblePanel = null;
+
+        public EditorHandler EditorHandler { get; set; }
 
         public EquationToolBar()
         {
@@ -89,7 +91,7 @@ namespace Formulatte.Engine.Controls
 
         void CreatePanel(List<CommandDetails> list, Button toolBarButton, int columns, int margin)
         {
-            ButtonPanel bp = new ButtonPanel(list, columns, margin);
+            ButtonPanel bp = new ButtonPanel(list, columns, margin, this);
             bp.ButtonClick += (x, y) => { CommandCompleted(this, EventArgs.Empty); visiblePanel = null; };
             mainToolBarPanel.Children.Add(bp);
             Canvas.SetTop(bp, mainToolBarPanel.Height);

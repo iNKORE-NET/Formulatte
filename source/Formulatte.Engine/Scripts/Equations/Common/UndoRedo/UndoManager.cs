@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
 {
-    public static class UndoManager
+    public class UndoManager
     {
-        public static bool DisableAddingActions { get; set; }
-        static Stack<EquationAction> undoStack = new Stack<EquationAction>();
-        static Stack<EquationAction> redoStack = new Stack<EquationAction>();
+        public bool DisableAddingActions { get; set; }
+        Stack<EquationAction> undoStack = new Stack<EquationAction>();
+        Stack<EquationAction> redoStack = new Stack<EquationAction>();
 
-        public static event EventHandler<UndoEventArgs> CanUndo = (a, b) => { };
-        public static event EventHandler<UndoEventArgs> CanRedo = (a, b) => { };
+        public event EventHandler<UndoEventArgs> CanUndo = (a, b) => { };
+        public event EventHandler<UndoEventArgs> CanRedo = (a, b) => { };
 
-        public static void AddUndoAction(EquationAction equationAction)
+        public void AddUndoAction(EquationAction equationAction)
         {
             if (!DisableAddingActions)
             {
@@ -25,7 +25,7 @@ namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
             }
         }
 
-        public static void Undo()
+        public void Undo()
         {
             if (undoStack.Count > 0)
             {
@@ -45,7 +45,7 @@ namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
             }
         }
 
-        public static void Redo()
+        public void Redo()
         {
             if (redoStack.Count > 0)
             {
@@ -65,7 +65,7 @@ namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
             }
         }
 
-        public static void ClearAll()
+        public void ClearAll()
         {
             undoStack.Clear();
             redoStack.Clear();
@@ -73,12 +73,12 @@ namespace Formulatte.Engine.Scripts.Equations.Common.UndoRedo
             CanRedo(null, new UndoEventArgs(false));
         }
 
-        public static int UndoCount
+        public int UndoCount
         {
             get { return undoStack.Count; }
         }
 
-        public static void ChangeUndoCountOfLastAction(int newCount)
+        public void ChangeUndoCountOfLastAction(int newCount)
         {
             undoStack.Peek().FurtherUndoCount = newCount;
             for (int i = 0; i < newCount; i++)

@@ -178,7 +178,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 ActiveChild = firstEquation;
                 if (registerUndo)
                 {
-                    UndoManager.AddUndoAction(action);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(action);
                 }
             }
             else
@@ -363,7 +363,7 @@ namespace Formulatte.Engine.Scripts.Equations
                     ((TextEquation)ActiveChild).ConsumeFormattedText(action.FirstNewText, action.FirstNewFormats, action.FirstNewModes, action.FirstNewDecorations, false);
                     ((TextEquation)newChildren.Last()).Merge((TextEquation)newChild);
                     ActiveChild = newChildren.Last();
-                    UndoManager.AddUndoAction(action);
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(action);
                 }
                 CalculateSize();
             }
@@ -645,7 +645,7 @@ namespace Formulatte.Engine.Scripts.Equations
                     newEquation.CalculateSize();
                     ActiveChild = newEquation;
                     CalculateSize();
-                    UndoManager.AddUndoAction(new RowAction(this, ActiveChild, (TextEquation)newText, childEquations.IndexOf(ActiveChild), caretIndex));
+                    Root?.EditorHandler?.UndoManager?.AddUndoAction(new RowAction(this, ActiveChild, (TextEquation)newText, childEquations.IndexOf(ActiveChild), caretIndex));
                 }
             }
             else if (ActiveChild != null)
@@ -856,7 +856,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 {
                     if (childEquations[childEquations.IndexOf(ActiveChild) + 1] == deleteable)
                     {
-                        UndoManager.AddUndoAction(new RowAction(this, deleteable, (TextEquation)childEquations[childEquations.IndexOf(deleteable) + 1],
+                        UndoManager?.AddUndoAction(new RowAction(this, deleteable, (TextEquation)childEquations[childEquations.IndexOf(deleteable) + 1],
                                                                 childEquations.IndexOf(deleteable), TextLength)
                         { UndoFlag = false });
                         childEquations.Remove(deleteable);
@@ -881,7 +881,7 @@ namespace Formulatte.Engine.Scripts.Equations
                         {
                             TextEquation equationAfter = (TextEquation)ActiveChild;
                             ActiveChild = childEquations[childEquations.IndexOf(ActiveChild) - 2];
-                            UndoManager.AddUndoAction(new RowAction(this, deleteable, equationAfter, childEquations.IndexOf(deleteable), TextLength) { UndoFlag = false });
+                            UndoManager?.AddUndoAction(new RowAction(this, deleteable, equationAfter, childEquations.IndexOf(deleteable), TextLength) { UndoFlag = false });
                             childEquations.Remove(deleteable);
                             ((TextEquation)ActiveChild).Merge(equationAfter);
                             childEquations.Remove(equationAfter);
@@ -900,7 +900,7 @@ namespace Formulatte.Engine.Scripts.Equations
                     {
                         TextEquation equationAfter = (TextEquation)childEquations[childEquations.IndexOf(ActiveChild) + 1];
                         ActiveChild = childEquations[childEquations.IndexOf(ActiveChild) - 1];
-                        UndoManager.AddUndoAction(new RowAction(this, deleteable, equationAfter, childEquations.IndexOf(deleteable), TextLength) { UndoFlag = false });
+                        UndoManager?.AddUndoAction(new RowAction(this, deleteable, equationAfter, childEquations.IndexOf(deleteable), TextLength) { UndoFlag = false });
                         childEquations.Remove(deleteable);
                         ((TextEquation)ActiveChild).Merge(equationAfter);
                         childEquations.Remove(equationAfter);
