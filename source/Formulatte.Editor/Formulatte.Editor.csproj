@@ -1,22 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <TargetFramework>net48</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B19FF7B5-8771-4222-A539-496B58ECCC12}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Editor</RootNamespace>
     <AssemblyName>Editor</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <Utf8Output>true</Utf8Output>
     <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -33,27 +21,10 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>app_icon.ico</ApplicationIcon>
@@ -62,263 +33,14 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>MESign.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="AboutWindow.xaml.cs">
-      <DependentUpon>AboutWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="common\AutoGrayableImage.cs" />
-    <Compile Include="common\Caret.cs" />
-    <Compile Include="CodepointWindow.xaml.cs">
-      <DependentUpon>CodepointWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="common\EditorModeToVisibilityConverter.cs" />
-    <Compile Include="common\EditorModeToBoolConverter.cs" />
-    <Compile Include="equations\Common\CopyDataObject.cs" />
-    <Compile Include="equations\Common\FunctionNames.cs" />
-    <Compile Include="equations\Common\UndoRedo\DecorationAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\EquationRowFormatAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\ModeChangeAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowContainerFormatAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\TextFormatAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\UndoEventArgs.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowContainerRemoveAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowRemoveAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowContainerAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowContainerTextAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowContainerPasteAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\EquationRowPasteAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\RowAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\TextRemoveAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\TextAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\EquationAction.cs" />
-    <Compile Include="equations\Common\UndoRedo\ISupportsUndo.cs" />
-    <Compile Include="equations\Text\CharacterDecorationInfo.cs" />
-    <Compile Include="equations\Text\TextFormat.cs" />
-    <Compile Include="EquationToolBar.xaml.cs">
-      <DependentUpon>EquationToolBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="equations\Decorated\Arrow.cs" />
-    <Compile Include="equations\Bracket\DoubleArrowBarBracket.cs" />
-    <Compile Include="equations\Common\DrawingContextHelper.cs" />
-    <Compile Include="equations\Common\MathEditorData.cs" />
-    <Compile Include="CustomZoomWindow.xaml.cs">
-      <DependentUpon>CustomZoomWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="equations\Common\FormattedTextHelper.cs" />
-    <Compile Include="equations\Common\PenManager.cs" />
-    <Compile Include="equations\Composite\CompositeBase.cs" />
-    <Compile Include="equations\Composite\CompositeFactory.cs" />
-    <Compile Include="equations\Composite\BigCompositeFactory.cs" />
-    <Compile Include="equations\Composite\CompositeSub.cs" />
-    <Compile Include="equations\Composite\CompositeSubSuper.cs" />
-    <Compile Include="equations\Composite\CompositeSuper.cs" />
-    <Compile Include="equations\Decorated\Decorated.cs" />
-    <Compile Include="equations\Decorated\DecorationDrawing.cs" />
-    <Compile Include="equations\Division\DivMathWithBottom.cs" />
-    <Compile Include="equations\Division\DivisionFactory.cs" />
-    <Compile Include="equations\Division\DivMath.cs" />
-    <Compile Include="equations\Division\DivMathInverted.cs" />
-    <Compile Include="equations\Division\DivMathSign.cs" />
-    <Compile Include="equations\Division\DivMathWithOuterBase.cs" />
-    <Compile Include="equations\Division\DivMathWithTop.cs" />
-    <Compile Include="equations\Division\DivisionsMisc.cs" />
-    <Compile Include="equations\Division\DivTriangle.cs" />
-    <Compile Include="equations\Division\DivTriangleSign.cs" />
-    <Compile Include="equations\Misc\Box.cs" />
-    <Compile Include="equations\Misc\MatrixEquation.cs" />
-    <Compile Include="equations\SignComposite\SignCompositeFactory.cs" />
-    <Compile Include="equations\SignComposite\SignSubSuper.cs" />
-    <Compile Include="equations\SignComposite\SignSimple.cs" />
-    <Compile Include="equations\SignComposite\SignBottom.cs" />
-    <Compile Include="equations\SignComposite\SignBottomTop.cs" />
-    <Compile Include="equations\SignComposite\StaticSign.cs" />
-    <Compile Include="equations\SignComposite\SignSub.cs" />
-    <Compile Include="equations\HorizontalBracket\BottomBracket.cs" />
-    <Compile Include="equations\HorizontalBracket\HorizontalBracket.cs" />
-    <Compile Include="equations\HorizontalBracket\TopBracket.cs" />
-    <Compile Include="equations\HorizontalBracket\HorizontalBracketSign.cs" />
-    <Compile Include="equations\SubSuper\SubSuperBase.cs" />
-    <Compile Include="equations\SubSuper\Super.cs" />
-    <Compile Include="equations\Text\TextManager.cs" />
-    <Compile Include="HistoryToolBar.xaml.cs">
-      <DependentUpon>HistoryToolBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MatrixInputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MatrixInputForm.Designer.cs">
-      <DependentUpon>MatrixInputForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UnicodeSelectorWindow.xaml.cs">
-      <DependentUpon>UnicodeSelectorWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="AboutWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ButtonPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CodepointWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EquationToolBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="EditorControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomZoomWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="HistoryToolBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ButtonPanel.xaml.cs">
-      <DependentUpon>ButtonPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="common\ConfigManager.cs" />
-    <Compile Include="common\MouseWheelGesture.cs" />
-    <Compile Include="equations\Common\UndoRedo\UndoManager.cs" />
-    <Compile Include="EditorControl.xaml.cs">
-      <DependentUpon>EditorControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="common\CommandDetails.cs" />
-    <Compile Include="equations\Bracket\Bracket.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="equations\Bracket\BracketSign.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="equations\Bracket\LeftBracket.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="equations\Bracket\LeftRightBracket.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="equations\Bracket\RightBracket.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="equations\Common\StaticText.cs" />
-    <Compile Include="equations\Composite\CompositeBottomTop.cs" />
-    <Compile Include="equations\Composite\CompositeBottom.cs" />
-    <Compile Include="equations\Composite\CompositeTop.cs" />
-    <Compile Include="equations\Division\DivBase.cs" />
-    <Compile Include="equations\Division\DivHorizontal.cs" />
-    <Compile Include="equations\Division\DivRegular.cs" />
-    <Compile Include="equations\Division\DivSlanted.cs" />
-    <Compile Include="common\Enums.cs" />
-    <Compile Include="equations\EquationRow.cs" />
-    <Compile Include="equations\EquationBase.cs" />
-    <Compile Include="equations\EquationContainer.cs" />
-    <Compile Include="equations\EquationRoot.cs" />
-    <Compile Include="equations\Root\nRoot.cs" />
-    <Compile Include="equations\Root\RadicalSign.cs" />
-    <Compile Include="equations\Root\SquareRoot.cs" />
-    <Compile Include="equations\RowContainer.cs" />
-    <Compile Include="equations\SubSuper\SubAndSuper.cs" />
-    <Compile Include="equations\SubSuper\Sub.cs" />
-    <Compile Include="equations\TextEquation.cs" />
-    <Compile Include="common\FontFactory.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="CharacterToolBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SettingsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UnicodeSelectorWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CharacterToolBar.xaml.cs">
-      <DependentUpon>CharacterToolBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="MatrixInputForm.resx">
-      <DependentUpon>MatrixInputForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="MESign.pfx" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
     <Resource Include="images\commands\brackets\SingleBar.png" />
     <Resource Include="images\commands\decorated\character\BottomBar.png" />
@@ -762,12 +484,24 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Compile Remove="equations\Common\UndoRedo\RowContainer\RowContainerAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\RowContainer\RowContainerFormatAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\RowContainer\RowContainerPasteAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\RowContainer\RowContainerRemoveAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\RowContainer\RowContainerTextAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Row\EquationRowFormatAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Row\EquationRowPasteAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Row\RowAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Row\RowRemoveAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Text\DecorationAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Text\ModeChangeAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Text\TextAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Text\TextFormatAction.cs" />
+    <Compile Remove="equations\Common\UndoRedo\Text\TextRemoveAction.cs" />
+    <Compile Remove="equations\Text\DecoratedCharacter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
+  </ItemGroup>
 </Project>
