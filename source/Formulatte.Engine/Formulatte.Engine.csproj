@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\iNKORE.Coreworks\source\iNKORE.Coreworks.Windows\iNKORE.Coreworks.Windows.csproj" />
+    <ProjectReference Include="..\..\..\iNKORE.Coreworks\source\iNKORE.Coreworks\iNKORE.Coreworks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Images\Commands\Box\all.png" />
     <Resource Include="Resources\Images\Commands\Box\leftBottom.png" />
     <Resource Include="Resources\Images\Commands\Box\leftTop.png" />

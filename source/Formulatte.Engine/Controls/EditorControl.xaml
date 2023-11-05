@@ -21,6 +21,11 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="DecreaseZoom"  Executed="ZoomOutHandler"/>
         <CommandBinding Command="IncreaseZoom"  Executed="ZoomInHandler"/>
+
+        <CommandBinding x:Name="CommandBinding_ToggleBold" Command="{x:Static EditingCommands.ToggleBold}" Executed="CommandBinding_ToggleBold_Executed"/>
+        <CommandBinding x:Name="CommandBinding_ToggleItalic" Command="{x:Static EditingCommands.ToggleItalic}" Executed="CommandBinding_ToggleItalic_Executed"/>
+        <CommandBinding x:Name="CommandBinding_ToggleUnderline" Command="{x:Static EditingCommands.ToggleUnderline}" Executed="CommandBinding_ToggleUnderline_Executed"/>
+
     </UserControl.CommandBindings>
     <UserControl.InputBindings>
         <MouseBinding Gesture="{x:Static common:MouseWheelGesture.CtrlUp}"  Command="IncreaseZoom"/>

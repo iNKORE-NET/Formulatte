@@ -22,6 +22,8 @@ using Formulatte.Engine.Scripts.Equations.HorizontalBracket;
 using Formulatte.Engine.Scripts.Equations.Decorated;
 using Formulatte.Engine.Scripts.Equations.Misc;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Row;
+using iNKORE.Coreworks.Helpers;
+using System.Reflection;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -515,22 +517,62 @@ namespace Formulatte.Engine.Scripts.Equations
             CalculateSize();
         }
 
+        public static Dictionary<string, Type> TypeIndexes = new Dictionary<string, Type>();
+        public static Assembly ThisAssembly = typeof(EquationRow).Assembly;
+        public static Type? GetTypeFromString(string typeName)
+        {
+            //typeName = typeName.ToLower();
+
+            if(TypeIndexes.Count == 0)
+            {
+                foreach(var t in ThisAssembly.DefinedTypes)
+                {
+                    try
+                    {
+                        if(!TypeIndexes.ContainsKey(t.Name))
+                            TypeIndexes.Add(t.Name, t);
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            if (TypeIndexes.ContainsKey(typeName))
+                return TypeIndexes[typeName];
+
+            var type = Type.GetType(typeName);
+            if(type == null)
+            {
+                type = TypeHelper.GetTypeFromName(typeName, ThisAssembly, false);
+            }
+            if (type == null)
+            {
+                type = TypeHelper.GetTypeFromName(typeName, false);
+            }
+
+            if(type != null)
+            {
+                TypeIndexes.Add(typeName, type);
+            }
+
+            return type;
+        }
+
         EquationBase CreateChild(XElement xElement)
         {
-            Type type = Type.GetType(GetType().Namespace + "." + xElement.Name);
+            Type? type = GetTypeFromString(xElement.Name.ToString());
             List<object> paramz = new List<object>();
             paramz.Add(this);
-            XElement parameters = xElement.Element("parameters");
+            XElement? parameters = xElement.Element("parameters");
             if (parameters != null)
             {
                 foreach (XElement xe in parameters.Elements())
                 {
-                    Type paramType = Type.GetType(GetType().Namespace + "." + xe.Name);
-                    if (paramType == null)
-                    {
-                        paramType = Type.GetType(xe.Name.ToString());
-                    }
-                    if (paramType.IsEnum)
+                    Type? paramType = GetTypeFromString(xe.Name.ToString());
+                   
+                    if (paramType?.IsEnum == true)
                     {
                         paramz.Add(Enum.Parse(paramType, xe.Value));
                     }

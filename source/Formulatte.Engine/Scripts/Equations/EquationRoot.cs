@@ -75,10 +75,17 @@ namespace Formulatte.Engine.Scripts.Equations
 
         public void LoadFile(Stream stream)
         {
+            XDocument xDoc = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
+            XElement? root = xDoc.Root;
+
+            if (root != null)
+                Load(root);
+        }
+
+        public void Load(XElement root)
+        {
             EditorHandler?.UndoManager?.ClearAll();
             DeSelect();
-            XDocument xDoc = XDocument.Load(stream, LoadOptions.PreserveWhitespace);
-            XElement root = xDoc.Root;
             XAttribute fileVersionAttribute;
             XAttribute appVersionAttribute;
 

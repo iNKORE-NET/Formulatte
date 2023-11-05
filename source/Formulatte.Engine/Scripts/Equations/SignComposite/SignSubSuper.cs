@@ -34,6 +34,11 @@ namespace Formulatte.Engine.Scripts.Equations.SignComposite
             childEquations.AddRange(new EquationBase[] { mainEquation, sign, superEquation, subEquation });
         }
 
+        public SignSubSuper(EquationContainer parent) : base(parent)
+        {
+
+        }
+
         public override XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);

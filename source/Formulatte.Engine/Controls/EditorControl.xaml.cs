@@ -170,7 +170,7 @@ namespace Formulatte.Engine.Controls
             {
                 //stream.Position = 0;
                 //equationRoot.LoadFile(stream);
-                MessageBox.Show("Cannot open the specified file. The file is not in correct format.\r\n\r\n" + ex.Message, "Error");
+                MessageBox.Show("Cannot open the specified file. The file is not in correct format.\r\n\r\n" + ex.Message+"\r\n\r\n"+ex.StackTrace, "Error");
             }
             AdjustView();
             Dirty = false;
@@ -453,6 +453,26 @@ namespace Formulatte.Engine.Controls
             rootFontSize = fontSize;
             Dirty = false;
             AdjustView();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBinding_ToggleBold_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBinding_ToggleItalic_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+        }
+
+        private void CommandBinding_ToggleUnderline_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
         }
     }
 }
