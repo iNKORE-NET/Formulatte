@@ -1,4 +1,5 @@
 ﻿using Formulatte.Engine.Controls;
+using Formulatte.Engine.Dialogs;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace Formulatte.Engine.Common
         {
             if (commandDetails.CommandType == CommandType.CustomMatrix)
             {
-                MatrixInputForm inputForm = new MatrixInputForm(((int[])commandDetails.CommandParam)[0], ((int[])commandDetails.CommandParam)[1]);
+                MatrixInputWindow inputForm = new MatrixInputWindow(((int[])commandDetails.CommandParam)[0], ((int[])commandDetails.CommandParam)[1]);
                 inputForm.ProcessRequest += (x, y) =>
                 {
                     CommandDetails newCommand = new CommandDetails { CommandType = CommandType.Matrix };

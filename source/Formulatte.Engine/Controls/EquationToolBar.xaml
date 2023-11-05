@@ -4,43 +4,51 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="34" d:DesignWidth="600"             
+             d:DesignHeight="34"       
              Loaded="UserControl_Loaded">
-    <Canvas Name="mainToolBarPanel" Height="22">        
-        <StackPanel Orientation="Horizontal" Height="{Binding ElementName=mainToolBarPanel, Path=Height}">
-            <Button x:Name="bracketsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+    <UserControl.Resources>
+        <Style TargetType="Image" BasedOn="{StaticResource ToolbarImageStyle}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource ToolbarButtonStyle}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <StackPanel Orientation="Horizontal" >
+            <Button x:Name="bracketsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/Mathbuttons/brackets.png"></Image>
             </Button>
-            <Button x:Name="decoratedEquationButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="decoratedEquationButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedEquation.png"></Image>
             </Button>
-            <Button x:Name="sumsProductsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="sumsProductsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/sumproduct.png"></Image>
             </Button>
-            <Button x:Name="integralsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="integralsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/integrals.png"></Image>
             </Button>
-            <Button x:Name="subAndSuperButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="subAndSuperButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/subsuper.png"></Image>
             </Button>
-            <Button x:Name="divAndRootsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="divAndRootsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/divroot.png"></Image>
             </Button>
-            <Button x:Name="arrowEquationButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="arrowEquationButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrowEquation.png"></Image>
             </Button>
-            <Button x:Name="compositeButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="compositeButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/composite.png"></Image>
             </Button>
-            <Button x:Name="decoratedCharacterButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="decoratedCharacterButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedCharacter.png"></Image>
             </Button>
-            <Button x:Name="matrixButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="matrixButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/matrix.png"></Image>
-            </Button>         
-            <Button x:Name="boxButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            </Button>
+            <Button x:Name="boxButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/boxes.png"></Image>
-            </Button>            
+            </Button>
         </StackPanel>
-    </Canvas>
+        <Canvas Name="mainToolBarPanel" Margin="0,24,0,0"/>
+    </Grid>
 </UserControl>

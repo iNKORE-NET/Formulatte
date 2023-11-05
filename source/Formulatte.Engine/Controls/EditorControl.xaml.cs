@@ -118,16 +118,17 @@ namespace Formulatte.Engine.Controls
             //equationRoot.SaveFile(stream);
             try
             {
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    equationRoot.SaveFile(memoryStream);
-                    memoryStream.Position = 0;
-                    ZipStream(memoryStream, stream, System.IO.Path.GetFileNameWithoutExtension(fileName) + ".xml");
-                }
+                equationRoot.SaveFile(stream);
+                //using (MemoryStream memoryStream = new MemoryStream())
+                //{
+                //    equationRoot.SaveFile(memoryStream);
+                //    memoryStream.Position = 0;
+                //    ZipStream(memoryStream, stream, System.IO.Path.GetFileNameWithoutExtension(fileName) + ".xml");
+                //}
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Could not save file. Make sure the specified path is correct.", "Error");
+                MessageBox.Show("Could not save file. Make sure the specified path is correct.\r\n\r\n"+ex.Message, "Error");
             }
             Dirty = false;
         }
@@ -150,25 +151,26 @@ namespace Formulatte.Engine.Controls
             //equationRoot.LoadFile(stream);
             try
             {
-                ZipInputStream zipInputStream = new ZipInputStream(stream);
-                ZipEntry zipEntry = zipInputStream.GetNextEntry();
-                MemoryStream outputStream = new MemoryStream();
-                if (zipEntry != null)
-                {
-                    byte[] buffer = new byte[4096];
-                    StreamUtils.Copy(zipInputStream, outputStream, buffer);
-                }
-                outputStream.Position = 0;
-                using (outputStream)
-                {
-                    equationRoot.LoadFile(outputStream);
-                }
-            }
-            catch
-            {
-                stream.Position = 0;
+                //ZipInputStream zipInputStream = new ZipInputStream(stream);
+                //ZipEntry zipEntry = zipInputStream.GetNextEntry();
+                //MemoryStream outputStream = new MemoryStream();
+                //if (zipEntry != null)
+                //{
+                //    byte[] buffer = new byte[4096];
+                //    StreamUtils.Copy(zipInputStream, outputStream, buffer);
+                //}
+                //outputStream.Position = 0;
+                //using (outputStream)
+                //{
+                //    equationRoot.LoadFile(outputStream);
+                //}
                 equationRoot.LoadFile(stream);
-                //MessageBox.Show("Cannot open the specified file. The file is not in correct format.", "Error");
+            }
+            catch(Exception ex)
+            {
+                //stream.Position = 0;
+                //equationRoot.LoadFile(stream);
+                MessageBox.Show("Cannot open the specified file. The file is not in correct format.\r\n\r\n" + ex.Message, "Error");
             }
             AdjustView();
             Dirty = false;

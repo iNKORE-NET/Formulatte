@@ -307,10 +307,4 @@
     <Resource Include="Resources\Fonts\STIX\STIXVariants-Regular.otf" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Dialogs\MatrixInputForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-  </ItemGroup>
-
 </Project>

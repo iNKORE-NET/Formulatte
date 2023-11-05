@@ -218,7 +218,7 @@ namespace Formulatte.Engine.Dialogs
 
         private void codeFormatComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UnicodeListItem? item = symbolListBox.SelectedItem as UnicodeListItem;
+            UnicodeListItem? item = symbolListBox?.SelectedItem as UnicodeListItem;
             if (item != null)
             {
                 int numberBase = int.Parse((string)((ComboBoxItem)codeFormatComboBox.SelectedItem).Tag);

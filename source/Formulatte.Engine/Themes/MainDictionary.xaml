@@ -3,6 +3,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     mc:Ignorable="d">
 
     <Style x:Key="ButtonFocusVisual">
@@ -54,33 +55,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ToolbarButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <!--<Setter Property="Background" Value="#FFE9E9E9"/>-->
-        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
-        <!--<Setter Property="BorderThickness" Value="1"/>-->
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Margin="2,0,0,0" Padding="3,0,0,0" x:Name="BackBorder" SnapsToDevicePixels="True" Background="White" Height="Auto" Width="Auto" BorderBrush="#FFAAAAAA" BorderThickness="1,0,0,0">
-                        <ContentPresenter x:Name="ContentElement" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center"  RecognizesAccessKey="True" SnapsToDevicePixels="True">
-                        </ContentPresenter>                       
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="BorderBrush" TargetName="BackBorder" Value="#FF444444"/>
-                            <Setter Property="Background" TargetName="BackBorder" Value="#FFCCCCCC"/>                            
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="fullScreenButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -104,65 +78,30 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CharacterTextBoxStyle" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="1"/>
+    <Style x:Key="CharacterTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-        <Setter Property="Template">
+        <!--<Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                 </ControlTemplate>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
     </Style>
 
-    <Style x:Key="MathToolBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
-        <Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid x:Name="Grid">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal"/>
-                                <VisualState x:Name="MouseOver"/>
-                            </VisualStateGroup>
-                            <VisualStateGroup x:Name="FocusStates">
-                                <VisualState x:Name="Unfocused"/>
-                                <VisualState x:Name="Focused"/>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Background="LightGray"/>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="Border" Value="#FF5DCAB9"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="Border" Value="#FFC4D5DA"/>
-                            <Setter Property="BorderBrush" TargetName="Border" Value="#FF5479C2"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" Value="{DynamicResource PressedBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" TargetName="Border" Value="#FF6C9BAF"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="true"/>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>    
+    <Style x:Key="Style_ContentBorder" TargetType="Border">
+        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}"/>
+        <Setter Property="Background" Value="{DynamicResource {x:Static ui:ThemeKeys.LayerFillColorDefaultBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+
+    <Style x:Key="ClearListBoxStyle" TargetType="ListBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+
 </ResourceDictionary>

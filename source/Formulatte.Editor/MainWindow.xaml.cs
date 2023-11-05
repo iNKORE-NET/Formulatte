@@ -247,11 +247,11 @@ namespace Formulatte
         {
             if (currentLocalFile.Length > 0)
             {
-                Title = currentLocalFile + " - Math Editor v." + version;
+                Title = currentLocalFile + " - Formulatte (v." + version+")";
             }
             else
             {
-                Title = "Math Editor v." + version;
+                Title = "Formulatte (v." + version+")";
             }
         }
 
@@ -450,8 +450,6 @@ namespace Formulatte
                 fullScreenMenuItem.Header = "_Full Screen";
                 WindowStyle = System.Windows.WindowStyle.ThreeDBorderWindow;
                 WindowState = System.Windows.WindowState.Normal;
-                exitFullScreenButton.Visibility = System.Windows.Visibility.Collapsed;
-                closeApplictionButton.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
@@ -459,8 +457,6 @@ namespace Formulatte
                 WindowStyle = System.Windows.WindowStyle.None;
                 WindowState = System.Windows.WindowState.Normal; //extral call to be on safe side. windows is funky
                 WindowState = System.Windows.WindowState.Maximized;
-                exitFullScreenButton.Visibility = System.Windows.Visibility.Visible;
-                closeApplictionButton.Visibility = System.Windows.Visibility.Visible;
             }
         }
 

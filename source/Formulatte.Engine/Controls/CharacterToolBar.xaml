@@ -4,22 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="34" d:DesignWidth="600"             
-             Loaded="UserControl_Loaded">
-    <Canvas Name="mainToolBarPanel" Height="22">
-        <StackPanel Orientation="Horizontal" Height="{Binding ElementName=mainToolBarPanel, Path=Height}">            
-            <Button x:Name="symbolsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+             d:DesignHeight="34.444"
+             Loaded="UserControl_Loaded" d:DesignWidth="338.833">
+    <UserControl.Resources>
+        <Style TargetType="Image" BasedOn="{StaticResource ToolbarImageStyle}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource ToolbarButtonStyle}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="symbolsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter" BorderThickness="0,0,0.5,0">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/symbols.png"></Image>
             </Button>
-            <Button x:Name="greekCapitalButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"   MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="greekCapitalButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"   MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greekcapital.png"></Image>
             </Button>
-            <Button x:Name="greekSmallButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="greekSmallButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greeksmall.png"></Image>
             </Button>
-            <Button x:Name="arrowsButton" Style="{StaticResource ToolbarButtonStyle}" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
+            <Button x:Name="arrowsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
                 <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrows.png"></Image>
-            </Button>            
+            </Button>
         </StackPanel>
-    </Canvas>
+        <Canvas Name="mainToolBarPanel" Margin="0,24,0,0"/>
+    </Grid>
 </UserControl>

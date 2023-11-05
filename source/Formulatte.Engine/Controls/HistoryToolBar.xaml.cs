@@ -73,13 +73,6 @@ namespace Formulatte.Engine.Controls
             }            
         }
 
-        private void symbolClick(object sender, MouseButtonEventArgs e)
-        {
-            string item = ((TextBlock)sender).DataContext as string;
-            CommandDetails commandDetails = new CommandDetails { UnicodeString = item, CommandType = CommandType.Text };
-            EditorHandler?.HandleToolBarCommand(commandDetails);
-        }
-
         public void Save()
         {
             string data = "";
@@ -89,6 +82,15 @@ namespace Formulatte.Engine.Controls
             }
             data = data.Trim(',');
             ConfigManager.SetConfigurationValue(KeyName.symbols, data);
+        }
+
+        private void recentListBox_ItemClick(object sender, iNKORE.UI.WPF.Modern.Controls.ItemClickEventArgs e)
+        {
+            string item = e.ClickedItem as string;
+            CommandDetails commandDetails = new CommandDetails { UnicodeString = item, CommandType = CommandType.Text };
+            EditorHandler?.HandleToolBarCommand(commandDetails);
+
+            recentListBox.SelectedItem = null;
         }
     }
 }
