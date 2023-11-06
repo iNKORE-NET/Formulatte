@@ -43,6 +43,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border x:Name="Border_TitleBar" Height="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=(ui:TitleBar.Height)}">
+            
             <Grid Margin="0,0,0,2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -117,21 +118,24 @@
             <Label Name="statusBarLeftLabel" Height="25"></Label>
             <Label Grid.Column="1" Name="statusBarRightLabel" Height="25" HorizontalAlignment="Right"></Label>
         </Grid>
-        <Border Grid.Row="2" Margin="8,0,8,8" Style="{StaticResource Style_ContentBorder}">
+        <Border Grid.Row="2" Margin="0" Style="{StaticResource Style_ContentBorder}" Background="White" CornerRadius="0" ui:ThemeManager.RequestedTheme="Light">
             <ScrollViewer x:Name="scrollViwer" FocusVisualStyle="{x:Null}" Focusable="True" ScrollChanged="scrollViwer_ScrollChanged" HorizontalScrollBarVisibility="Auto">
                 <fmlt:EditorControl Background="Transparent" x:Name="editor" Focusable="True"  FocusVisualStyle="{x:Null}"></fmlt:EditorControl>
             </ScrollViewer>
         </Border>
-        <Border Grid.Row="1" HorizontalAlignment="Stretch" Margin="8"
-                Background="{DynamicResource {x:Static ui:ThemeKeys.SystemControlBackgroundAltHighBrushKey}}"
-                BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}" BorderThickness="1" CornerRadius="8">
+        <Border Grid.Row="1" HorizontalAlignment="Stretch" Margin="0"
+                BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}" BorderThickness="0" CornerRadius="8">
+            <Border.Resources>
+                
+                
+            </Border.Resources>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <ui:CommandBar HorizontalAlignment="Left">
+                <ui:CommandBar HorizontalAlignment="Left" Margin="0,-2,0,-2">
 
                     <ui:AppBarButton x:Name="AppBarButton_MainBar_New" Command="New" Label="New" LabelPosition="Collapsed">
                         <ui:AppBarButton.Icon>
@@ -198,7 +202,7 @@
                             <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Copy}"/>
                         </ui:AppBarButton.Icon>
                     </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Paste" Command="Paste" Label="Paste" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Paste" Command="Paste" Label="Paste" LabelPosition="Collapsed">
                         <ui:AppBarButton.Icon>
                             <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Paste}"/>
                         </ui:AppBarButton.Icon>
@@ -254,10 +258,10 @@
                         </ui:AppBarToggleButton.Icon>
                     </ui:AppBarToggleButton>
 
-                    <ui:AppBarElementContainer>
+                    <ui:AppBarElementContainer Visibility="Collapsed">
                         <ikw:PortableColorPicker x:Name="PortableColorPicker_Color" Width="16" Height="16" Margin="10" ColorPicked="PortableColorPicker_Color_ColorPicked"/>
                     </ui:AppBarElementContainer>
-                    <ui:AppBarElementContainer>
+                    <ui:AppBarElementContainer Visibility="Collapsed">
                         <ComboBox x:Name="ComboBox_FontSize" IsEditable="True" Width="120">
                             
                         </ComboBox>
@@ -291,6 +295,11 @@
                 <Border Grid.Row="1"
                         BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}"
                         BorderThickness="0 1 0 1">
+                    <Border.Resources>
+                        <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundKey}" Color="Transparent"/>
+                        <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBorderBrushKey}" ResourceKey="{x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}"/>
+                        <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundPointerOverKey}" ResourceKey="{x:Static ui:ThemeKeys.ControlFillColorDefaultBrushKey}"/>
+                    </Border.Resources>
                     <StackPanel Orientation="Horizontal" >
                         <fmlt:CharacterToolBar x:Name="characterToolBar" Padding="0" Panel.ZIndex="100" HorizontalAlignment="Left"/>
                         <fmlt:EquationToolBar x:Name="equationToolBar" Padding="0" Panel.ZIndex="99"/>

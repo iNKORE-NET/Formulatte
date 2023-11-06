@@ -27,7 +27,7 @@
         <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Label}"/>
         <Style.Triggers>
             <Trigger Property="LabelPosition" Value="Collapsed">
-                <Setter Property="Width" Value="42"/>
+                <Setter Property="Width" Value="40"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -35,7 +35,7 @@
         <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Label}"/>
         <Style.Triggers>
             <Trigger Property="LabelPosition" Value="Collapsed">
-                <Setter Property="Width" Value="42"/>
+                <Setter Property="Width" Value="40"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -53,6 +53,10 @@
         <Setter Property="BorderThickness" Value="0.5 0 0.5 0"/>
         <Setter Property="ui:ControlHelper.CornerRadius" Value="0"/>
         
+    </Style>
+    <Style TargetType="{x:Type ui:AppBarSeparator}">
+        <Setter Property="Margin" Value="0,4"/>
+
     </Style>
 
     <Style x:Key="ToolbarOpacityMaskedImageStyle" TargetType="ikw:OpacityMaskedImage">
