@@ -15,6 +15,7 @@ using Formulatte;
 using Formulatte.Engine.Scripts.Equations.Text;
 */
 using Formulatte.Engine.Common;
+using iNKORE.Coreworks.Windows.Helpers;
 
 namespace Formulatte.Engine.Scripts.Equations.Text
 {
@@ -41,32 +42,40 @@ namespace Formulatte.Engine.Scripts.Equations.Text
             FontWeight = fw;
             TextBrush = brush;
             TypeFace = new Typeface(FontFamily, fs, fw, FontStretches.Normal, FontFactory.GetFontFamily(FontType.STIXGeneral));
-            BrushConverter bc = new BrushConverter();
-            TextBrushString = bc.ConvertToString(brush);
+            //BrushConverter bc = new BrushConverter();
+            TextBrushString = brush.Color.ColorToHex();
         }
 
         public XElement Serialize()
         {
             XElement thisElement = new XElement(GetType().Name);
-            thisElement.Add(new XElement("FontSize", FontSize),
-                             new XElement("FontType", FontType),
-                             new XElement("FontStyle", FontStyle),
-                             new XElement("Underline", UseUnderline),
-                             new XElement("FontWeight", FontWeight),
-                             new XElement("Brush", TextBrushString));
+            thisElement.Add(new XAttribute("FontSize", FontSize),
+                             new XAttribute("FontType", FontType),
+                             new XAttribute("FontStyle", FontStyle),
+                             new XAttribute("Underline", UseUnderline),
+                             new XAttribute("FontWeight", FontWeight),
+                             new XAttribute("Brush", TextBrushString));
             return thisElement;
         }
 
         public static TextFormat DeSerialize(XElement xe)
         {
-            double fontSize = double.Parse(xe.Element("FontSize").Value);
-            FontType fontType = (FontType)Enum.Parse(typeof(FontType), xe.Element("FontType").Value);
-            FontStyle fontStyle = xe.Element("FontStyle").Value == "Italic" ? FontStyles.Italic : FontStyles.Normal;
-            FontWeight fontWeight = xe.Element("FontWeight").Value == "Bold" ? FontWeights.Bold : FontWeights.Normal;
-            BrushConverter bc = new BrushConverter();
-            SolidColorBrush brush = (SolidColorBrush)bc.ConvertFrom(xe.Element("Brush").Value);
-            bool useUnderline = Convert.ToBoolean(xe.Element("Underline").Value);
-            return new TextFormat(fontSize, fontType, fontStyle, fontWeight, brush, useUnderline);
+            try
+            {
+                double fontSize = double.Parse(xe.Attribute("FontSize").Value);
+                FontType fontType = (FontType)Enum.Parse(typeof(FontType), xe.Attribute("FontType").Value);
+                FontStyle fontStyle = xe.Attribute("FontStyle").Value == "Italic" ? FontStyles.Italic : FontStyles.Normal;
+                FontWeight fontWeight = xe.Attribute("FontWeight").Value == "Bold" ? FontWeights.Bold : FontWeights.Normal;
+                BrushConverter bc = new BrushConverter();
+                SolidColorBrush brush = new SolidColorBrush(TypeHelper.HexToWpfColor(xe.Attribute("Brush").Value));
+                bool useUnderline = Convert.ToBoolean(xe.Attribute("Underline").Value);
+                return new TextFormat(fontSize, fontType, fontStyle, fontWeight, brush, useUnderline);
+            }
+            catch
+            {
+                return new TextFormat(12, FontType.STIXGeneral, FontStyles.Normal, FontWeights.Normal, Brushes.Black, false);
+
+            }
         }
     }
 }

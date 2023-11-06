@@ -27,6 +27,9 @@ using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations.Common;
 using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo.Text;
+using iNKORE.Coreworks.Windows.Helpers;
+using iNKORE.Coreworks.Helpers;
+using TypeHelperW = iNKORE.Coreworks.Windows.Helpers.TypeHelper;
 
 namespace Formulatte.Engine.Scripts.Equations
 {
@@ -94,6 +97,7 @@ namespace Formulatte.Engine.Scripts.Equations
                 }
             }
         }
+
         public static EditorMode EditorMode
         {
             get { return editorMode; }
@@ -745,6 +749,14 @@ namespace Formulatte.Engine.Scripts.Equations
                 {
                     ModifyFont((FontType)Enum.Parse(typeof(FontType), argument), applied, addUndo);
                 }
+                else if (operation == "color")
+                {
+                    ModifyColor(TypeHelperW.HexToWpfColor(argument), applied, addUndo);
+                }
+                else if (operation == "size" || operation == "fontsize")
+                {
+                    ModifySize(argument.ToDouble(), applied, addUndo);
+                }
                 else if (operation == "mode")
                 {
                     ModifyMode(argument, addUndo);
@@ -816,6 +828,38 @@ namespace Formulatte.Engine.Scripts.Equations
             for (int i = startIndex; i < startIndex + count; i++)
             {
                 formats[i] = textManager.GetFormatIdForNewFont(formats[i], fontType);
+            }
+            if (addUndo)
+            {
+                TextFormatAction tfa = new TextFormatAction(this, startIndex, oldFormats, formats.GetRange(startIndex, count).ToArray());
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(tfa);
+            }
+        }
+
+        public void ModifyColor(Color color, bool applied, bool addUndo)
+        {
+            int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
+            int count = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex) - startIndex;
+            int[] oldFormats = formats.GetRange(startIndex, count).ToArray();
+            for (int i = startIndex; i < startIndex + count; i++)
+            {
+                formats[i] = textManager.GetFormatIdForNewColor(formats[i], color);
+            }
+            if (addUndo)
+            {
+                TextFormatAction tfa = new TextFormatAction(this, startIndex, oldFormats, formats.GetRange(startIndex, count).ToArray());
+                Root?.EditorHandler?.UndoManager?.AddUndoAction(tfa);
+            }
+        }
+
+        public void ModifySize(double size, bool applied, bool addUndo)
+        {
+            int startIndex = SelectedItems > 0 ? SelectionStartIndex : SelectionStartIndex + SelectedItems;
+            int count = (SelectedItems > 0 ? SelectionStartIndex + SelectedItems : SelectionStartIndex) - startIndex;
+            int[] oldFormats = formats.GetRange(startIndex, count).ToArray();
+            for (int i = startIndex; i < startIndex + count; i++)
+            {
+                formats[i] = textManager.GetFormatIdForNewSize(formats[i], size);
             }
             if (addUndo)
             {

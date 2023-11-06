@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="34"       
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
-        <Style TargetType="Image" BasedOn="{StaticResource ToolbarImageStyle}"/>
+        <Style TargetType="ikw:OpacityMaskedImage" BasedOn="{StaticResource ToolbarOpacityMaskedImageStyle}"/>
         <Style TargetType="Button" BasedOn="{StaticResource ToolbarButtonStyle}">
             <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
@@ -16,37 +17,37 @@
     <Grid>
         <StackPanel Orientation="Horizontal" >
             <Button x:Name="bracketsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/Mathbuttons/brackets.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/Mathbuttons/brackets.png"></ikw:OpacityMaskedImage>
             </Button>
             <Button x:Name="decoratedEquationButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedEquation.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedEquation.png"/>
             </Button>
             <Button x:Name="sumsProductsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/sumproduct.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/sumproduct.png"/>
             </Button>
             <Button x:Name="integralsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/integrals.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/integrals.png"/>
             </Button>
             <Button x:Name="subAndSuperButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/subsuper.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/subsuper.png"/>
             </Button>
             <Button x:Name="divAndRootsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/divroot.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/divroot.png"/>
             </Button>
             <Button x:Name="arrowEquationButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrowEquation.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrowEquation.png"/>
             </Button>
             <Button x:Name="compositeButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/composite.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/composite.png"/>
             </Button>
             <Button x:Name="decoratedCharacterButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedCharacter.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/decoratedCharacter.png"/>
             </Button>
             <Button x:Name="matrixButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/matrix.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/matrix.png"/>
             </Button>
             <Button x:Name="boxButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/boxes.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/boxes.png"/>
             </Button>
         </StackPanel>
         <Canvas Name="mainToolBarPanel" Margin="0,24,0,0"/>

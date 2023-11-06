@@ -22,6 +22,7 @@ using Formulatte.Engine.Scripts.Equations;
 using Formulatte.Engine.Dialogs;
 using Formulatte.Engine.Controls;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
+using iNKORE.Coreworks.Windows.Helpers;
 
 namespace Formulatte
 {
@@ -603,6 +604,8 @@ namespace Formulatte
             }
         }
 
+
+
         public bool InputItalic
         {
             get
@@ -743,6 +746,12 @@ namespace Formulatte
             Window settingsWindow = new SettingsWindow();
             settingsWindow.Owner = this;
             settingsWindow.Show();
+        }
+
+        private void PortableColorPicker_Color_ColorPicked(object sender, RoutedEventArgs e)
+        {
+            editor.ChangeFormat("color", PortableColorPicker_Color.Color.ToWpfColor().ColorToHex(), true);
+
         }
     }
     public static class StatusBarHelper

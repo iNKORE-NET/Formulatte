@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:Formulatte.Engine.Controls"
+             xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="34.444"
+             d:DesignHeight="40"
              Loaded="UserControl_Loaded" d:DesignWidth="338.833">
     <UserControl.Resources>
-        <Style TargetType="Image" BasedOn="{StaticResource ToolbarImageStyle}"/>
+        <Style TargetType="ikw:OpacityMaskedImage" BasedOn="{StaticResource ToolbarOpacityMaskedImageStyle}"/>
         <Style TargetType="Button" BasedOn="{StaticResource ToolbarButtonStyle}">
             <Setter Property="VerticalAlignment" Value="Stretch"/>
         </Style>
@@ -15,16 +17,16 @@
     <Grid>
         <StackPanel Orientation="Horizontal">
             <Button x:Name="symbolsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter" BorderThickness="0,0,0.5,0">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/symbols.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/symbols.png"/>
             </Button>
             <Button x:Name="greekCapitalButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"   MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greekcapital.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greekcapital.png"/>
             </Button>
             <Button x:Name="greekSmallButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greeksmall.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/greeksmall.png"/>
             </Button>
             <Button x:Name="arrowsButton" Click="toolBarButton_Click" GotFocus="toolBarButton_GotFocus"  MouseEnter="toolBarButton_MouseEnter">
-                <Image Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrows.png"></Image>
+                <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/arrows.png"/>
             </Button>
         </StackPanel>
         <Canvas Name="mainToolBarPanel" Margin="0,24,0,0"/>

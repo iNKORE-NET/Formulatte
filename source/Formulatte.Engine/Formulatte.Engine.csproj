@@ -14,13 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.SharpZipLib.dll" Version="0.85.4.369" />
     <PackageReference Include="iNKORE.UI.WPF.Modern" Version="0.9.21" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\iNKORE.Coreworks\source\iNKORE.Coreworks.Windows\iNKORE.Coreworks.Windows.csproj" />
     <ProjectReference Include="..\..\..\iNKORE.Coreworks\source\iNKORE.Coreworks\iNKORE.Coreworks.csproj" />
+    <ProjectReference Include="..\..\..\iNKORE.UI.WPF\source\iNKORE.UI.WPF\iNKORE.UI.WPF.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:fmlt="http://schemas.inkore.net/app/formulatte"
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+        xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf"
         x:Class="Formulatte.MainWindow"        
         Title="Formulatte" 
         Height="550" Width="1081"  
@@ -253,15 +254,20 @@
                         </ui:AppBarToggleButton.Icon>
                     </ui:AppBarToggleButton>
 
+                    <ui:AppBarElementContainer>
+                        <ikw:PortableColorPicker x:Name="PortableColorPicker_Color" Width="16" Height="16" Margin="10" ColorPicked="PortableColorPicker_Color_ColorPicked"/>
+                    </ui:AppBarElementContainer>
+                    <ui:AppBarElementContainer>
+                        <ComboBox x:Name="ComboBox_FontSize" IsEditable="True" Width="120">
+                            
+                        </ComboBox>
+                    </ui:AppBarElementContainer>
+
                     <ui:AppBarSeparator/>
 
                     <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underbar" ToolTip="Show/Hide Underbar" Unchecked="UnderbarToggleCheckChanged" Checked="UnderbarToggleCheckChanged" Label="Underline" LabelPosition="Collapsed">
                         <ui:AppBarToggleButton.Icon>
-                            <Rectangle Fill="{Binding ElementName=AppBarToggleButton_MainBar_Underbar, Path=Foreground}" Width="16" Height="16">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png"/>
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
+                            <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png" Width="16"/>
                         </ui:AppBarToggleButton.Icon>
                     </ui:AppBarToggleButton>
 

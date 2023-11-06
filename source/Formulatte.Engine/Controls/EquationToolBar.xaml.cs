@@ -1,5 +1,6 @@
 ﻿using Formulatte.Engine.Common;
 using Formulatte.Engine.Controls;
+using iNKORE.UI.WPF.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,30 +98,32 @@ namespace Formulatte.Engine.Controls
             Canvas.SetTop(bp, mainToolBarPanel.Height);
             Vector offset = VisualTreeHelper.GetOffset(toolBarButton);
             Canvas.SetLeft(bp, offset.X + 2);
-            bp.Visibility = System.Windows.Visibility.Collapsed;
+            bp.Visibility = Visibility.Collapsed;
             buttonPanelMapping.Add(toolBarButton, bp);
         }
 
         void CreateImagePanel(Uri[] imageUris, CommandType[] commands, object[] paramz, Button toolBarButton, int columns)
         {
-            Image[] items = new Image[imageUris.Count()];
+            OpacityMaskedImage[] items = new OpacityMaskedImage[imageUris.Count()];
             for (int i = 0; i < items.Count(); i++)
             {
-                items[i] = new Image();
+                items[i] = new OpacityMaskedImage();
                 BitmapImage bmi = new BitmapImage(imageUris[i]);
                 items[i].Source = bmi;
+                items[i].Width = 16;
+                items[i].Height = 16;
             }
             List<CommandDetails> list = new List<CommandDetails>();
             for (int i = 0; i < items.Count(); i++)
             {
                 list.Add(new CommandDetails { Image = items[i], CommandType = commands[i], CommandParam = paramz[i] });
             }
-            CreatePanel(list, toolBarButton, columns, 4);
+            CreatePanel(list, toolBarButton, columns, 0);
         }
 
         Uri CreateImageUri(string subFolder, string imageFileName)
         {
-            return new Uri("/Formulatte.Engine;component/Resources/Images/Commands/" + subFolder + "/" + imageFileName, UriKind.Relative);
+            return new Uri("pack://application:,,,/Formulatte.Engine;component/Resources/Images/Commands/" + subFolder + "/" + imageFileName, UriKind.Absolute);
         }
 
         void CreateBracketsPanel()

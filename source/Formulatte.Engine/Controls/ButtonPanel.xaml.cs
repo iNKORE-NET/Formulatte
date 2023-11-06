@@ -77,6 +77,9 @@ namespace Formulatte.Engine.Controls
         {
             this.commandDetails = commandDetails;
             this.toolbar = toolbar;
+
+            HorizontalAlignment = HorizontalAlignment.Stretch;
+            VerticalAlignment = VerticalAlignment.Stretch;
         }
 
         protected override void OnClick()

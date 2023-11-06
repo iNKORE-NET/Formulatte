@@ -31,6 +31,7 @@ namespace Formulatte.Engine.Dialogs
         private void insertButton_Click(object sender, RoutedEventArgs e)
         {
             ProcessRequest((int)NumberBox_Rows.Value, (int)NumberBox_Columns.Value);
+            this.Close();
         }
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)

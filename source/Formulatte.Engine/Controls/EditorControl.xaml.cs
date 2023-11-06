@@ -13,8 +13,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
-using ICSharpCode.SharpZipLib.Core;
 using Formulatte.Engine.Common;
 using Formulatte.Engine.Scripts.Equations.Common.UndoRedo;
 using Formulatte.Engine.Scripts.Equations;
@@ -128,22 +126,9 @@ namespace Formulatte.Engine.Controls
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Could not save file. Make sure the specified path is correct.\r\n\r\n"+ex.Message, "Error");
+                MessageBox.Show("Could not save file. Make sure the specified path is correct.\r\n\r\n" + ex.Message, "Error");
             }
             Dirty = false;
-        }
-
-        public void ZipStream(MemoryStream memStreamIn, Stream outputStream, string zipEntryName)
-        {
-            ZipOutputStream zipStream = new ZipOutputStream(outputStream);
-            zipStream.SetLevel(5); //0-9, 9 being the highest level of compression
-            ZipEntry newEntry = new ZipEntry(zipEntryName);
-            newEntry.DateTime = DateTime.Now;
-            zipStream.PutNextEntry(newEntry);
-            StreamUtils.Copy(memStreamIn, zipStream, new byte[4096]);
-            zipStream.CloseEntry();
-            zipStream.IsStreamOwner = false;	// False stops the Close also Closing the underlying stream.
-            zipStream.Close();			// Must finish the ZipOutputStream before using outputMemStream.            
         }
 
         public void LoadFile(Stream stream)

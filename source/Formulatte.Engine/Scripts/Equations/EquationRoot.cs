@@ -43,19 +43,28 @@ namespace Formulatte.Engine.Scripts.Equations
             CalculateSize();
             AdjustCarets();
         }
-
         public void SaveFile(Stream stream)
         {
             XDocument xDoc = new XDocument();
+            var root = SaveToXml();
+            xDoc.Add(root);
+            xDoc.Save(stream);
+        }
+
+        public XElement SaveToXml()
+        {
             XElement root = new XElement(GetType().Name); //ActiveChild.Serialize();
             root.Add(new XAttribute("fileVersion", fileVersion));
             root.Add(new XAttribute("appVersion", Assembly.GetEntryAssembly().GetName().Version));
+
             textManager.OptimizeForSave(this);
+            
             root.Add(textManager.Serialize());
             root.Add(ActiveChild.Serialize());
-            xDoc.Add(root);
-            xDoc.Save(stream);
+
             textManager.RestoreAfterSave(this);
+
+            return root;
         }
 
         private EditorControl? _editorControl;
