@@ -117,14 +117,19 @@
             <Label Name="statusBarLeftLabel" Height="25"></Label>
             <Label Grid.Column="1" Name="statusBarRightLabel" Height="25" HorizontalAlignment="Right"></Label>
         </Grid>
-        <Border Grid.Row="2" Margin="8,0,8,8" Style="{StaticResource Style_ContentBorder}">
+        <Border Grid.Row="2" Margin="8,0,8,8" Style="{StaticResource Style_ContentBorder}" Background="White" ui:ThemeManager.RequestedTheme="Light">
             <ScrollViewer x:Name="scrollViwer" FocusVisualStyle="{x:Null}" Focusable="True" ScrollChanged="scrollViwer_ScrollChanged" HorizontalScrollBarVisibility="Auto">
                 <fmlt:EditorControl Background="Transparent" x:Name="editor" Focusable="True"  FocusVisualStyle="{x:Null}"></fmlt:EditorControl>
             </ScrollViewer>
         </Border>
         <Border Grid.Row="1" HorizontalAlignment="Stretch" Margin="8"
-                Background="{DynamicResource {x:Static ui:ThemeKeys.SystemControlBackgroundAltHighBrushKey}}"
-                BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}" BorderThickness="1" CornerRadius="8">
+                Style="{StaticResource Style_ContentBorder}"
+                BorderThickness="1" CornerRadius="8">
+            <Border.Resources>
+                <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundKey}" Color="Transparent"/>
+                <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBorderBrushKey}" ResourceKey="{x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}"/>
+                <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundPointerOverKey}" ResourceKey="{x:Static ui:ThemeKeys.ControlFillColorDefaultBrushKey}"/>
+            </Border.Resources>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -290,7 +295,7 @@
                 </Border>
                 <Border Grid.Row="1"
                         BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}"
-                        BorderThickness="0 1 0 1">
+                        BorderThickness="0 1 0 1" Height="40">
                     <StackPanel Orientation="Horizontal" >
                         <fmlt:CharacterToolBar x:Name="characterToolBar" Padding="0" Panel.ZIndex="100" HorizontalAlignment="Left"/>
                         <fmlt:EquationToolBar x:Name="equationToolBar" Padding="0" Panel.ZIndex="99"/>
