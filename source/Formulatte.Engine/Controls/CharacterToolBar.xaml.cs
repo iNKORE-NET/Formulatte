@@ -38,7 +38,7 @@ namespace Formulatte.Engine.Controls
             {
                 visiblePanel.Visibility = System.Windows.Visibility.Collapsed;
             }
-            if (buttonPanelMapping[sender].Visibility != System.Windows.Visibility.Visible)
+            else if (buttonPanelMapping[sender].Visibility != System.Windows.Visibility.Visible)
             {
                 buttonPanelMapping[sender].Visibility = System.Windows.Visibility.Visible;
                 visiblePanel = buttonPanelMapping[sender];

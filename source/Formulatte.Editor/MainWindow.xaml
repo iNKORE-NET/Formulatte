@@ -50,8 +50,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
                 </Grid.ColumnDefinitions>
-                <Ellipse Fill="Black" Width="20" Height="20" Margin="14,14,10,0"/>
-                <Menu Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True" Margin="-5,5,0,-5">
+                <Ellipse Fill="Black" Width="20" Height="20" Margin="18,14,10,0"/>
+                <Menu Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True" Margin="-4,6,0,-6">
                     <MenuItem x:Name="fileMenuItem" Header="_File">
                         <MenuItem x:Name="newMenuItem" Header="_New"        Command="New"/>
                         <MenuItem x:Name="openMenuItem" Header="_Open"      Command="Open"/>
@@ -117,192 +117,204 @@
             <Label Name="statusBarLeftLabel" Height="25"></Label>
             <Label Grid.Column="1" Name="statusBarRightLabel" Height="25" HorizontalAlignment="Right"></Label>
         </Grid>
-        <Border Grid.Row="2" Margin="8,0,8,8" Style="{StaticResource Style_ContentBorder}" Background="White" ui:ThemeManager.RequestedTheme="Light">
+        <Border Grid.Row="2" Margin="0" Style="{StaticResource Style_ContentBorder}"
+                CornerRadius="0" BorderThickness="0 1 0 0" Background="White" ui:ThemeManager.RequestedTheme="Light">
             <ScrollViewer x:Name="scrollViwer" FocusVisualStyle="{x:Null}" Focusable="True" ScrollChanged="scrollViwer_ScrollChanged" HorizontalScrollBarVisibility="Auto">
                 <fmlt:EditorControl Background="Transparent" x:Name="editor" Focusable="True"  FocusVisualStyle="{x:Null}"></fmlt:EditorControl>
             </ScrollViewer>
         </Border>
-        <Border Grid.Row="1" HorizontalAlignment="Stretch" Margin="8"
-                Style="{StaticResource Style_ContentBorder}"
-                BorderThickness="1" CornerRadius="8">
-            <Border.Resources>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="8,0,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="42"/>
+            </Grid.RowDefinitions>
+            <FrameworkElement.Resources>
                 <SolidColorBrush x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundKey}" Color="Transparent"/>
                 <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBorderBrushKey}" ResourceKey="{x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}"/>
                 <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ButtonBackgroundPointerOverKey}" ResourceKey="{x:Static ui:ThemeKeys.ControlFillColorDefaultBrushKey}"/>
-            </Border.Resources>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <ui:CommandBar HorizontalAlignment="Left">
 
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_New" Command="New" Label="New" LabelPosition="Collapsed">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Document}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Open" Command="Open" Label="Open" LabelPosition="Collapsed">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.OpenFolderHorizontal}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Save" Command="Save" Label="Save" LabelPosition="Collapsed" FlyoutOpeningMode="RightMouseButtonUp">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Save}"/>
-                        </ui:AppBarButton.Icon>
-                        <ui:AppBarButton.Flyout>
-                            <ui:MenuFlyout>
+                <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ComboBoxBorderBrushKey}" ResourceKey="{x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}"/>
+                <ui:StaticResource x:Key="{x:Static ui:ThemeKeys.ComboBoxBackgroundKey}" ResourceKey="{x:Static ui:ThemeKeys.LayerFillColorDefaultBrushKey}"/>
 
-                                <MenuItem x:Name="MenuItem_MainBar_SaveAs" Command="SaveAs" Header="Save As">
-                                    <MenuItem.Icon>
-                                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.SaveAs}"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
+            </FrameworkElement.Resources>
 
-                            </ui:MenuFlyout>
-                        </ui:AppBarButton.Flyout>
-                    </ui:AppBarButton>
+            <Border
+                Style="{StaticResource Style_ContentBorder}"
+                BorderThickness="1" CornerRadius="8" Grid.Row="1" Grid.RowSpan="2">
+            </Border>
 
-                    <ui:AppBarSeparator/>
+            <ui:CommandBar HorizontalAlignment="Left" Margin="-4,-2,0,-2">
 
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Undo" Command="Undo" Label="Undo" LabelPosition="Collapsed" IsEnabled="False">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Undo}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Redo" Command="Redo" Label="Redo" LabelPosition="Collapsed" IsEnabled="False">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Redo}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_New" Command="New" Label="New" LabelPosition="Collapsed">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Document}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Open" Command="Open" Label="Open" LabelPosition="Collapsed">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.OpenFolderHorizontal}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Save" Command="Save" Label="Save" LabelPosition="Collapsed" FlyoutOpeningMode="RightMouseButtonUp">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Save}"/>
+                    </ui:AppBarButton.Icon>
+                    <ui:AppBarButton.Flyout>
+                        <ui:MenuFlyout>
 
-                    <ui:AppBarSeparator/>
+                            <MenuItem x:Name="MenuItem_MainBar_SaveAs" Command="SaveAs" Header="Save As">
+                                <MenuItem.Icon>
+                                    <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.SaveAs}"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
 
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_ZoomIn" Command="IncreaseZoom" Label="Zoom In" LabelPosition="Collapsed">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.ZoomIn}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_ZoomOut" Command="DecreaseZoom" Label="Zoom Out" LabelPosition="Collapsed">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.ZoomOut}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
+                        </ui:MenuFlyout>
+                    </ui:AppBarButton.Flyout>
+                </ui:AppBarButton>
 
-                    <ui:AppBarSeparator/>
+                <ui:AppBarSeparator/>
 
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Cut" Command="Cut" Label="Cut" LabelPosition="Collapsed" IsEnabled="False">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Cut}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Copy" Command="Copy" Label="Copy" LabelPosition="Collapsed" IsEnabled="False">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Copy}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
-                    <ui:AppBarButton x:Name="AppBarButton_MainBar_Paste" Command="Paste" Label="Paste" LabelPosition="Collapsed" IsEnabled="False">
-                        <ui:AppBarButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Paste}"/>
-                        </ui:AppBarButton.Icon>
-                    </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Undo" Command="Undo" Label="Undo" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Undo}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Redo" Command="Redo" Label="Redo" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Redo}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
 
-                    <ui:AppBarSeparator/>
+                <ui:AppBarSeparator/>
 
-                    <ui:AppBarElementContainer>
-                        <ComboBox Name="equationFontCombo" Width="100" DropDownClosed="EquationFontCombo_DropDownClosed" SelectedIndex="0" VerticalAlignment="Stretch">
-                            <ComboBoxItem Tag="STIXGeneral">STIX</ComboBoxItem>
-                            <ComboBoxItem Tag="Arial">Arial</ComboBoxItem>
-                            <ComboBoxItem Tag="ArialBlack">Arial Black</ComboBoxItem>
-                            <ComboBoxItem Tag="ComicSansMS">Comic Sans MS</ComboBoxItem>
-                            <ComboBoxItem Tag="Courier">Courier</ComboBoxItem>
-                            <ComboBoxItem Tag="CourierNew">Courier New</ComboBoxItem>
-                            <ComboBoxItem Tag="Georgia">Georgia</ComboBoxItem>
-                            <ComboBoxItem Tag="Impact">Impact</ComboBoxItem>
-                            <ComboBoxItem Tag="LucidaConsole">Lucida Console</ComboBoxItem>
-                            <ComboBoxItem Tag="LucidaSansUnicode">Lucida Sans Unicode</ComboBoxItem>
-                            <ComboBoxItem Tag="PalatinoLinotype">Palatino Linotype</ComboBoxItem>
-                            <ComboBoxItem Tag="Segoe">Segoe UI</ComboBoxItem>
-                            <ComboBoxItem Tag="Tahoma">Tahoma</ComboBoxItem>
-                            <ComboBoxItem Tag="TimesNewRoman">Times New Roman</ComboBoxItem>
-                            <ComboBoxItem Tag="TrebuchetMS">Trebuchet MS</ComboBoxItem>
-                            <ComboBoxItem Tag="Verdana">Verdana</ComboBoxItem>
-                            <ComboBoxItem Tag="Symbol">Symbol</ComboBoxItem>
-                            <ComboBoxItem Tag="Webdings">Webdings</ComboBoxItem>
-                            <ComboBoxItem Tag="Wingdings">Wingdings</ComboBoxItem>
-                        </ComboBox>
-                    </ui:AppBarElementContainer>
-                    <ui:AppBarElementContainer Padding="0,5,5,5">
-                        <ComboBox Name="editorModeCombo" Width="100" DropDownClosed="EditorModeCombo_DropDownClosed" SelectedIndex="1">
-                            <ComboBoxItem Tag="Math">Math</ComboBoxItem>
-                            <ComboBoxItem Tag="Text">Text</ComboBoxItem>
-                        </ComboBox>
-                    </ui:AppBarElementContainer>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_ZoomIn" Command="IncreaseZoom" Label="Zoom In" LabelPosition="Collapsed">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.ZoomIn}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_ZoomOut" Command="DecreaseZoom" Label="Zoom Out" LabelPosition="Collapsed">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.ZoomOut}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
 
-                    <ui:AppBarSeparator/>
+                <ui:AppBarSeparator/>
 
-                    <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Bold" IsChecked="{Binding Path=InputBold}" Label="Bold" LabelPosition="Collapsed">
-                        <ui:AppBarToggleButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Bold}"/>
-                        </ui:AppBarToggleButton.Icon>
-                    </ui:AppBarToggleButton>
-                    <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Italic" IsChecked="{Binding Path=InputItalic}" Label="Italic" LabelPosition="Collapsed">
-                        <ui:AppBarToggleButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Italic}"/>
-                        </ui:AppBarToggleButton.Icon>
-                    </ui:AppBarToggleButton>
-                    <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underline" IsChecked="{Binding Path=InputUnderline}" Label="Underline" LabelPosition="Collapsed">
-                        <ui:AppBarToggleButton.Icon>
-                            <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Underline}"/>
-                        </ui:AppBarToggleButton.Icon>
-                    </ui:AppBarToggleButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Cut" Command="Cut" Label="Cut" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Cut}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Copy" Command="Copy" Label="Copy" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Copy}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
+                <ui:AppBarButton x:Name="AppBarButton_MainBar_Paste" Command="Paste" Label="Paste" LabelPosition="Collapsed" IsEnabled="False">
+                    <ui:AppBarButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Paste}"/>
+                    </ui:AppBarButton.Icon>
+                </ui:AppBarButton>
 
-                    <ui:AppBarElementContainer>
-                        <ikw:PortableColorPicker x:Name="PortableColorPicker_Color" Width="16" Height="16" Margin="10" ColorPicked="PortableColorPicker_Color_ColorPicked"/>
-                    </ui:AppBarElementContainer>
-                    <ui:AppBarElementContainer>
-                        <ComboBox x:Name="ComboBox_FontSize" IsEditable="True" Width="120">
-                            
-                        </ComboBox>
-                    </ui:AppBarElementContainer>
+                <ui:AppBarSeparator/>
 
-                    <ui:AppBarSeparator/>
+                <ui:AppBarElementContainer>
+                    <ComboBox Name="equationFontCombo" Width="100" DropDownClosed="EquationFontCombo_DropDownClosed" SelectedIndex="0" VerticalAlignment="Stretch">
+                        <ComboBoxItem Tag="STIXGeneral">STIX</ComboBoxItem>
+                        <ComboBoxItem Tag="Arial">Arial</ComboBoxItem>
+                        <ComboBoxItem Tag="ArialBlack">Arial Black</ComboBoxItem>
+                        <ComboBoxItem Tag="ComicSansMS">Comic Sans MS</ComboBoxItem>
+                        <ComboBoxItem Tag="Courier">Courier</ComboBoxItem>
+                        <ComboBoxItem Tag="CourierNew">Courier New</ComboBoxItem>
+                        <ComboBoxItem Tag="Georgia">Georgia</ComboBoxItem>
+                        <ComboBoxItem Tag="Impact">Impact</ComboBoxItem>
+                        <ComboBoxItem Tag="LucidaConsole">Lucida Console</ComboBoxItem>
+                        <ComboBoxItem Tag="LucidaSansUnicode">Lucida Sans Unicode</ComboBoxItem>
+                        <ComboBoxItem Tag="PalatinoLinotype">Palatino Linotype</ComboBoxItem>
+                        <ComboBoxItem Tag="Segoe">Segoe UI</ComboBoxItem>
+                        <ComboBoxItem Tag="Tahoma">Tahoma</ComboBoxItem>
+                        <ComboBoxItem Tag="TimesNewRoman">Times New Roman</ComboBoxItem>
+                        <ComboBoxItem Tag="TrebuchetMS">Trebuchet MS</ComboBoxItem>
+                        <ComboBoxItem Tag="Verdana">Verdana</ComboBoxItem>
+                        <ComboBoxItem Tag="Symbol">Symbol</ComboBoxItem>
+                        <ComboBoxItem Tag="Webdings">Webdings</ComboBoxItem>
+                        <ComboBoxItem Tag="Wingdings">Wingdings</ComboBoxItem>
+                    </ComboBox>
+                </ui:AppBarElementContainer>
+                <ui:AppBarElementContainer Padding="0,5,5,5">
+                    <ComboBox Name="editorModeCombo" Width="100" DropDownClosed="EditorModeCombo_DropDownClosed" SelectedIndex="1">
+                        <ComboBoxItem Tag="Math">Math</ComboBoxItem>
+                        <ComboBoxItem Tag="Text">Text</ComboBoxItem>
+                    </ComboBox>
+                </ui:AppBarElementContainer>
 
-                    <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underbar" ToolTip="Show/Hide Underbar" Unchecked="UnderbarToggleCheckChanged" Checked="UnderbarToggleCheckChanged" Label="Underline" LabelPosition="Collapsed">
-                        <ui:AppBarToggleButton.Icon>
-                            <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png" Width="16"/>
-                        </ui:AppBarToggleButton.Icon>
-                    </ui:AppBarToggleButton>
+                <ui:AppBarSeparator/>
 
-                    <ui:AppBarSeparator/>
+                <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Bold" IsChecked="{Binding Path=InputBold}" Label="Bold" LabelPosition="Collapsed">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Bold}"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
+                <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Italic" IsChecked="{Binding Path=InputItalic}" Label="Italic" LabelPosition="Collapsed">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Italic}"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
+                <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underline" IsChecked="{Binding Path=InputUnderline}" Label="Underline" LabelPosition="Collapsed">
+                    <ui:AppBarToggleButton.Icon>
+                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.Underline}"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
 
-                    <ui:AppBarElementContainer>
-                        <CheckBox x:Name="integralItalicCheckbox" FontSize="12" Content="New Integral Italic" Checked="integralItalicCheckbox_Checked" Unchecked="integralItalicCheckbox_Unchecked" VerticalContentAlignment="Center" Padding="4,0,0,0" Margin="4,0,0,0"/>
-                    </ui:AppBarElementContainer>
+                <ui:AppBarElementContainer>
+                    <ikw:PortableColorPicker x:Name="PortableColorPicker_Color" Width="16" Height="16" Margin="10" ColorPicked="PortableColorPicker_Color_ColorPicked"/>
+                </ui:AppBarElementContainer>
+                <ui:AppBarElementContainer>
+                    <ComboBox x:Name="ComboBox_FontSize" IsEditable="True" Width="120">
 
-                </ui:CommandBar>
-                <Border Margin="0" Grid.Row="2">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.History}" Opacity="0.6" Margin="10,10,5,10"/>
-                        <fmlt:HistoryToolBar x:Name="historyToolBar" Grid.Column="1"/>
-                    </Grid>
-                </Border>
-                <Border Grid.Row="1"
+                    </ComboBox>
+                </ui:AppBarElementContainer>
+
+                <ui:AppBarSeparator/>
+
+                <ui:AppBarToggleButton x:Name="AppBarToggleButton_MainBar_Underbar" ToolTip="Show/Hide Underbar" Unchecked="UnderbarToggleCheckChanged" Checked="UnderbarToggleCheckChanged" Label="Underline" LabelPosition="Collapsed">
+                    <ui:AppBarToggleButton.Icon>
+                        <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/Gui/underbar.png" Width="16"/>
+                    </ui:AppBarToggleButton.Icon>
+                </ui:AppBarToggleButton>
+
+                <ui:AppBarSeparator/>
+
+                <ui:AppBarElementContainer>
+                    <CheckBox x:Name="integralItalicCheckbox" FontSize="12" Content="New Integral Italic" Checked="integralItalicCheckbox_Checked" Unchecked="integralItalicCheckbox_Unchecked" VerticalContentAlignment="Center" Padding="4,0,0,0" Margin="4,0,0,0"/>
+                </ui:AppBarElementContainer>
+
+            </ui:CommandBar>
+            <Border Margin="0" Grid.Row="2">
+                <Grid Margin="1,0,1,1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ui:FontIcon Glyph="{x:Static ui:SegoeIcons.History}" Opacity="0.6" Margin="12,0,9,0"/>
+                    <fmlt:HistoryToolBar x:Name="historyToolBar" Grid.Column="1" Margin="0,3"/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1"
                         BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}"
-                        BorderThickness="0 1 0 1" Height="40">
-                    <StackPanel Orientation="Horizontal" >
-                        <fmlt:CharacterToolBar x:Name="characterToolBar" Padding="0" Panel.ZIndex="100" HorizontalAlignment="Left"/>
-                        <fmlt:EquationToolBar x:Name="equationToolBar" Padding="0" Panel.ZIndex="99"/>
+                        BorderThickness="0,0,0,1" Margin="1,1,1,0" CornerRadius="7.5 7.5 0 0">
+                <StackPanel Orientation="Horizontal">
+                    <FrameworkElement.Clip>
+                        <RectangleGeometry Rect="0,0,9999,9999" RadiusX="7.5" RadiusY="7.5" />
+                    </FrameworkElement.Clip>
+                    <fmlt:CharacterToolBar x:Name="characterToolBar" Padding="0" Panel.ZIndex="100" HorizontalAlignment="Left"/>
+                    <fmlt:EquationToolBar x:Name="equationToolBar" Padding="0" Panel.ZIndex="99"/>
 
-                    </StackPanel>
-                </Border>
-            </Grid>
-        </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+
     </Grid>
 </Window>
