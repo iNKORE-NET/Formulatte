@@ -52,7 +52,11 @@ namespace Formulatte.Engine.Controls
 
         bool showOverbar = true;
 
-        public bool Dirty { get; set; }
+        public bool Dirty 
+        {
+            get; 
+            set; 
+        }
         
         EquationRoot equationRoot;
         Caret vCaret = new Caret(false);

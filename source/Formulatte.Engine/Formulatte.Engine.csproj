@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\Gui\underbar.png" />
+    <None Remove="Resources\Images\Icons\Formulatte_24.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -266,6 +267,7 @@
     <Resource Include="Resources\Images\Commands\SumsProducts\unionSub.png" />
     <Resource Include="Resources\Images\Commands\SumsProducts\unionSubSuper.png" />
     <Resource Include="Resources\Images\Gui\underbar.png" />
+    <Resource Include="Resources\Images\Icons\Formulatte_24.png" />
     <Resource Include="Resources\Images\MathButtons\arrowEquation.png" />
     <Resource Include="Resources\Images\MathButtons\arrows.png" />
     <Resource Include="Resources\Images\MathButtons\boxes.png" />

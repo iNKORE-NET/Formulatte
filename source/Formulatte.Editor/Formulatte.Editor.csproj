@@ -1,24 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<ApplicationIcon>..\..\assets\icons\Formulatte.ico</ApplicationIcon>
+	</PropertyGroup>
 
-	
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Formulatte.Engine\Properties\AssemblyInfoCommon.cs" Link="Properties\AssemblyInfoCommon.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="app_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Formulatte.Engine\Formulatte.Engine.csproj" />
-  </ItemGroup>
+
+	<ItemGroup>
+		<AppDesigner Include="Properties\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="..\Formulatte.Engine\Properties\AssemblyInfoCommon.cs" Link="Properties\AssemblyInfoCommon.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Resource Include="app_icon.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Formulatte.Engine\Formulatte.Engine.csproj" />
+	</ItemGroup>
 </Project>

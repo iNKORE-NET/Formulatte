@@ -50,6 +50,6 @@
                 <ikw:OpacityMaskedImage Source="/Formulatte.Engine;component/Resources/Images/mathbuttons/boxes.png"/>
             </Button>
         </StackPanel>
-        <Canvas Name="mainToolBarPanel" Margin="0,24,0,0"/>
+        <Canvas Name="mainToolBarPanel" Margin="0,40,0,0"/>
     </Grid>
 </UserControl>

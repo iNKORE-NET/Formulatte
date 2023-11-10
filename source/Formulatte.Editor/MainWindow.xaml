@@ -50,7 +50,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=(ui:TitleBar.SystemOverlayRightInset), Converter={StaticResource PixelsToGridLength}}"/>
                 </Grid.ColumnDefinitions>
-                <Ellipse Fill="Black" Width="20" Height="20" Margin="18,14,10,0"/>
+                <Image Source="{StaticResource DrawingImage_Formulatte_Icon}" Width="28" Height="28" Margin="16,14,10,0" RenderOptions.BitmapScalingMode="HighQuality"/>
                 <Menu Grid.Column="1" WindowChrome.IsHitTestVisibleInChrome="True" Margin="-4,6,0,-6">
                     <MenuItem x:Name="fileMenuItem" Header="_File">
                         <MenuItem x:Name="newMenuItem" Header="_New"        Command="New"/>
@@ -221,7 +221,7 @@
                 <ui:AppBarSeparator/>
 
                 <ui:AppBarElementContainer>
-                    <ComboBox Name="equationFontCombo" Width="100" DropDownClosed="EquationFontCombo_DropDownClosed" SelectedIndex="0" VerticalAlignment="Stretch">
+                    <ComboBox Name="equationFontCombo" Width="100" DropDownClosed="EquationFontCombo_DropDownClosed" SelectedIndex="0" VerticalAlignment="Stretch" ScrollViewer.CanContentScroll="False">
                         <ComboBoxItem Tag="STIXGeneral">STIX</ComboBoxItem>
                         <ComboBoxItem Tag="Arial">Arial</ComboBoxItem>
                         <ComboBoxItem Tag="ArialBlack">Arial Black</ComboBoxItem>
@@ -268,10 +268,10 @@
                     </ui:AppBarToggleButton.Icon>
                 </ui:AppBarToggleButton>
 
-                <ui:AppBarElementContainer>
+                <ui:AppBarElementContainer Visibility="Collapsed">
                     <ikw:PortableColorPicker x:Name="PortableColorPicker_Color" Width="16" Height="16" Margin="10" ColorPicked="PortableColorPicker_Color_ColorPicked"/>
                 </ui:AppBarElementContainer>
-                <ui:AppBarElementContainer>
+                <ui:AppBarElementContainer Visibility="Collapsed">
                     <ComboBox x:Name="ComboBox_FontSize" IsEditable="True" Width="120">
 
                     </ComboBox>

@@ -43,6 +43,9 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
+    <Style TargetType="ui:AppBarSeparator">
+        <Setter Property="Margin" Value="0,6"/>
+    </Style>
 
     <Style x:Key="ToolbarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Static ui:ThemeKeys.DefaultButtonStyleKey}}">
         <!--<Setter Property="Background" Value="#FFE9E9E9"/>-->

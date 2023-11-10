@@ -5,6 +5,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
     mc:Ignorable="d">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Formulatte.Engine;component/Themes/Formulatte.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ButtonFocusVisual">
         <Setter Property="Control.Template">

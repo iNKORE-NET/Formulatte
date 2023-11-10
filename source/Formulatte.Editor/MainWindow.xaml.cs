@@ -104,7 +104,9 @@ namespace Formulatte
             }
             ChangeEditorMode();
             ChangeEditorFont();
-            editor.Focus();            
+            editor.Focus();
+
+            editor.Dirty = false;
         }        
 
         void editor_SelectionUnavailable(object sender, EventArgs e)

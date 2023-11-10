@@ -6,10 +6,13 @@
              xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Border Background="{DynamicResource {x:Static ui:ThemeKeys.CommandBarFlyoutBackgroundKey}}" CornerRadius="8"
+    <ui:DropShadowPanel ShadowMode="Outer" CornerRadius="8" ShadowOpacity="0.1" BlurRadius="4">
+        <Border Background="{DynamicResource {x:Static ui:ThemeKeys.CommandBarFlyoutBackgroundKey}}" CornerRadius="8"
             BorderBrush="{DynamicResource {x:Static ui:ThemeKeys.CardStrokeColorDefaultBrushKey}}" BorderThickness="1"
             Padding="5">
-        <UniformGrid x:Name="mainGrid">
-        </UniformGrid>
-    </Border>
+            <UniformGrid x:Name="mainGrid">
+            </UniformGrid>
+        </Border>
+
+    </ui:DropShadowPanel>
 </UserControl>
