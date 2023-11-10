@@ -49,12 +49,6 @@
 * Extensions available to bring your equations to [Inkways](https://inkore.net/en-us/products/inkways/) and more
 
 
-# 🤔 How to use
-
-- [Quick Start](https://github.com/InkoreStudios/Formulatte/blob/main/materials/docs/Quick%20Start.md): This shows you the first steps how to use this library to set up your project
-
-- [FAQs](https://github.com/InkoreStudios/Formulatte/blob/main/materials/docs/FAQs.md): Here are some frequently asked questions and answers for you to look up for.
-
 # 🙋🏻‍♂️ Contribution
 
 - Want to contribute? The team encourages community feedback and contributions.
@@ -62,5 +56,7 @@
 - ATTENTION! The Coreworks are not open-source, so you need to download the binary from releases and manually reference them in your fork.
 
 - If the project is not working properly, please file a report. We welcome any issues and pull requests submitted on GitHub.
+
+- Thanks [@Shomnipotence](https://github.com/Shomnipotence) for designing the main icon and providing a lot of useful suggestions on the UI interface
 
 - Sponsor us at https://inkore.net/about/members/notyoojun#sponsor
