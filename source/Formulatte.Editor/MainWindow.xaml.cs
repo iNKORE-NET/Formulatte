@@ -34,8 +34,8 @@ namespace Formulatte
         public event PropertyChangedEventHandler PropertyChanged = (x, y) => { };
         string version = Assembly.GetEntryAssembly().GetName().Version.ToString();
         string currentLocalFile = "";
-        static string meExtension = "med";
-        static string meFileFilter = "Math Editor File (*." + meExtension + ")|*." + meExtension;
+        static string meExtension = "formulatte";
+        static string meFileFilter = "Formulatte Formula (*." + meExtension + ")|*." + meExtension;
         
         public EditorHandler EditorHandler { get; set; }
 
